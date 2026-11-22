@@ -1,0 +1,14 @@
+{
+  "name": "@everyday-ui/shots",
+  "version": "0.6.0",
+  "description": "Review renders for any project: 375/1280 px, light/dark, squint test, keyboard focus pass, reduced motion, 200 % zoom, and an HTML contact sheet with automatic findings.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/shots.mjs",
+  "exports": { ".": "./lib/shots.mjs" },
+  "bin": { "everyday-shots": "./bin/everyday-shots.mjs" },
+  "files": ["bin", "lib", "README.md"],
+  "peerDependencies": { "playwright": ">=1.40" },
+  "peerDependenciesMeta": { "playwright": { "optional": true } },
+  "engines": { "node": ">=18" }
+}

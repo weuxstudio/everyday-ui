@@ -112,6 +112,10 @@ include that case. Do it for real:
   project has dark mode, dark, if you can look at it at all.
 - **Squint test:** blur the screenshot (CSS `filter: blur(6px)`). The primary action and the
   purpose of the screen must still stand out.
+- One command renders all of this for any running app (both widths, light/dark, squint,
+  keyboard pass, reduced motion, 200 % zoom) into a contact sheet with automatic findings:
+  `node <skill>/tools/shots/bin/everyday-shots.mjs http://localhost:5173 / /settings`
+  (`--serve dist` for a built folder, `--light-only` when the brief says so). Needs Playwright.
 - Tab through it with the keyboard; trigger each state from step 1, including validation errors.
 - Run the lint for the mechanical rules (weights, spacing scale, raw colours, `confirm()`,
   disabled submits, unnamed icon buttons): `node <skill>/tools/lint/bin/everyday-lint.mjs src`
