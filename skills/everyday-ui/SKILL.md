@@ -65,6 +65,7 @@ Read `references/principles.md` once per session. Then load what the task touche
 | A new project's look, a rebrand, or style changes | `references/onboarding.md` |
 | Token names and roles | `references/tokens.md` |
 | React code | `references/stack-react.md` |
+| Svelte code | `references/stack-svelte.md` |
 
 ## 3. Build on the foundation
 
@@ -80,7 +81,8 @@ Read `references/principles.md` once per session. Then load what the task touche
   adapt it to the real content; don't reinvent a checkout or a pricing page.
 - **Components:** React adapter has Button, Field, PasswordField, Checkbox, RadioGroup,
   SegmentedControl, Switch, Stepper, ProgressSteps, ErrorSummary, EmptyState, Badge, Card,
-  Dialog, BottomSheet. Reuse before inventing; extend in the same style.
+  Dialog, BottomSheet. Svelte adapter has Button, Field, Checkbox, Switch, SegmentedControl,
+  Dialog, BottomSheet, EmptyState, ErrorSummary. Reuse before inventing; extend in the same style.
 
 ## 4. The rules you'll apply most
 

@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import "../../tokens/dist/tailwind.css";
+@import "../src/styles.css";
+@source "../src";
+@source "./Demo.svelte";

@@ -1,15 +1,16 @@
 {
   "name": "everyday-ui-monorepo",
   "private": true,
-  "version": "0.5.1",
+  "version": "0.6.0",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build -w @everyday-ui/tokens && npm run typecheck -w @everyday-ui/react && tsc -p tsconfig.patterns.json && node scripts/sync-skill-tools.mjs",
+    "build": "npm run build -w @everyday-ui/tokens && npm run typecheck -w @everyday-ui/react && npm run check -w @everyday-ui/svelte && tsc -p tsconfig.patterns.json && node scripts/sync-skill-tools.mjs",
     "test": "npm test -w @everyday-ui/lint",
-    "lint:ui": "node packages/lint/bin/everyday-lint.mjs packages/react/src skills/everyday-ui/patterns examples --max-warnings 0",
-    "demo": "node examples/render-demo.mjs"
+    "lint:ui": "node packages/lint/bin/everyday-lint.mjs packages/react/src packages/svelte/src packages/svelte/demo/Demo.svelte skills/everyday-ui/patterns examples --max-warnings 0",
+    "demo": "node examples/render-demo.mjs",
+    "demo:svelte": "node packages/svelte/demo/build.mjs"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.5",

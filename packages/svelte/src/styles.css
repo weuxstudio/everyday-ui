@@ -1,0 +1,109 @@
+/* Import once in the app, after Tailwind and the tokens:
+   @import "tailwindcss";
+   @import "<theme>/tailwind.css";
+   @import "@everyday-ui/svelte/styles.css";
+   @source "../node_modules/@everyday-ui/svelte/src";
+   Generated from packages/react/src/styles.css by scripts/sync-skill-tools.mjs; edit that file. */
+
+/* Dialog enter AND exit, with CSS only: @starting-style animates from "closed" to "open", and
+   transition-behavior: allow-discrete keeps the dialog in the top layer until the exit finishes.
+   Browsers without support simply show and hide it. Durations come from the theme, so
+   prefers-reduced-motion (durations 0) turns it off. */
+dialog.eu-dialog {
+  opacity: 0;
+  translate: 0 var(--eu-motion-distance, 0.5rem);
+  scale: var(--eu-motion-scale, 1);
+  transition-property: opacity, translate, scale, overlay, display;
+  transition-duration: var(--eu-duration-fast);
+  transition-timing-function: var(--eu-ease-in);
+  transition-behavior: allow-discrete;
+}
+dialog.eu-dialog[open] {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  transition-duration: var(--eu-duration-base);
+  transition-timing-function: var(--eu-ease-out);
+}
+@starting-style {
+  dialog.eu-dialog[open] {
+    opacity: 0;
+    translate: 0 var(--eu-motion-distance, 0.5rem);
+    scale: var(--eu-motion-scale, 1);
+  }
+}
+dialog.eu-dialog::backdrop {
+  background-color: transparent;
+  transition-property: background-color, overlay, display;
+  transition-duration: var(--eu-duration-fast);
+  transition-behavior: allow-discrete;
+}
+dialog.eu-dialog[open]::backdrop {
+  background-color: var(--eu-color-scrim);
+  transition-duration: var(--eu-duration-base);
+}
+@starting-style {
+  dialog.eu-dialog[open]::backdrop {
+    background-color: transparent;
+  }
+}
+
+/* Bottom sheet: slides up from the bottom edge, back down on close. */
+dialog.eu-sheet {
+  translate: 0 100%;
+  transition-property: translate, overlay, display;
+  transition-duration: var(--eu-duration-fast);
+  transition-timing-function: var(--eu-ease-in);
+  transition-behavior: allow-discrete;
+}
+dialog.eu-sheet[open] {
+  translate: 0 0;
+  transition-duration: var(--eu-duration-slow);
+  transition-timing-function: var(--eu-ease-out);
+}
+@starting-style {
+  dialog.eu-sheet[open] {
+    translate: 0 100%;
+  }
+}
+dialog.eu-sheet::backdrop {
+  background-color: transparent;
+  transition-property: background-color, overlay, display;
+  transition-duration: var(--eu-duration-base);
+  transition-behavior: allow-discrete;
+}
+dialog.eu-sheet[open]::backdrop {
+  background-color: var(--eu-color-scrim);
+}
+@starting-style {
+  dialog.eu-sheet[open]::backdrop {
+    background-color: transparent;
+  }
+}
+
+/* Generic enter for elements that appear (menus, toasts, inline messages) without JS:
+   add class="eu-enter". */
+.eu-enter {
+  transition: opacity var(--eu-duration-base) var(--eu-ease-out), translate var(--eu-duration-base) var(--eu-ease-out),
+    scale var(--eu-duration-base) var(--eu-ease-out);
+}
+@starting-style {
+  .eu-enter {
+    opacity: 0;
+    translate: 0 var(--eu-motion-distance, 0.5rem);
+    scale: var(--eu-motion-scale, 1);
+  }
+}
+
+/* View Transitions: the theme's timing for the default cross-fade. */
+::view-transition-group(*) {
+  animation-duration: var(--eu-duration-slow);
+  animation-timing-function: var(--eu-ease-in-out);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
