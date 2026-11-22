@@ -34,7 +34,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
             aria-invalid={error ? true : undefined}
             aria-describedby={[errorId, hintId].filter(Boolean).join(" ") || undefined}
             className={cx(
-              "peer size-5 cursor-pointer appearance-none rounded-sm border-2 bg-surface transition-colors",
+              "peer size-5 cursor-pointer appearance-none rounded-check border-2 bg-surface transition-colors",
               "checked:border-accent checked:bg-accent",
               "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus",
               "disabled:cursor-not-allowed disabled:bg-sunken",

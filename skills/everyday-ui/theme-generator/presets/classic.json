@@ -1,0 +1,9 @@
+{
+  "$description": "Professional and trustworthy. Pure grays, navy accent, restrained radii and shadows. For B2B, finance, public sector.",
+  "color": { "accent": "#1f3a8a", "neutral": "neutral", "tint": "none" },
+  "type": { "sans": "Source Sans 3", "scale": "balanced", "headingWeight": 600 },
+  "shape": { "radius": "subtle" },
+  "depth": "subtle",
+  "surface": "layered",
+  "motion": "smooth"
+}

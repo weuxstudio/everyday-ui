@@ -21,7 +21,7 @@ export function Card({ as: Tag = "section", title, description, actions, elevati
       id={id}
       aria-labelledby={headingId}
       className={cx(
-        "rounded-lg border border-border bg-surface p-6",
+        "rounded-card border border-border bg-surface p-card",
         elevation === "raised" && "shadow-md",
         className,
       )}
@@ -31,7 +31,7 @@ export function Card({ as: Tag = "section", title, description, actions, elevati
         <header className="mb-4 flex items-start justify-between gap-4">
           <div className="min-w-0">
             {title ? (
-              <h2 id={headingId} className="text-lg font-semibold text-ink">
+              <h2 id={headingId} className="text-lg font-heading text-ink">
                 {title}
               </h2>
             ) : null}

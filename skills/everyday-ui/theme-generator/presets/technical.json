@@ -1,0 +1,10 @@
+{
+  "$description": "Dense and precise. Cool grays, small radii, compact controls, quick motion, monospace details. For developer tools, dashboards, admin.",
+  "color": { "accent": "#0b7285", "neutral": "cool", "tint": "subtle" },
+  "type": { "sans": "IBM Plex Sans", "mono": "IBM Plex Mono", "scale": "compact", "headingWeight": 600 },
+  "shape": { "radius": "sharp" },
+  "density": "compact",
+  "depth": "subtle",
+  "surface": "solid",
+  "motion": "minimal"
+}

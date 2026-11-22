@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.0 - 2026-11-22
+
+- Theme generator (`everyday-theme`): knobs for accent, neutral hue and tint, mode, contrast level,
+  fonts (UI, display, mono), type scale, heading weight and tracking, radius, round or squircle
+  corners, density, depth, surface (solid, layered, glass) and motion. Commands: presets, knobs,
+  init, set (with +1/-1 steps), build. Writes CSS, Tailwind theme, DTCG tokens, specimen page and
+  THEME.md with font self-hosting instructions.
+- Six presets: neutral, classic, editorial, friendly, technical, glass.
+- Contrast auto-fix: moves failing colors until WCAG 2.2 and APCA pass; glass opacity is computed
+  against the worst plausible backdrop; warnings for very light brand colors and red/green brands.
+- Tokens: `brand`, `overlay`, display font, heading weight, radius roles (control, check, card,
+  dialog, badge), corner shape, overlay blur, card padding; reduced-transparency support;
+  `data-theme` works on any element.
+- Components use the semantic tokens, so every preset restyles them without code changes.
+- Skill: onboarding reference (interview, words → knobs, fine-tuning), brief and theme in step 0.
+- Demo: `?theme=<preset>` and screenshots of every preset.
+
 ## 0.2.0 - 2026-11-22
 
 - Skill: new topic guides `layout.md`, `color.md`, `typography.md`, `copy.md`, `forms.md`,

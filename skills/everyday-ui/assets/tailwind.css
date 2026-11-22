@@ -1,5 +1,5 @@
-/* Everyday UI theme for Tailwind v4 - generated. Do not edit.
-   Usage: @import "tailwindcss"; @import "@everyday-ui/tokens/tailwind.css"; */
+/* Everyday UI theme for Tailwind v4 - generated. Do not edit by hand.
+   Usage: @import "tailwindcss"; @import "<this file>"; */
 @import "./tokens.css";
 
 /* Remove Tailwind's default palette so only Everyday UI colors exist.
@@ -32,11 +32,15 @@
   --color-warning-subtle: var(--eu-color-warning-subtle);
   --color-focus: var(--eu-color-focus);
   --color-scrim: var(--eu-color-scrim);
+  --color-brand: var(--eu-color-brand);
+  --color-overlay: var(--eu-color-overlay);
   --font-sans: var(--eu-font-sans);
   --font-mono: var(--eu-font-mono);
+  --font-display: var(--eu-font-display);
   --font-weight-regular: var(--eu-font-weight-regular);
   --font-weight-semibold: var(--eu-font-weight-semibold);
   --font-weight-bold: var(--eu-font-weight-bold);
+  --font-weight-heading: var(--eu-font-weight-heading);
   --text-xs: var(--eu-text-xs);
   --text-xs--line-height: var(--eu-text-xs-line);
   --text-xs--letter-spacing: var(--eu-text-xs-tracking);
@@ -65,6 +69,7 @@
   --text-5xl--line-height: var(--eu-text-5xl-line);
   --text-5xl--letter-spacing: var(--eu-text-5xl-tracking);
   --spacing: var(--eu-space-unit);
+  --spacing-card: var(--eu-space-card);
   --spacing-control-sm: var(--eu-size-control-sm);
   --spacing-control-md: var(--eu-size-control-md);
   --spacing-control-lg: var(--eu-size-control-lg);
@@ -77,9 +82,15 @@
   --radius-lg: var(--eu-radius-lg);
   --radius-xl: var(--eu-radius-xl);
   --radius-full: var(--eu-radius-full);
+  --radius-control: var(--eu-radius-control);
+  --radius-check: var(--eu-radius-check);
+  --radius-card: var(--eu-radius-card);
+  --radius-dialog: var(--eu-radius-dialog);
+  --radius-badge: var(--eu-radius-badge);
   --shadow-sm: var(--eu-shadow-sm);
   --shadow-md: var(--eu-shadow-md);
   --shadow-lg: var(--eu-shadow-lg);
+  --blur-overlay: var(--eu-effect-overlay-blur);
   --ease-out: var(--eu-ease-out);
   --ease-in: var(--eu-ease-in);
   --ease-in-out: var(--eu-ease-in-out);
@@ -100,13 +111,18 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4 { text-wrap: balance; }
+  h1, h2, h3, h4 {
+    font-family: var(--eu-font-display);
+    font-weight: var(--eu-font-weight-heading);
+    text-wrap: balance;
+  }
   p, li, figcaption { text-wrap: pretty; }
   :focus-visible {
     outline: 2px solid var(--eu-color-focus);
     outline-offset: 2px;
   }
   ::selection { background: var(--eu-color-accent-subtle); }
+  .rounded-control, .rounded-check, .rounded-card, .rounded-dialog { corner-shape: var(--eu-corner-shape, round); }
   a {
     color: var(--eu-color-accent);
     text-decoration-line: underline;

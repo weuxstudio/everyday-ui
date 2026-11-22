@@ -9,7 +9,8 @@ npm install @everyday-ui/tokens @everyday-ui/react
 ```css
 /* src/app.css */
 @import "tailwindcss";
-@import "@everyday-ui/tokens/tailwind.css";
+@import "./styles/everyday/tailwind.css";      /* the project's generated theme (everyday.theme.json → output) */
+/* no theme yet? @import "@everyday-ui/tokens/tailwind.css"; */
 @import "@everyday-ui/react/styles.css";
 @source "../node_modules/@everyday-ui/react/src";
 ```

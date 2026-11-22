@@ -1,7 +1,8 @@
 # Tokens
 
-Source of truth: `packages/tokens/src/tokens.json` (W3C DTCG format). Everything else is
-generated from it. All CSS variables are prefixed `--eu-`.
+Default source: `packages/tokens/src/tokens.json` (W3C DTCG format). Project themes are generated
+from it by the theme generator (see `onboarding.md`). All CSS variables are prefixed `--eu-`.
+In a project with `everyday.theme.json`, import the generated folder instead of the package default.
 
 ## Setup in a project
 
@@ -40,7 +41,9 @@ Never re-type token values by hand.
 | `accent-subtle` | Selected rows, tinted info areas |
 | `danger`, `success`, `warning` (+ `-subtle`, `-ink`, `-hover`) | Status only, never decoration |
 | `focus` | Focus rings |
+| `overlay` | Floating surfaces: dialogs, menus, popovers (translucent in glass themes) |
 | `scrim` | Backdrop behind modals |
+| `brand` | The brand color exactly as given; decoration only (illustration, highlights), never controls or text |
 
 Every pairing above is contrast-checked when tokens build, in light and dark mode, against
 **both** WCAG 2.2 AA ratios and APCA lightness contrast (Lc). The build fails if a change breaks
@@ -75,19 +78,20 @@ Named sizes: `h-control-sm|md|lg` (36 / 44 / 48 px), `size-touch` / `min-h-touch
 
 ## Radius, shadow, motion
 
-- Radius: `rounded-sm|md|lg|xl|full`. Controls use `md`, cards `lg`, dialogs `xl`.
+- Radius roles (set by the theme): `rounded-control` (buttons, inputs), `rounded-check`
+  (checkboxes), `rounded-card`, `rounded-dialog`, `rounded-badge`. Use roles in components;
+  `rounded-sm|md|lg|xl|full` remain for one-off shapes. Squircle themes apply CSS `corner-shape`
+  to the roles where supported.
+- Card padding follows density: `p-card`.
 - Shadow: `shadow-sm|md|lg`, only for things that float (menus, popovers, dialogs).
 - Motion: `transition-*` uses `--eu-duration-fast` and `--eu-ease-out` by default. Durations
   collapse to 0 under `prefers-reduced-motion`.
 
 ## Theming per project
 
-Projects override tokens in CSS, after the import, never by editing components:
+Use the theme generator (`references/onboarding.md`): knobs in `everyday.theme.json` →
+generated tokens, contrast-checked and auto-corrected. Don't override variables by hand unless the
+knobs can't express a requirement; then override after the import and record why in `everyday.md`.
 
-```css
-:root { --eu-color-accent: oklch(0.55 0.15 160); --eu-color-accent-hover: oklch(0.49 0.15 160); }
-:root[data-theme="dark"] { --eu-color-accent: oklch(0.75 0.12 160); }
-```
-
-Record overrides in the project's `everyday.md`, and check contrast for changed pairs.
-Dark mode follows the OS by default; `data-theme="light" | "dark"` on `<html>` forces it.
+Dark mode follows the OS by default (`color.mode` knob can force light or dark).
+`data-theme="light" | "dark"` on `<html>` or any element switches that subtree.

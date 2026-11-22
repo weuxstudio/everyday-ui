@@ -12,18 +12,26 @@ What just happened?** Everything below serves that.
 Have a reason for every detail. If you can't say what a color, line, size or position does for
 the user, remove it or change it.
 
-## 0. Before anything: the project brief
+## 0. Before anything: brief and theme
 
-Look for `everyday.md` in the project root.
+Each project has two files in its root. The rules in this skill are fixed; these two decide what
+the project is and how it looks.
 
-- **Found:** read it. Its decisions (audience, tone, accent, density, font, vocabulary) override
-  the defaults in this skill.
-- **Not found:** copy `templates/everyday.md` into the project root and fill in what the request
-  and codebase already tell you. Ask the user at most **two** questions, only for things you
-  can't infer and that change the design (usually: who uses this, and one word for the feel).
-  If the user isn't available, choose sensibly, write the choices into the brief and say so.
+| File | Holds | If missing |
+| --- | --- | --- |
+| `everyday.md` | Product, users, tone, glossary, layout decisions, decisions log | Copy `templates/everyday.md`, fill in what you can infer |
+| `everyday.theme.json` | The look as knobs: accent, neutrals, fonts, radius, corners, density, depth, surface, motion | Run onboarding: `references/onboarding.md` |
 
-Never re-decide the brief per screen. Consistency across a project beats a clever one-off.
+- **Both found:** read them; they override this skill's defaults. Import the generated theme
+  (the `output` folder in `everyday.theme.json`), never the package default.
+- **Missing:** onboarding asks at most four questions in one go (product, feel, brand color,
+  light/dark), turns the answers into knobs, generates and shows a specimen. If the user isn't
+  available, choose the closest preset, say which and why, and carry on.
+- **"Change the look"** ("rounder", "squircle", "warmer", "more compact", new brand color): change
+  the knob with the generator's `set` command and rebuild. Don't edit generated CSS or hard-code
+  values in components.
+
+Never re-decide the brief or theme per screen. Consistency across a project beats a clever one-off.
 
 ## 1. Understand the task, not the layout
 
@@ -49,7 +57,8 @@ Read `references/principles.md` once per session. Then load what the task touche
 | Forms, inputs, settings, checkout, sign-up | `references/forms.md` |
 | Buttons, dialogs, destructive or disabled actions | `references/buttons-and-actions.md` |
 | States, feedback, motion, navigation, tables, i18n | `references/interaction.md` |
-| Setting up or changing tokens | `references/tokens.md` |
+| A new project's look, a rebrand, or style changes | `references/onboarding.md` |
+| Token names and roles | `references/tokens.md` |
 | React code | `references/stack-react.md` |
 
 ## 3. Build on the foundation

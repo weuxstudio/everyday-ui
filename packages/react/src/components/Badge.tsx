@@ -23,7 +23,7 @@ const tones: Record<BadgeTone, string> = {
 export function Badge({ tone = "neutral", icon, className, children, ...rest }: BadgeProps) {
   return (
     <span
-      className={cx("inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-sm font-semibold", tones[tone], className)}
+      className={cx("inline-flex items-center gap-1 rounded-badge px-2.5 py-0.5 text-sm font-semibold", tones[tone], className)}
       {...rest}
     >
       {icon ? <span aria-hidden="true" className="inline-flex size-3.5">{icon}</span> : null}

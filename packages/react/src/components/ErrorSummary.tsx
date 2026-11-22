@@ -32,7 +32,7 @@ export function ErrorSummary({ errors, title = "Check the highlighted fields" }:
       ref={ref}
       tabIndex={-1}
       role="alert"
-      className="rounded-lg border-2 border-danger bg-danger-subtle p-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:p-6"
+      className="rounded-card border-2 border-danger bg-danger-subtle p-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:p-6"
     >
       <p className="flex items-center gap-2 text-lg font-semibold text-danger">
         <ErrorIcon className="size-5 shrink-0" />

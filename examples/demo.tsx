@@ -44,7 +44,7 @@ function SettingsPage() {
     <main className="mx-auto max-w-2xl px-4 py-12 sm:px-6 sm:py-20">
       <header className="mb-12">
         <p className="text-sm font-semibold uppercase tracking-[0.08em] text-ink-muted">Atlas Studio</p>
-        <h1 className="mt-2 text-3xl font-semibold">Workspace settings</h1>
+        <h1 className="mt-2 text-3xl font-heading">Workspace settings</h1>
       </header>
 
       <form noValidate onSubmit={submit} className="flex flex-col gap-12">
@@ -52,7 +52,7 @@ function SettingsPage() {
         <p className="text-sm text-ink-muted">Required fields are marked with an asterisk *</p>
 
         <section aria-labelledby="billing" className="flex flex-col gap-6">
-          <h2 id="billing" className="text-xl font-semibold">Billing details</h2>
+          <h2 id="billing" className="text-xl font-heading">Billing details</h2>
           <Field id="studio" label="Studio name" required defaultValue="Atlas Studio" autoComplete="organization" />
           <Field
             id="email"
@@ -79,7 +79,7 @@ function SettingsPage() {
         </section>
 
         <section aria-labelledby="plan" className="flex flex-col gap-6">
-          <h2 id="plan" className="text-xl font-semibold">Plan</h2>
+          <h2 id="plan" className="text-xl font-heading">Plan</h2>
           <RadioGroup
             id="plan-choice"
             legend="Choose a plan"

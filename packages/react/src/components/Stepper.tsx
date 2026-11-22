@@ -32,7 +32,7 @@ export function Stepper({ label, hint, value, defaultValue = 0, onValueChange, m
   };
 
   const btn =
-    "grid size-touch shrink-0 place-items-center rounded-md border border-accent bg-surface text-accent text-xl font-semibold " +
+    "grid size-touch shrink-0 place-items-center rounded-control border border-accent bg-surface text-accent text-xl font-semibold " +
     "hover:bg-accent-subtle focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus " +
     "aria-disabled:cursor-not-allowed aria-disabled:border-border-strong aria-disabled:bg-sunken aria-disabled:text-ink-muted";
 
@@ -61,7 +61,7 @@ export function Stepper({ label, hint, value, defaultValue = 0, onValueChange, m
           aria-describedby={hintId}
           value={current}
           onChange={(e) => set(parseInt(e.target.value.replace(/\D/g, ""), 10))}
-          className="h-touch w-14 rounded-md border border-border-strong bg-surface text-center text-base tabular-nums text-ink focus-visible:outline-2 focus-visible:outline-focus"
+          className="h-touch w-14 rounded-control border border-border-strong bg-surface text-center text-base tabular-nums text-ink focus-visible:outline-2 focus-visible:outline-focus"
         />
         <button
           type="button"

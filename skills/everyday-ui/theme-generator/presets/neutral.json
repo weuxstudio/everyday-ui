@@ -1,0 +1,10 @@
+{
+  "$description": "Calm and universal. Warm off-white, cobalt accent, subtle radii, soft depth. The Everyday UI default.",
+  "color": { "accent": "oklch(0.5 0.165 262)", "neutral": "warm", "tint": "subtle", "mode": "system", "contrast": "standard" },
+  "type": { "sans": "Hanken Grotesk", "display": null, "displayStyle": "sans", "mono": "JetBrains Mono", "scale": "expressive", "headingWeight": 600, "headingTracking": "tight" },
+  "shape": { "radius": "subtle", "corners": "round" },
+  "density": "comfortable",
+  "depth": "soft",
+  "surface": "layered",
+  "motion": "smooth"
+}

@@ -5,6 +5,7 @@ Everyday UI separates **what good design is** from **how a framework renders it*
 ```
 skills/everyday-ui/          principles, workflow, review         (no framework)
 packages/tokens/             tokens.json → CSS / Tailwind / JS     (no framework)
+                             + theme generator: knobs → tokens     (no framework)
 packages/react/              React components                      (adapter)
 packages/svelte/             Svelte components                     (adapter, planned)
 packages/vue/                Vue components                        (adapter, planned)
@@ -19,6 +20,12 @@ packages/vue/                Vue components                        (adapter, pla
    React implementation is the reference.
 3. **The skill never assumes React.** It points to `stack-<framework>.md` for idioms; the
    principles and checklist apply to all.
+
+## Themes
+
+A theme only changes token values. Components read semantic tokens (radius roles, `p-card`,
+`bg-overlay`, `font-heading`), so a new preset or a project theme restyles every adapter with no
+code change. New look-and-feel options become new knobs in `lib/theme.mjs`, never component props.
 
 ## Adding an adapter (e.g. Svelte)
 

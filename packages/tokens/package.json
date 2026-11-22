@@ -1,7 +1,7 @@
 {
   "name": "@everyday-ui/tokens",
-  "version": "0.2.0",
-  "description": "Framework-agnostic design tokens for Everyday UI: CSS variables, Tailwind v4 theme, JS export. Contrast-checked at build time.",
+  "version": "0.3.0",
+  "description": "Framework-agnostic design tokens and theme generator for Everyday UI: CSS variables, Tailwind v4 theme, JS export. Contrast-checked (WCAG 2.2 + APCA) at build time.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
@@ -15,11 +15,15 @@
     "./base.css": "./dist/base.css",
     "./tailwind.css": "./dist/tailwind.css",
     "./tokens.json": "./dist/tokens.json",
-    "./source.json": "./src/tokens.json"
+    "./source.json": "./src/tokens.json",
+    "./themes/*": "./dist/themes/*"
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "lib",
+    "bin",
+    "presets"
   ],
   "sideEffects": [
     "*.css"
@@ -27,5 +31,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "report": "node scripts/build.mjs --report"
+  },
+  "bin": {
+    "everyday-theme": "./bin/everyday-theme.mjs"
   }
 }

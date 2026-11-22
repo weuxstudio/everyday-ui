@@ -14,11 +14,14 @@
 - **Reference products the users already know:** <!-- Jakob's law: borrow their conventions -->
 
 ## Visual decisions
-- **Accent color:** default (cobalt) <!-- or an oklch value; record dark-mode value too -->
-- **Font:** default (Hanken Grotesk) <!-- or brand font + license -->
-- **Density:** comfortable <!-- compact | comfortable | spacious -->
-- **Radius character:** default <!-- sharper | default | softer -->
-- **Theme:** follows OS <!-- light only | dark only | follows OS -->
+<!-- The look lives in everyday.theme.json (knobs) and is generated; summarize it here
+     in words so humans and future sessions know the intent. -->
+- **Theme file:** everyday.theme.json → output folder: <!-- e.g. src/styles/everyday -->
+- **Preset and why:** <!-- e.g. editorial: premium, calm, content-first -->
+- **Accent (brand) color:** <!-- e.g. #1e5b4f; note if the generator darkened it for contrast -->
+- **Fonts:** <!-- e.g. Instrument Sans (UI), Fraunces (headings), self-hosted via Fontsource -->
+- **Shape, density, depth, surface, motion:** <!-- e.g. sharp · spacious · flat · solid · minimal -->
+- **Mode:** <!-- follows OS | light | dark -->
 
 ## Content and language
 - **Language(s) and locale:** <!-- e.g. de-DE: 1.000,50 € · 24.12.2026 -->

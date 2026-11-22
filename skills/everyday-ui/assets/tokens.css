@@ -1,4 +1,4 @@
-/* Everyday UI tokens - generated from src/tokens.json. Do not edit. */
+/* Everyday UI tokens - generated from src/tokens.json. Do not edit by hand. */
 :root {
   color-scheme: light;
   --eu-color-paper: oklch(0.985 0.004 85);
@@ -22,11 +22,15 @@
   --eu-color-warning-subtle: oklch(0.960 0.040 85);
   --eu-color-focus: oklch(0.500 0.165 262);
   --eu-color-scrim: oklch(0.200 0.010 85 / 0.45);
+  --eu-color-brand: oklch(0.500 0.165 262);
+  --eu-color-overlay: oklch(1 0 0);
   --eu-font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --eu-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --eu-font-display: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --eu-font-weight-regular: 400;
   --eu-font-weight-semibold: 600;
   --eu-font-weight-bold: 700;
+  --eu-font-weight-heading: 600;
   --eu-text-xs: 0.75rem;
   --eu-text-xs-line: 1.5;
   --eu-text-xs-tracking: 0.01em;
@@ -62,6 +66,7 @@
   --eu-space-l: 2rem;
   --eu-space-xl: 3rem;
   --eu-space-2xl: 5rem;
+  --eu-space-card: 1.5rem;
   --eu-size-control-sm: 2.25rem;
   --eu-size-control-md: 2.75rem;
   --eu-size-control-lg: 3rem;
@@ -72,9 +77,15 @@
   --eu-radius-lg: 0.625rem;
   --eu-radius-xl: 1rem;
   --eu-radius-full: 9999px;
+  --eu-radius-control: 0.375rem;
+  --eu-radius-check: 0.25rem;
+  --eu-radius-card: 0.625rem;
+  --eu-radius-dialog: 1rem;
+  --eu-radius-badge: 9999px;
   --eu-shadow-sm: 0 1px 2px oklch(0.2 0.01 85 / 0.06), 0 1px 1px oklch(0.2 0.01 85 / 0.04);
   --eu-shadow-md: 0 4px 12px -2px oklch(0.2 0.01 85 / 0.10), 0 2px 4px -2px oklch(0.2 0.01 85 / 0.06);
   --eu-shadow-lg: 0 16px 40px -8px oklch(0.2 0.01 85 / 0.18), 0 4px 10px -4px oklch(0.2 0.01 85 / 0.08);
+  --eu-effect-overlay-blur: 0px;
   --eu-duration-instant: 80ms;
   --eu-duration-fast: 140ms;
   --eu-duration-base: 220ms;
@@ -82,6 +93,36 @@
   --eu-ease-out: cubic-bezier(0.2, 0, 0, 1);
   --eu-ease-in: cubic-bezier(0.4, 0, 1, 1);
   --eu-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --eu-color-paper: oklch(0.985 0.004 85);
+  --eu-color-surface: oklch(1 0 0);
+  --eu-color-sunken: oklch(0.962 0.005 85);
+  --eu-color-ink: oklch(0.220 0.010 85);
+  --eu-color-ink-muted: oklch(0.470 0.010 85);
+  --eu-color-border: oklch(0.890 0.006 85);
+  --eu-color-border-strong: oklch(0.600 0.010 85);
+  --eu-color-accent: oklch(0.500 0.165 262);
+  --eu-color-accent-hover: oklch(0.440 0.165 262);
+  --eu-color-accent-ink: oklch(0.985 0.004 262);
+  --eu-color-accent-subtle: oklch(0.950 0.020 262);
+  --eu-color-danger: oklch(0.520 0.190 27);
+  --eu-color-danger-hover: oklch(0.470 0.180 27);
+  --eu-color-danger-ink: oklch(0.985 0.004 27);
+  --eu-color-danger-subtle: oklch(0.955 0.018 27);
+  --eu-color-success: oklch(0.500 0.120 150);
+  --eu-color-success-subtle: oklch(0.955 0.030 150);
+  --eu-color-warning: oklch(0.530 0.105 70);
+  --eu-color-warning-subtle: oklch(0.960 0.040 85);
+  --eu-color-focus: oklch(0.500 0.165 262);
+  --eu-color-scrim: oklch(0.200 0.010 85 / 0.45);
+  --eu-color-brand: oklch(0.500 0.165 262);
+  --eu-color-overlay: oklch(1 0 0);
+  --eu-shadow-sm: 0 1px 2px oklch(0.2 0.01 85 / 0.06), 0 1px 1px oklch(0.2 0.01 85 / 0.04);
+  --eu-shadow-md: 0 4px 12px -2px oklch(0.2 0.01 85 / 0.10), 0 2px 4px -2px oklch(0.2 0.01 85 / 0.06);
+  --eu-shadow-lg: 0 16px 40px -8px oklch(0.2 0.01 85 / 0.18), 0 4px 10px -4px oklch(0.2 0.01 85 / 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -108,13 +149,15 @@
     --eu-color-warning-subtle: oklch(0.300 0.050 80);
     --eu-color-focus: oklch(0.795 0.100 262);
     --eu-color-scrim: oklch(0.050 0 0 / 0.65);
+    --eu-color-brand: oklch(0.795 0.100 262);
+    --eu-color-overlay: oklch(0.225 0.007 85);
     --eu-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.5);
     --eu-shadow-md: 0 4px 12px -2px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.06);
     --eu-shadow-lg: 0 16px 40px -8px oklch(0 0 0 / 0.7), 0 0 0 1px oklch(1 0 0 / 0.08);
   }
 }
 
-:root[data-theme="dark"] {
+[data-theme="dark"] {
   color-scheme: dark;
   --eu-color-paper: oklch(0.180 0.006 85);
   --eu-color-surface: oklch(0.225 0.007 85);
@@ -137,6 +180,8 @@
   --eu-color-warning-subtle: oklch(0.300 0.050 80);
   --eu-color-focus: oklch(0.795 0.100 262);
   --eu-color-scrim: oklch(0.050 0 0 / 0.65);
+  --eu-color-brand: oklch(0.795 0.100 262);
+  --eu-color-overlay: oklch(0.225 0.007 85);
   --eu-shadow-sm: 0 1px 2px oklch(0 0 0 / 0.5);
   --eu-shadow-md: 0 4px 12px -2px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.06);
   --eu-shadow-lg: 0 16px 40px -8px oklch(0 0 0 / 0.7), 0 0 0 1px oklch(1 0 0 / 0.08);
@@ -148,5 +193,13 @@
     --eu-duration-fast: 0ms;
     --eu-duration-base: 0ms;
     --eu-duration-slow: 0ms;
+  }
+}
+
+/* Translucent surfaces become solid for people who ask for less transparency. */
+@media (prefers-reduced-transparency: reduce) {
+  :root, [data-theme] {
+    --eu-color-overlay: var(--eu-color-surface);
+    --eu-effect-overlay-blur: 0px;
   }
 }

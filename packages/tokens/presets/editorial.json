@@ -1,0 +1,10 @@
+{
+  "$description": "Considered and literary. Serif headlines, warm paper, sharp corners, no shadows, generous space. For content, publishing, portfolios.",
+  "color": { "accent": "#1e5b4f", "neutral": "warm", "tint": "noticeable" },
+  "type": { "sans": "Instrument Sans", "display": "Fraunces", "displayStyle": "serif", "scale": "dramatic", "headingWeight": 500, "headingTracking": "normal" },
+  "shape": { "radius": "sharp" },
+  "density": "spacious",
+  "depth": "flat",
+  "surface": "solid",
+  "motion": "minimal"
+}

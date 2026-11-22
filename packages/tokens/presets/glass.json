@@ -1,0 +1,10 @@
+{
+  "$description": "Light and layered, accessibly. Frosted floating surfaces with contrast-safe opacity, squircle corners, cool tint. For modern SaaS and creative tools.",
+  "color": { "accent": "#3b5bdb", "neutral": "cool", "tint": "noticeable" },
+  "type": { "sans": "Plus Jakarta Sans", "scale": "expressive", "headingWeight": 700 },
+  "shape": { "radius": "round", "corners": "squircle" },
+  "density": "comfortable",
+  "depth": "soft",
+  "surface": "glass",
+  "motion": "smooth"
+}

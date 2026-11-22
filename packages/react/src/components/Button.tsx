@@ -24,7 +24,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const base =
-  "relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-md font-semibold " +
+  "relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-control font-semibold " +
   "transition-[background-color,border-color,color,transform] " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus " +
   "active:translate-y-px " +

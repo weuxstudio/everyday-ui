@@ -18,7 +18,8 @@ principles, tokens, components, and a review loop.
 | Skill | `skills/everyday-ui/` | Instructions for the agent: workflow, principles, and topic guides for layout, color, typography, copy, forms, buttons and interaction, plus anti-patterns and a review checklist |
 | Tokens | `packages/tokens/` | Framework-agnostic design tokens (W3C DTCG format) built to CSS variables and a Tailwind v4 theme; every color pair checked against WCAG 2.2 and APCA |
 | React adapter | `packages/react/` | Accessible React + Tailwind components (Button, Field, Checkbox, RadioGroup, Switch, Stepper, ErrorSummary, Badge, Card, Dialog) that only consume tokens |
-| Project brief | `skills/everyday-ui/templates/everyday.md` | Per-project overrides: audience, tone, brand colors, density |
+| Theme generator | `packages/tokens/bin/everyday-theme.mjs` (also shipped inside the skill) | Turns a few knobs (accent, neutrals, fonts, radius, squircle corners, density, depth, glass, motion) into a complete, contrast-checked theme with a specimen page. Six presets. |
+| Project brief | `skills/everyday-ui/templates/everyday.md` | Per-project product, tone, glossary and decisions |
 
 ```
             ┌──────────────────────────────┐
@@ -52,6 +53,24 @@ Then, in a project, ask for UI work as usual: "build the settings page", "review
 screen". The skill kicks in, reads the project brief (`everyday.md` in the project root,
 created on first use) and follows its build-then-review loop.
 
+## Give each project its own look
+
+The rules are fixed; the look is not. Describe it with knobs in `everyday.theme.json`, or let the
+skill interview you ("calm, premium, warm, brand color #1e5b4f") and pick them:
+
+```bash
+npx everyday-theme presets                    # neutral, classic, editorial, friendly, technical, glass
+npx everyday-theme init --preset editorial --accent "#1e5b4f" --out src/styles/everyday
+npx everyday-theme set shape.corners squircle # fine-tune one knob at a time
+npx everyday-theme set shape.radius +1        # one step rounder
+npx everyday-theme set density -1             # one step more compact
+```
+
+Each build writes CSS variables, a Tailwind v4 theme, a full DTCG token file and `specimen.html`
+(light and dark preview). Every color pair is checked against WCAG 2.2 and APCA; failing colors are
+corrected automatically (a too-light brand color, translucent "glass" surfaces) and the generator
+tells you what it changed.
+
 ## Use the tokens directly
 
 ```bash
@@ -82,6 +101,8 @@ npm run demo        # builds the demo and screenshots it: desktop, phone dark, e
 - [x] Tokens: color (light/dark), type, 8-pt spacing, sizes, radius, shadow, motion
 - [x] Contrast gate: WCAG 2.2 AA + APCA for every token pair
 - [x] React adapter: Button, Field, Checkbox, RadioGroup, Switch, Stepper, ErrorSummary, Badge, Card, Dialog
+- [x] Theme generator: knobs, six presets, contrast auto-fix, accessible glass, squircle corners, specimen
+- [ ] Pattern library: proven layouts per use case (onboarding, pricing, dashboard, settings, checkout)
 - [ ] More React components (Combobox/autocomplete, Tabs, Toast with undo, Table, multi-step form)
 - [ ] Svelte adapter
 - [ ] Vue adapter

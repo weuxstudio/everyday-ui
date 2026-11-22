@@ -1,0 +1,10 @@
+{
+  "$description": "Warm and playful. Rounded type, pill controls, lively accent, springy motion. For consumer apps, education, community.",
+  "color": { "accent": "#f76707", "neutral": "brand", "tint": "subtle" },
+  "type": { "sans": "Nunito", "scale": "expressive", "headingWeight": 700 },
+  "shape": { "radius": "pill" },
+  "density": "comfortable",
+  "depth": "soft",
+  "surface": "layered",
+  "motion": "playful"
+}

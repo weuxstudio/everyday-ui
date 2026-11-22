@@ -46,7 +46,7 @@ export const Field = forwardRef<HTMLInputElement, FieldProps>(function Field(
         aria-describedby={describedBy}
         style={chars ? { maxWidth: `calc(${chars}ch + 2rem)`, ...style } : style}
         className={cx(
-          "h-control-md w-full rounded-md bg-surface px-3 text-base text-ink transition-[border-color]",
+          "h-control-md w-full rounded-control bg-surface px-3 text-base text-ink transition-[border-color]",
           "placeholder:text-ink-muted",
           "focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-focus",
           "disabled:cursor-not-allowed disabled:bg-sunken disabled:text-ink-muted",

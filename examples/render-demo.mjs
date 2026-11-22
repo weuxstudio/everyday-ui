@@ -24,8 +24,13 @@ writeFileSync(
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Everyday UI demo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Fraunces:wght@400;500;600&family=Instrument+Sans:wght@400;600&family=Nunito:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&family=Source+Sans+3:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="./demo.css" />
+  <!-- ?theme=<preset> swaps in a generated theme: components only read tokens, so nothing else changes. -->
+  <script>
+    const t = new URLSearchParams(location.search).get("theme");
+    if (t) document.write('<link rel="stylesheet" href="../../packages/tokens/dist/themes/' + encodeURIComponent(t) + '/tokens.css">');
+  </script>
 </head>
 <body><div id="root"></div><script src="./demo.js"></script></body>
 </html>
@@ -88,5 +93,14 @@ for (const [name, viewport, scheme] of [
   await page.close();
 }
 
+// 5. The same screen in every preset theme.
+for (const theme of ["neutral", "classic", "editorial", "friendly", "technical", "glass"]) {
+  const page = await browser.newPage({ viewport: { width: 1280, height: 1000 }, deviceScaleFactor: 1 });
+  await page.goto(url + "?theme=" + theme, { waitUntil: "networkidle" }).catch(() => {});
+  await page.waitForSelector("h1");
+  await page.screenshot({ path: join(here, `theme-${theme}.png`) });
+  await page.close();
+}
+
 await browser.close();
-console.log("screenshots → examples/*.png (desktop, mobile dark, errors, dialog, squint test)");
+console.log("screenshots → examples/*.png (desktop, mobile dark, errors, dialog, squint test, every theme)");
