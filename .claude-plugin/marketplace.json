@@ -1,0 +1,11 @@
+{
+  "name": "everyday-ui",
+  "owner": { "name": "Everyday UI" },
+  "plugins": [
+    {
+      "name": "everyday-ui",
+      "source": "./",
+      "description": "Human-centered UI skill, design tokens and components."
+    }
+  ]
+}

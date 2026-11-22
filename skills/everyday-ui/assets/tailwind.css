@@ -1,0 +1,112 @@
+/* Everyday UI theme for Tailwind v4 - generated. Do not edit.
+   Usage: @import "tailwindcss"; @import "@everyday-ui/tokens/tailwind.css"; */
+@import "./tokens.css";
+
+/* Remove Tailwind's default palette so only Everyday UI colors exist.
+   A constraint, not a limitation: off-system colors become impossible to type. */
+@theme {
+  --color-*: initial;
+  --color-white: oklch(1 0 0);
+  --color-black: oklch(0 0 0);
+}
+
+@theme inline {
+  --color-paper: var(--eu-color-paper);
+  --color-surface: var(--eu-color-surface);
+  --color-sunken: var(--eu-color-sunken);
+  --color-ink: var(--eu-color-ink);
+  --color-ink-muted: var(--eu-color-ink-muted);
+  --color-border: var(--eu-color-border);
+  --color-border-strong: var(--eu-color-border-strong);
+  --color-accent: var(--eu-color-accent);
+  --color-accent-hover: var(--eu-color-accent-hover);
+  --color-accent-ink: var(--eu-color-accent-ink);
+  --color-accent-subtle: var(--eu-color-accent-subtle);
+  --color-danger: var(--eu-color-danger);
+  --color-danger-hover: var(--eu-color-danger-hover);
+  --color-danger-ink: var(--eu-color-danger-ink);
+  --color-danger-subtle: var(--eu-color-danger-subtle);
+  --color-success: var(--eu-color-success);
+  --color-success-subtle: var(--eu-color-success-subtle);
+  --color-warning: var(--eu-color-warning);
+  --color-warning-subtle: var(--eu-color-warning-subtle);
+  --color-focus: var(--eu-color-focus);
+  --color-scrim: var(--eu-color-scrim);
+  --font-sans: var(--eu-font-sans);
+  --font-mono: var(--eu-font-mono);
+  --font-weight-regular: var(--eu-font-weight-regular);
+  --font-weight-medium: var(--eu-font-weight-medium);
+  --font-weight-semibold: var(--eu-font-weight-semibold);
+  --font-weight-bold: var(--eu-font-weight-bold);
+  --text-xs: var(--eu-text-xs);
+  --text-xs--line-height: var(--eu-text-xs-line);
+  --text-xs--letter-spacing: var(--eu-text-xs-tracking);
+  --text-sm: var(--eu-text-sm);
+  --text-sm--line-height: var(--eu-text-sm-line);
+  --text-sm--letter-spacing: var(--eu-text-sm-tracking);
+  --text-base: var(--eu-text-base);
+  --text-base--line-height: var(--eu-text-base-line);
+  --text-base--letter-spacing: var(--eu-text-base-tracking);
+  --text-lg: var(--eu-text-lg);
+  --text-lg--line-height: var(--eu-text-lg-line);
+  --text-lg--letter-spacing: var(--eu-text-lg-tracking);
+  --text-xl: var(--eu-text-xl);
+  --text-xl--line-height: var(--eu-text-xl-line);
+  --text-xl--letter-spacing: var(--eu-text-xl-tracking);
+  --text-2xl: var(--eu-text-2xl);
+  --text-2xl--line-height: var(--eu-text-2xl-line);
+  --text-2xl--letter-spacing: var(--eu-text-2xl-tracking);
+  --text-3xl: var(--eu-text-3xl);
+  --text-3xl--line-height: var(--eu-text-3xl-line);
+  --text-3xl--letter-spacing: var(--eu-text-3xl-tracking);
+  --text-4xl: var(--eu-text-4xl);
+  --text-4xl--line-height: var(--eu-text-4xl-line);
+  --text-4xl--letter-spacing: var(--eu-text-4xl-tracking);
+  --text-5xl: var(--eu-text-5xl);
+  --text-5xl--line-height: var(--eu-text-5xl-line);
+  --text-5xl--letter-spacing: var(--eu-text-5xl-tracking);
+  --spacing: var(--eu-space-unit);
+  --spacing-control-sm: var(--eu-size-control-sm);
+  --spacing-control-md: var(--eu-size-control-md);
+  --spacing-control-lg: var(--eu-size-control-lg);
+  --spacing-touch: var(--eu-size-touch);
+  --spacing-measure: var(--eu-size-measure);
+  --default-transition-duration: var(--eu-duration-fast);
+  --default-transition-timing-function: var(--eu-ease-out);
+  --radius-sm: var(--eu-radius-sm);
+  --radius-md: var(--eu-radius-md);
+  --radius-lg: var(--eu-radius-lg);
+  --radius-xl: var(--eu-radius-xl);
+  --radius-full: var(--eu-radius-full);
+  --shadow-sm: var(--eu-shadow-sm);
+  --shadow-md: var(--eu-shadow-md);
+  --shadow-lg: var(--eu-shadow-lg);
+  --ease-out: var(--eu-ease-out);
+  --ease-in: var(--eu-ease-in);
+  --ease-in-out: var(--eu-ease-in-out);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--eu-color-paper);
+    color: var(--eu-color-ink);
+    font-family: var(--eu-font-sans);
+    font-size: var(--eu-text-base);
+    line-height: var(--eu-text-base-line);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  p, li, figcaption { text-wrap: pretty; }
+  :focus-visible {
+    outline: 2px solid var(--eu-color-focus);
+    outline-offset: 2px;
+  }
+  ::selection { background: var(--eu-color-accent-subtle); }
+
+}

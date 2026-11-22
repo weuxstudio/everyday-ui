@@ -1,0 +1,23 @@
+{
+  "name": "@everyday-ui/tokens",
+  "version": "0.1.0",
+  "description": "Framework-agnostic design tokens for Everyday UI: CSS variables, Tailwind v4 theme, JS export. Contrast-checked at build time.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    "./tokens.css": "./dist/tokens.css",
+    "./base.css": "./dist/base.css",
+    "./tailwind.css": "./dist/tailwind.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./source.json": "./src/tokens.json"
+  },
+  "files": ["dist", "src"],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "report": "node scripts/build.mjs --report"
+  }
+}

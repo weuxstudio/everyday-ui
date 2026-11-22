@@ -1,0 +1,17 @@
+{
+  "name": "everyday-ui-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @everyday-ui/tokens && npm run typecheck -w @everyday-ui/react",
+    "demo": "node examples/render-demo.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "esbuild": "^0.28.2",
+    "tailwindcss": "^4.3.5"
+  }
+}
