@@ -15,11 +15,14 @@ principles, tokens, components, and a review loop.
 
 | Layer | Path | What it is |
 | --- | --- | --- |
-| Skill | `skills/everyday-ui/` | Instructions for the agent: workflow, principles, and topic guides for layout, color, typography, copy, forms, buttons and interaction, plus anti-patterns and a review checklist |
+| Skill | `skills/everyday-ui/` | Instructions for the agent: workflow, principles, and topic guides for layout, color, typography, copy, forms, buttons, interaction, motion, mobile apps, notifications and German UI text, plus anti-patterns and a review checklist that adapts to the project's scope |
 | Tokens | `packages/tokens/` | Framework-agnostic design tokens (W3C DTCG format) built to CSS variables and a Tailwind v4 theme; every color pair checked against WCAG 2.2 and APCA |
-| React adapter | `packages/react/` | Accessible React + Tailwind components (Button, Field, PasswordField, Checkbox, RadioGroup, SegmentedControl, Switch, Stepper, ProgressSteps, ErrorSummary, EmptyState, Badge, Card, Dialog) that only consume tokens |
+| React adapter | `packages/react/` | Accessible React + Tailwind components (Button, Field, PasswordField, Checkbox, RadioGroup, SegmentedControl, Switch, Stepper, ProgressSteps, ErrorSummary, EmptyState, Badge, Card, Dialog, BottomSheet) that only consume tokens |
+| Svelte adapter | `packages/svelte/` | The same rules for Svelte 5 (Button, Field, Checkbox, Switch, SegmentedControl, Dialog, BottomSheet, EmptyState, ErrorSummary) |
+| Lint | `packages/lint/` (also in the skill) | `everyday-lint`: checks font weights, spacing scale, raw colours, `confirm()`, disabled submits and unnamed icon buttons in CSS, React, Svelte, Vue and HTML. No dependencies |
+| Review renders | `packages/shots/` (also in the skill) | `everyday-shots`: 375/1280 px, light/dark, squint test, keyboard pass, reduced motion, 200 % zoom for any running app, in one contact sheet |
 | Theme generator | `packages/tokens/bin/everyday-theme.mjs` (also shipped inside the skill) | Turns a few knobs (accent, neutrals, fonts, radius, squircle corners, density, depth, glass, motion) into a complete, contrast-checked theme with a specimen page. Six presets. |
-| Patterns | `skills/everyday-ui/patterns/` | Six proven screens with rules and working React blueprints: sign-up & onboarding, pricing, dashboard, settings, checkout, lists & tables |
+| Patterns | `skills/everyday-ui/patterns/` | Seven proven screen sets with rules and working blueprints: sign-up & onboarding, pricing, dashboard, settings, checkout, lists & tables (React), and a mobile app shell with bottom navigation, bottom sheet, system back, agenda and detail screen (plain HTML/CSS/JS) |
 | Project brief | `skills/everyday-ui/templates/everyday.md` | Per-project product, tone, glossary and decisions |
 
 ```
@@ -31,7 +34,7 @@ principles, tokens, components, and a review loop.
             └──────┬───────────┬───────────┘
           ┌────────┴──┐   ┌────┴──────┐   ┌───────────┐
           │   React   │   │  Svelte   │   │    Vue    │   adapters
-          │ (v0.1)    │   │ (planned) │   │ (planned) │
+          │           │   │ (v0.6)    │   │ (planned) │
           └───────────┘   └───────────┘   └───────────┘
 ```
 
@@ -91,8 +94,11 @@ Without Tailwind, import `@everyday-ui/tokens/tokens.css` and use the CSS variab
 
 ```bash
 npm install
-npm run build       # builds tokens, typechecks the React adapter
+npm run build       # tokens, React typecheck, svelte-check, patterns typecheck, copies the CLIs into the skill
+npm test            # everyday-lint test suite
+npm run lint:ui     # everyday-lint over the repo's own components and patterns (0 warnings)
 npm run demo        # builds demo + pattern gallery and screenshots them (themes, phone, dark, errors, squint test)
+npm run demo:svelte # builds the Svelte demo (serve packages/svelte/demo/dist)
 ```
 
 ## Roadmap
@@ -105,9 +111,12 @@ npm run demo        # builds demo + pattern gallery and screenshots them (themes
 - [x] Theme generator: knobs, six presets, contrast auto-fix, accessible glass, squircle corners, specimen
 - [x] Pattern library: sign-up & onboarding, pricing, dashboard, settings, checkout, lists & tables
 - [x] Motion: theme-driven timing and springs, CSS-only dialog enter/exit, View Transitions helper, optional Motion layer (Reveal, Collapse, AnimatedList)
-- [ ] More patterns: sign-in & password reset, search results, notifications/inbox, file upload, detail page
-- [ ] More React components (Combobox/autocomplete, Tabs, Toast with undo, Table, multi-step form)
-- [ ] Svelte adapter
+- [x] Mobile: guide (thumb reach, navigation, system back, sheets, safe areas, keyboard, glass) and mobile app shell pattern; BottomSheet in React and Svelte
+- [x] Notifications guide; German locale guide; review checklist conditional on the project's scope
+- [x] Tooling: `everyday-lint` (mechanical rules) and `everyday-shots` (review renders, squint test)
+- [x] Svelte adapter: Button, Field, Checkbox, Switch, SegmentedControl, Dialog, BottomSheet, EmptyState, ErrorSummary
+- [ ] More patterns: sign-in & password reset, search results, notification inbox, file upload
+- [ ] More components (Combobox/autocomplete, Tabs, Toast with undo, Table, multi-step form); remaining Svelte components (PasswordField, RadioGroup, Stepper, ProgressSteps, Badge, Card, motion layer)
 - [ ] Vue adapter
 - [ ] Figma variables export from the same `tokens.json`
 
@@ -124,6 +133,9 @@ own words; no text or images from these works are reproduced. Read the originals
 | Jon Yablonski, *Laws of UX* ([lawsofux.com](https://lawsofux.com)) | Fitts's, Hick's, Jakob's, Tesler's law and related effects |
 | W3C, *WCAG 2.2* | Accessibility requirements and contrast ratios |
 | Andrew Somers, *APCA* ([apcacontrast.com](https://apcacontrast.com)) | Perceptual contrast check in the token build |
+| Apple, *Human Interface Guidelines* incl. Liquid Glass (iOS 26/27) ([developer.apple.com/design](https://developer.apple.com/design/human-interface-guidelines)) | Mobile navigation, sheets, materials, notifications |
+| Google, *Material Design 3* and *Material 3 Expressive* ([m3.material.io](https://m3.material.io)) | Navigation bar and rail, bottom sheets, window size classes, motion |
+| Duden and DIN 5008 | German spelling, typography, date, time and number formats |
 
 ## License
 

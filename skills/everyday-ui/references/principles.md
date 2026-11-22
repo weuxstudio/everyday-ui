@@ -164,3 +164,6 @@ Accessible design is usable design under more conditions (bright sun, one hand, 
 - Adham Dannaway, *Practical UI*, 2022 (practical-ui.com).
 - Andrew Somers, *APCA – Accessible Perceptual Contrast Algorithm* (git.apcacontrast.com).
 - W3C, *Web Content Accessibility Guidelines (WCAG) 2.2*.
+- Apple, *Human Interface Guidelines* (incl. Liquid Glass, iOS 26/27) – mobile, see `mobile.md`.
+- Google, *Material Design 3* / *Material 3 Expressive* – mobile, see `mobile.md`.
+- Duden and DIN 5008 – German text and formats, see `locale-de.md`.
