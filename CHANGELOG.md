@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.5.0 - 2026-11-22
+
+- Motion guide (`references/motion.md`): when to animate, timing tokens, reduced motion, tool
+  choice (CSS → @starting-style → View Transitions → Motion → GSAP per project, with license
+  notes), patterns and anti-patterns.
+- Tokens: `--eu-spring-bounce` and `--eu-motion-distance`, set by the `motion` knob
+  (minimal 4 px / smooth 8 px / playful 12 px + bounce 0.3) and zeroed under reduced motion.
+- Dialog enters and exits with CSS only (`@starting-style`, `allow-discrete`); `.eu-enter`
+  utility; View Transition timing from the theme.
+- Optional `@everyday-ui/react/motion` (Motion, MIT): `MotionProvider`, `Reveal`, `Collapse`,
+  `AnimatedList`, `useViewTransition`, `useMotionTokens` (reads the theme live).
+- Button labels keep visible and screen-reader-only parts in one accessible name.
+- Motion showcase (`?pattern=motion`), tested in smooth, playful and reduced-motion modes.
+
 ## 0.4.0 - 2026-11-22
 
 - Pattern library (`skills/everyday-ui/patterns/`): sign-up & onboarding, pricing, dashboard,

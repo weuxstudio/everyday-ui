@@ -5,13 +5,27 @@
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
     "strict": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "skipLibCheck": true,
     "isolatedModules": true,
     "noEmit": true,
     "baseUrl": ".",
-    "paths": { "@everyday-ui/react": ["packages/react/src/index.ts"] },
+    "paths": {
+      "@everyday-ui/react": [
+        "packages/react/src/index.ts"
+      ],
+      "@everyday-ui/react/motion": [
+        "packages/react/src/motion/index.ts"
+      ]
+    },
     "types": []
   },
-  "include": ["skills/everyday-ui/patterns/**/*.tsx", "examples/*.tsx"]
+  "include": [
+    "skills/everyday-ui/patterns/**/*.tsx",
+    "examples/*.tsx"
+  ]
 }

@@ -31,15 +31,9 @@ Design each one explicitly; generated UI usually only has "happy path with perfe
 
 ## Motion
 
-- Motion explains change: where something came from, where it went, what's connected. If it
-  explains nothing, remove it.
-- Durations from tokens: 80 ms (press), 140 ms (hover, small), 220 ms (popovers, dialogs),
-  340 ms (large surfaces). Frequent interactions stay short.
-- Enter with ease-out, exit with ease-in and slightly faster than entering.
-- Animate `opacity` and `transform` only (cheap and smooth).
-- Respect `prefers-reduced-motion`: tokens collapse durations to 0; replace movement with fades.
-- No looping, attention-grabbing animation near tasks (banners, pulsing badges): it raises
-  cognitive load.
+See `motion.md`: when to animate, timing tokens, reduced motion, and which tool (CSS,
+View Transitions, Motion, GSAP) for which job. In short: motion explains change, uses the theme's
+durations, stays short, and disappears under `prefers-reduced-motion`.
 
 ## Progressive disclosure
 

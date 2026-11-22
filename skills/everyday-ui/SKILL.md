@@ -56,7 +56,8 @@ Read `references/principles.md` once per session. Then load what the task touche
 | Any text in the UI (labels, buttons, errors, headings) | `references/copy.md` |
 | Forms, inputs, settings, checkout, sign-up | `references/forms.md` |
 | Buttons, dialogs, destructive or disabled actions | `references/buttons-and-actions.md` |
-| States, feedback, motion, navigation, tables, i18n | `references/interaction.md` |
+| States, feedback, navigation, tables, i18n | `references/interaction.md` |
+| Animation, transitions, choosing a motion library | `references/motion.md` |
 | A recurring screen: sign-up, onboarding, pricing, dashboard, settings, checkout, lists/tables | `references/patterns.md`, then the pattern's README and blueprint |
 | A new project's look, a rebrand, or style changes | `references/onboarding.md` |
 | Token names and roles | `references/tokens.md` |

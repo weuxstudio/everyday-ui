@@ -4,3 +4,4 @@ examples/*.png
 examples/dist/
 .DS_Store
 examples/patterns/
+examples/*.mp4

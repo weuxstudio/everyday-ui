@@ -19,6 +19,14 @@ before publishing or selling it.
   their examples) to this repository, and never paste passages from them: a purchased copy is
   licensed for personal reading, not redistribution.
 
+## Dependencies
+
+- `motion` (motion.dev), MIT license, used by the optional `@everyday-ui/react/motion` entry.
+  The optional paid Motion+ add-on is not used.
+- GSAP is deliberately not a dependency: its free "Standard No Charge" license is not open
+  source and prohibits visual no-code animation tools that compete with Webflow. Projects may
+  add it themselves for marketing pages.
+
 ## Fonts and assets
 
 - Hanken Grotesk and JetBrains Mono: SIL Open Font License 1.1 (free to use, embed and

@@ -4,3 +4,5 @@
 @source "../packages/react/src";
 @source "./demo.tsx";
 @source "../skills/everyday-ui/patterns";
+@source "./motion-showcase.tsx";
+@source "./patterns.tsx";

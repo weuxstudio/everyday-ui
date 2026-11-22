@@ -83,7 +83,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     >
       <span className={cx("inline-flex items-center gap-2", loading && "invisible")}>
         {icon ? <span aria-hidden="true" className="-ml-0.5 inline-flex size-[1.15em] shrink-0">{icon}</span> : null}
-        {children}
+        {/* Own inline span: keeps visible and sr-only label parts one accessible name ("Remove Priya", not "Remove : Priya"). */}
+        <span>{children}</span>
       </span>
       {loading ? (
         <span className="absolute inset-0 grid place-items-center" aria-hidden="true">

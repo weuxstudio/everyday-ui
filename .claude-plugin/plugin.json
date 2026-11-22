@@ -1,6 +1,6 @@
 {
   "name": "everyday-ui",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Human-centered UI for every project: principles, design tokens, components and a review loop that keeps AI-generated interfaces from looking generic.",
   "license": "MIT",
   "keywords": [

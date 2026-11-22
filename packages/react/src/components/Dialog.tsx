@@ -48,9 +48,8 @@ export function Dialog({ open, onClose, title, description, children, footer, cl
         if (e.target === e.currentTarget) onClose();
       }}
       className={cx(
-        "m-auto w-[min(32rem,calc(100vw-2rem))] rounded-dialog border border-border bg-overlay p-0 text-ink shadow-lg backdrop-blur-overlay backdrop-saturate-150",
-        "backdrop:bg-scrim",
-        "open:animate-[eu-dialog-in_var(--eu-duration-base)_var(--eu-ease-out)] motion-reduce:animate-none",
+        // eu-dialog: enter and exit transitions in styles.css (CSS only, theme timing)
+        "eu-dialog m-auto w-[min(32rem,calc(100vw-2rem))] rounded-dialog border border-border bg-overlay p-0 text-ink shadow-lg backdrop-blur-overlay backdrop-saturate-150",
         className,
       )}
     >

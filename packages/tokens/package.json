@@ -1,6 +1,6 @@
 {
   "name": "@everyday-ui/tokens",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Framework-agnostic design tokens and theme generator for Everyday UI: CSS variables, Tailwind v4 theme, JS export. Contrast-checked (WCAG 2.2 + APCA) at build time.",
   "license": "MIT",
   "type": "module",

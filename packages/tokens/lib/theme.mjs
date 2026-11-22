@@ -132,9 +132,9 @@ const DENSITY = {
 };
 const SCALE = { compact: 1.125, balanced: 1.2, expressive: 1.25, dramatic: 1.333 };
 const MOTION = {
-  minimal: { d: ["60ms", "100ms", "160ms", "220ms"], out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inout: [0.4, 0, 0.2, 1] },
-  smooth: { d: ["80ms", "140ms", "220ms", "340ms"], out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inout: [0.4, 0, 0.2, 1] },
-  playful: { d: ["100ms", "180ms", "280ms", "420ms"], out: [0.34, 1.4, 0.64, 1], in: [0.4, 0, 1, 1], inout: [0.65, 0, 0.35, 1] },
+  minimal: { d: ["60ms", "100ms", "160ms", "220ms"], out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inout: [0.4, 0, 0.2, 1], bounce: 0, distance: 4 },
+  smooth: { d: ["80ms", "140ms", "220ms", "340ms"], out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inout: [0.4, 0, 0.2, 1], bounce: 0, distance: 8 },
+  playful: { d: ["100ms", "180ms", "280ms", "420ms"], out: [0.34, 1.4, 0.64, 1], in: [0.4, 0, 1, 1], inout: [0.65, 0, 0.35, 1], bounce: 0.3, distance: 12 },
 };
 const SHADOW = (ink) => {
   const s = (a) => `oklch(${ink} / ${a})`;
@@ -347,6 +347,8 @@ export function themeFromKnobs(input, defaults = JSON.parse(readFileSync(DEFAULT
   t.motion.ease.out.$value = m.out;
   t.motion.ease.in.$value = m.in;
   t.motion.ease["in-out"].$value = m.inout;
+  t.motion.spring.bounce.$value = m.bounce;
+  t.motion.distance.$value = rem(m.distance);
 
   autoFixContrast(t, notes);
   if (surface === "glass") {

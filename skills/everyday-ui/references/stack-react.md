@@ -43,6 +43,17 @@ Build new components the same way: tokens only, semantic element first, every st
 (hover, active, focus-visible, disabled, loading, error), labels and descriptions wired inside the
 component.
 
+## Motion (optional)
+
+```tsx
+import { MotionProvider, Reveal, Collapse, AnimatedList, useViewTransition } from "@everyday-ui/react/motion";
+```
+
+CSS covers hover, press and the Dialog's enter/exit. Add the motion layer (built on Motion,
+MIT) for exits in React, height-auto collapse, animated lists and springs. It reads the theme's
+motion tokens, so the `motion` knob and reduced motion apply automatically. Wrap the app in
+`<MotionProvider>` once. Rules: `references/motion.md`.
+
 ## Form pattern
 
 ```tsx

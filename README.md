@@ -104,6 +104,7 @@ npm run demo        # builds demo + pattern gallery and screenshots them (themes
 - [x] React adapter: Button, Field, Checkbox, RadioGroup, Switch, Stepper, ErrorSummary, Badge, Card, Dialog
 - [x] Theme generator: knobs, six presets, contrast auto-fix, accessible glass, squircle corners, specimen
 - [x] Pattern library: sign-up & onboarding, pricing, dashboard, settings, checkout, lists & tables
+- [x] Motion: theme-driven timing and springs, CSS-only dialog enter/exit, View Transitions helper, optional Motion layer (Reveal, Collapse, AnimatedList)
 - [ ] More patterns: sign-in & password reset, search results, notifications/inbox, file upload, detail page
 - [ ] More React components (Combobox/autocomplete, Tabs, Toast with undo, Table, multi-step form)
 - [ ] Svelte adapter

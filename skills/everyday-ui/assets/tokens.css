@@ -93,6 +93,8 @@
   --eu-ease-out: cubic-bezier(0.2, 0, 0, 1);
   --eu-ease-in: cubic-bezier(0.4, 0, 1, 1);
   --eu-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --eu-spring-bounce: 0;
+  --eu-motion-distance: 0.5rem;
 }
 
 [data-theme="light"] {
@@ -193,6 +195,8 @@
     --eu-duration-fast: 0ms;
     --eu-duration-base: 0ms;
     --eu-duration-slow: 0ms;
+    --eu-motion-distance: 0px;
+    --eu-spring-bounce: 0;
   }
 }
 
