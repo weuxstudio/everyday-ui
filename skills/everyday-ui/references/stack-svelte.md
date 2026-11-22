@@ -12,7 +12,7 @@ same rules as the React adapter; read `stack-react.md` for the reasoning behind 
 @source "../node_modules/@everyday-ui/svelte/src";
 ```
 
-Components: `Button`, `Field`, `Checkbox`, `Switch`, `SegmentedControl`, `Dialog`, `BottomSheet`,
+Components: `PasswordField`, `RadioGroup`, `Stepper`, `ProgressSteps`, `Badge`, `Card`, `Button`, `Field`, `Checkbox`, `Switch`, `SegmentedControl`, `Dialog`, `BottomSheet`,
 `EmptyState`, `ErrorSummary` (+ `RequirementMark`, `FieldHint`, `FieldError`).
 State with `bind:` (`bind:value`, `bind:checked`, `bind:open`); rich content with snippets.
 
@@ -30,5 +30,4 @@ State with `bind:` (`bind:value`, `bind:checked`, `bind:open`); rich content wit
 - **Transitions:** CSS first (`styles.css`). Svelte's `transition:` directives are fine for
   enter/exit of list items; read durations from the theme variables and respect
   `prefers-reduced-motion` (Svelte's built-in transitions don't on their own).
-- **Missing components** (PasswordField, RadioGroup, Stepper, ProgressSteps, Badge, Card): port
-  from the React source; class lists carry over one to one.
+- **Motion:** import MotionProvider, Reveal, Collapse, AnimatedList and viewTransition from `@everyday-ui/svelte/motion`.

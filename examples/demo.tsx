@@ -10,6 +10,7 @@ function SettingsPage() {
   const [postcode, setPostcode] = useState("");
   const [sms, setSms] = useState(false);
   const [mobile, setMobile] = useState("");
+  const [submitAttempt, setSubmitAttempt] = useState(0);
   const [errors, setErrors] = useState<ErrorSummaryItem[]>([]);
   const [saving, setSaving] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -25,6 +26,7 @@ function SettingsPage() {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) next.push({ fieldId: "email", message: "Enter a full email address, like hello@atlas-studio.com" });
     if (!/^\d{5}$/.test(postcode)) next.push({ fieldId: "postcode", message: "Enter a 5-digit postcode" });
     if (sms && !mobile.trim()) next.push({ fieldId: "mobile", message: "Enter a mobile number for text messages" });
+    setSubmitAttempt((attempt) => attempt + 1);
     setErrors(next);
     if (next.length === 0) {
       setSaving(true);
@@ -48,7 +50,7 @@ function SettingsPage() {
       </header>
 
       <form noValidate onSubmit={submit} className="flex flex-col gap-12">
-        <ErrorSummary errors={errors} />
+        <ErrorSummary submitAttempt={submitAttempt} errors={errors} />
         <p className="text-sm text-ink-muted">Required fields are marked with an asterisk *</p>
 
         <section aria-labelledby="billing" className="flex flex-col gap-6">

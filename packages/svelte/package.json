@@ -1,6 +1,6 @@
 {
   "name": "@everyday-ui/svelte",
-  "version": "0.6.0",
+  "version": "1.0.0-rc.1",
   "description": "Accessible Svelte 5 + Tailwind v4 components for Everyday UI. Styling comes only from the theme tokens; same rules and props as the React adapter.",
   "license": "MIT",
   "type": "module",
@@ -12,15 +12,20 @@
       "svelte": "./src/index.ts",
       "default": "./src/index.ts"
     },
-    "./styles.css": "./src/styles.css"
+    "./styles.css": "./src/styles.css",
+    "./motion": "./src/motion/index.ts"
   },
-  "files": ["src"],
-  "sideEffects": ["*.css"],
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings"
   },
   "peerDependencies": {
-    "@everyday-ui/tokens": "^0.6.0",
+    "@everyday-ui/tokens": "^1.0.0-rc.1",
     "svelte": "^5.20.0",
     "tailwindcss": ">=4"
   },
@@ -28,5 +33,8 @@
     "svelte": "5.57.3",
     "svelte-check": "4.7.8",
     "typescript": "^5.6.0"
+  },
+  "dependencies": {
+    "motion": "^14.14.0"
   }
 }

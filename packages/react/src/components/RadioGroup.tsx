@@ -39,9 +39,10 @@ export function RadioGroup({
 
   return (
     <fieldset
+      role="radiogroup"
+      aria-invalid={error ? true : undefined}
       className={cx("flex flex-col gap-1", className)}
       aria-describedby={[errorId, hintId].filter(Boolean).join(" ") || undefined}
-      aria-invalid={error ? true : undefined}
     >
       <legend className="mb-1 text-base font-semibold text-ink">
         {legend}
@@ -52,7 +53,7 @@ export function RadioGroup({
       <div className="flex flex-col">
         {options.map((opt, i) => {
           const optId = i === 0 ? baseId : `${baseId}-${i}`;
-          const optHint = opt.hint ? `${optId}-hint` : undefined;
+          const optHint = opt.hint ? `${optId}-option-hint` : undefined;
           return (
             <label key={opt.value} htmlFor={optId} className="flex min-h-touch cursor-pointer items-start gap-3 py-2.5">
               <input

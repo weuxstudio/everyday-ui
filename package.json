@@ -1,7 +1,7 @@
 {
   "name": "everyday-ui-monorepo",
   "private": true,
-  "version": "0.6.0",
+  "version": "1.0.0-rc.1",
   "workspaces": [
     "packages/*"
   ],
@@ -10,9 +10,14 @@
     "test": "npm test -w @everyday-ui/lint",
     "lint:ui": "node packages/lint/bin/everyday-lint.mjs packages/react/src packages/svelte/src packages/svelte/demo/Demo.svelte skills/everyday-ui/patterns examples --max-warnings 0",
     "demo": "node examples/render-demo.mjs",
-    "demo:svelte": "node packages/svelte/demo/build.mjs"
+    "demo:svelte": "node packages/svelte/demo/build.mjs",
+    "build:examples": "node examples/render-demo.mjs --build-only && npm run demo:svelte",
+    "test:packages": "node scripts/test-packages.mjs",
+    "test:browser": "playwright test",
+    "review:patterns": "node scripts/review-patterns.mjs"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@tailwindcss/cli": "^4.3.5",
     "esbuild": "^0.28.2",
     "tailwindcss": "^4.3.5",

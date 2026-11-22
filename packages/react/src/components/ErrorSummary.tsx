@@ -9,6 +9,8 @@ export interface ErrorSummaryItem {
 
 export interface ErrorSummaryProps {
   errors: ErrorSummaryItem[];
+  /** Increment when submitting to refocus even if the error count stays the same. */
+  submitAttempt?: number;
   /** Short and calm: what to do, not who is to blame. */
   title?: ReactNode;
 }
@@ -17,13 +19,14 @@ export interface ErrorSummaryProps {
  * Validate on submit, then show this at the top of the form. It takes focus so
  * keyboard and screen-reader users land on it; each item jumps to its field.
  */
-export function ErrorSummary({ errors, title = "Check the highlighted fields" }: ErrorSummaryProps) {
+export function ErrorSummary({ errors, submitAttempt, title = "Check the highlighted fields" }: ErrorSummaryProps) {
   const ref = useRef<HTMLDivElement>(null);
   const count = errors.length;
 
+  const focusKey = submitAttempt ?? count;
   useEffect(() => {
-    if (count > 0) ref.current?.focus();
-  }, [count]);
+    ref.current?.focus();
+  }, [focusKey]);
 
   if (count === 0) return null;
 
@@ -50,7 +53,7 @@ export function ErrorSummary({ errors, title = "Check the highlighted fields" }:
                 if (!el) return;
                 ev.preventDefault();
                 el.focus();
-                el.scrollIntoView({ block: "center", behavior: "smooth" });
+                el.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
               }}
             >
               {e.message}

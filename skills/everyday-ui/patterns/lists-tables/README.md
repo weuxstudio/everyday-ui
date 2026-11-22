@@ -49,6 +49,6 @@ quality of a list decides how fast people work in most business software.
 
 ## Blueprint
 
-`ListsTables.tsx` – header with count, search and status filter with chips, sortable table with
+`ListsTables.tsx` and `ListsTables.svelte` – header with count, search and status filter with chips, sortable table with
 right-aligned amounts and status badges, selection with bulk action bar, mobile card list, empty
 and no-results states, pagination range. Adapt: columns, filters, actions.

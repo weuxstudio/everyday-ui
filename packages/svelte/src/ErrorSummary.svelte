@@ -3,15 +3,18 @@
   screen-reader users land on it; each item jumps to its field.
 -->
 <script lang="ts">
+  import { untrack } from "svelte";
   import ErrorIcon from "./lib/ErrorIcon.svelte";
   import type { ErrorSummaryItem } from "./types";
 
-  let { errors, title = "Check the highlighted fields" }: { errors: ErrorSummaryItem[]; title?: string } = $props();
+  let { errors, submitAttempt, title = "Check the highlighted fields" }: { errors: ErrorSummaryItem[]; submitAttempt?: number; title?: string } = $props();
   let box: HTMLDivElement | undefined = $state();
   const count = $derived(errors.length);
 
   $effect(() => {
-    if (count > 0) box?.focus();
+    // With an explicit attempt, editing the errors should leave focus at the field.
+    void (submitAttempt ?? count);
+    untrack(() => box?.focus());
   });
 
   function jump(e: MouseEvent, fieldId: string) {
@@ -19,7 +22,7 @@
     if (!el) return;
     e.preventDefault();
     el.focus();
-    el.scrollIntoView({ block: "center", behavior: "smooth" });
+    el.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   }
 </script>
 

@@ -3,12 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Button, Checkbox, EmptyState, ErrorSummary, Field, PasswordField, type ErrorSummaryItem } from "@everyday-ui/react";
 
-const PRODUCT = "Atlas";
-
-const PASSWORD_RULES = (email: string) => [
-  { label: "At least 12 characters", test: (v: string) => v.length >= 12 },
-  { label: "Not the same as your email address", test: (v: string) => v.length > 0 && v.toLowerCase() !== email.toLowerCase() },
-];
+import { PRODUCT, PASSWORD_RULES, SETUP } from "./data";
 
 export default function SignupOnboarding() {
   const [step, setStep] = useState<"signup" | "welcome">("signup");
@@ -18,6 +13,7 @@ export default function SignupOnboarding() {
 function Signup({ onDone }: { onDone: () => void }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [submitAttempt, setSubmitAttempt] = useState(0);
   const [errors, setErrors] = useState<ErrorSummaryItem[]>([]);
   const [busy, setBusy] = useState(false);
   const errorFor = (id: string) => errors.find((e) => e.fieldId === id)?.message;
@@ -27,6 +23,7 @@ function Signup({ onDone }: { onDone: () => void }) {
     const next: ErrorSummaryItem[] = [];
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) next.push({ fieldId: "signup-email", message: "Enter an email address, like mara@studio.com" });
     if (!PASSWORD_RULES(email).every((r) => r.test(password))) next.push({ fieldId: "signup-password", message: "Choose a password that meets both requirements" });
+    setSubmitAttempt((attempt) => attempt + 1);
     setErrors(next);
     if (next.length === 0) {
       setBusy(true);
@@ -39,7 +36,7 @@ function Signup({ onDone }: { onDone: () => void }) {
       <h1 className="text-3xl font-heading">Create your {PRODUCT} account</h1>
       <p className="mt-2 text-lg text-ink-muted">Free for 30 days. No card needed.</p>
 
-      <div className="mt-8 flex flex-col gap-3">
+      <div className="mt-8 flex flex-col gap-4">
         <Button fullWidth>Continue with Google</Button>
         <Button fullWidth>Continue with Microsoft</Button>
       </div>
@@ -51,7 +48,7 @@ function Signup({ onDone }: { onDone: () => void }) {
       </div>
 
       <form noValidate onSubmit={submit} className="flex flex-col gap-6">
-        <ErrorSummary errors={errors} />
+        <ErrorSummary submitAttempt={submitAttempt} errors={errors} />
         <Field
           id="signup-email"
           label="Work email"
@@ -71,7 +68,7 @@ function Signup({ onDone }: { onDone: () => void }) {
           error={errorFor("signup-password")}
         />
         <Checkbox label="Send me tips and product news (about once a month)" />
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           <Button type="submit" variant="primary" size="lg" fullWidth loading={busy}>
             Create account
           </Button>
@@ -87,13 +84,6 @@ function Signup({ onDone }: { onDone: () => void }) {
     </main>
   );
 }
-
-const SETUP = [
-  { id: "account", label: "Create your account", done: true },
-  { id: "project", label: "Create your first project", done: false },
-  { id: "invite", label: "Invite your team", done: false, optional: true },
-  { id: "bank", label: "Connect your bank account", done: false, optional: true },
-];
 
 function Welcome() {
   const [tasks, setTasks] = useState(SETUP);
@@ -122,13 +112,13 @@ function Welcome() {
               Hide checklist
             </Button>
           </div>
-          <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-sunken" aria-hidden="true">
+          <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-sunken" aria-hidden="true">
             <div className="h-full rounded-full bg-accent transition-[width]" style={{ width: `${(done / tasks.length) * 100}%` }} />
           </div>
           <ul className="mt-4 divide-y divide-border">
             {tasks.map((t) => (
               <li key={t.id} className="flex min-h-touch items-center justify-between gap-4 py-2">
-                <span className="flex items-center gap-3">
+                <span className="flex items-center gap-4">
                   <span
                     aria-hidden="true"
                     className={
@@ -141,7 +131,7 @@ function Welcome() {
                   </span>
                   <span className={t.done ? "text-ink-muted line-through" : "text-ink"}>
                     {t.label}
-                    {t.optional ? <span className="ml-1.5 text-ink-muted">(optional)</span> : null}
+                    {t.optional ? <span className="ml-1 text-ink-muted">(optional)</span> : null}
                     <span className="sr-only">{t.done ? " – done" : ""}</span>
                   </span>
                 </span>

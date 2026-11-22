@@ -3,24 +3,7 @@
 import { useMemo, useState } from "react";
 import { Badge, Button, EmptyState, SegmentedControl, cx } from "@everyday-ui/react";
 
-const LOCALE = "en-IE";
-const money = (n: number) => new Intl.NumberFormat(LOCALE, { style: "currency", currency: "EUR" }).format(n);
-const date = (iso: string) => new Intl.DateTimeFormat(LOCALE, { day: "2-digit", month: "short", year: "numeric" }).format(new Date(iso));
-
-type Status = "Paid" | "Open" | "Overdue";
-type Invoice = { no: string; client: string; issued: string; due: string; amount: number; status: Status };
-
-const INVOICES: Invoice[] = [
-  { no: "INV-0212", client: "Nordlicht GmbH", issued: "2026-11-20", due: "2026-12-04", amount: 4200, status: "Open" },
-  { no: "INV-0211", client: "Studio Krone", issued: "2026-11-18", due: "2026-12-02", amount: 1850, status: "Open" },
-  { no: "INV-0210", client: "Hafen & Söhne", issued: "2026-11-02", due: "2026-11-16", amount: 960, status: "Overdue" },
-  { no: "INV-0209", client: "Lumen Labs", issued: "2026-10-30", due: "2026-11-13", amount: 7300, status: "Paid" },
-  { no: "INV-0208", client: "Berliner Bäckerei Kollektiv", issued: "2026-10-28", due: "2026-11-11", amount: 1240.5, status: "Overdue" },
-  { no: "INV-0207", client: "Nordlicht GmbH", issued: "2026-10-15", due: "2026-10-29", amount: 3800, status: "Paid" },
-  { no: "INV-0206", client: "Atelier Morgen", issued: "2026-10-09", due: "2026-10-23", amount: 2150, status: "Paid" },
-];
-const TONE = { Paid: "success", Open: "neutral", Overdue: "danger" } as const;
-type SortKey = "client" | "due" | "amount";
+import { money, date, type Status, INVOICES, TONE, type SortKey } from "./data";
 
 export default function ListsTables() {
   const [query, setQuery] = useState("");
@@ -126,7 +109,7 @@ export default function ListsTables() {
               <thead className="sticky top-0 border-b border-border bg-surface text-sm text-ink-muted">
                 <tr>
                   <th scope="col" className="w-12 px-3">
-                    <input type="checkbox" aria-label="Select all invoices on this page" checked={allSelected} onChange={toggleAll} className="size-5 accent-[var(--eu-color-accent)]" />
+                    <input type="checkbox" aria-label="Select all invoices on this page" checked={allSelected} onChange={toggleAll} className="size-6 accent-[var(--eu-color-accent)]" />
                   </th>
                   <SortHeader k="client">Client</SortHeader>
                   <SortHeader k="due">Due</SortHeader>
@@ -139,7 +122,7 @@ export default function ListsTables() {
                 {rows.map((r) => (
                   <tr key={r.no} className={cx(selected.has(r.no) && "bg-accent-subtle")}>
                     <td className="px-3">
-                      <input type="checkbox" aria-label={`Select ${r.no}`} checked={selected.has(r.no)} onChange={() => toggle(r.no)} className="size-5 accent-[var(--eu-color-accent)]" />
+                      <input type="checkbox" aria-label={`Select ${r.no}`} checked={selected.has(r.no)} onChange={() => toggle(r.no)} className="size-6 accent-[var(--eu-color-accent)]" />
                     </td>
                     <td className="px-3 py-3">
                       <a href={`#${r.no}`} className="font-semibold text-ink no-underline hover:underline">{r.client}</a>

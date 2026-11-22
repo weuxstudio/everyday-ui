@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-rc.1
+
+- Both adapters ship 15 components, optional motion and six interactive patterns with shared data.
+- ErrorSummary supports repeated submissions via `submitAttempt`. everyday-shots replays route actions for reduced motion and zoom.
+- Added packaged consumer checks, cross-browser interaction tests and visual review in CI. See [migration and release checks](docs/V1.md).
+
 ## 0.6.0 - 2026-11-22
 
 - **Mobile** (#1): `references/mobile.md` (platform stance, thumb reach, bottom navigation and

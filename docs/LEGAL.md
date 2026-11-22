@@ -21,7 +21,7 @@ before publishing or selling it.
 
 ## Dependencies
 
-- `motion` (motion.dev), MIT license, used by the optional `@everyday-ui/react/motion` entry.
+- `motion` (motion.dev), MIT license, used by the two optional adapter motion entries.
   The optional paid Motion+ add-on is not used.
 - `svelte` (MIT) is a peer dependency of `@everyday-ui/svelte`; `svelte-check` (MIT) is a dev tool.
 - `playwright` (Apache-2.0) is an optional peer of `@everyday-ui/shots`, resolved from the

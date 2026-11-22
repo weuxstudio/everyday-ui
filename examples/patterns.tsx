@@ -31,9 +31,11 @@ function Index() {
       <ul className="mt-6 flex flex-col gap-2">
         {Object.keys(PATTERNS).map((p) => (
           <li key={p}>
-            <a href={`?pattern=${p}`}>{p}</a>
+            <a href={`?pattern=${p}`}>{p} · React</a>
+            {p !== "motion" && p !== "motion-compare" && <a className="ml-4" href={`../../packages/svelte/demo/dist/index.html?pattern=${p}`}>{p} · Svelte</a>}
           </li>
         ))}
+        <li><a href="../../skills/everyday-ui/patterns/mobile-app/blueprint.html">Mobile app</a></li>
       </ul>
     </main>
   );

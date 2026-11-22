@@ -1,6 +1,6 @@
 {
   "name": "@everyday-ui/react",
-  "version": "0.6.0",
+  "version": "1.0.0-rc.1",
   "description": "Accessible React + Tailwind v4 components for Everyday UI. Styling comes only from the theme tokens; optional motion layer on Motion (MIT).",
   "license": "MIT",
   "type": "module",
@@ -14,12 +14,14 @@
   "files": [
     "src"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@everyday-ui/tokens": "^0.6.0",
+    "@everyday-ui/tokens": "^1.0.0-rc.1",
     "react": ">=18",
     "react-dom": ">=18",
     "tailwindcss": ">=4"

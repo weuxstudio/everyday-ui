@@ -51,5 +51,5 @@ comparison task; the layout must make comparing effortless.
 
 ## Blueprint
 
-`Pricing.tsx` – segmented billing period, three aligned plan cards with one highlighted, shared
+`Pricing.tsx` and `Pricing.svelte` – segmented billing period, three aligned plan cards with one highlighted, shared
 features listed once, and a compact FAQ. Adapt: plans, limits, currency and VAT note.

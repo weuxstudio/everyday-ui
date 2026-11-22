@@ -50,6 +50,6 @@ summary with exits to detail, not a wall of charts.
 
 ## Blueprint
 
-`Dashboard.tsx` – sidebar app frame, attention list, four metric tiles with comparisons, an
+`Dashboard.tsx` and `Dashboard.svelte` – sidebar app frame, attention list, four metric tiles with comparisons, an
 accessible bar chart (SVG + data table for screen readers), and a recent invoices table.
 Adapt: the questions, metrics and records of the product.

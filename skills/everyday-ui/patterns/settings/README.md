@@ -47,6 +47,6 @@ Settings are visited rarely, so they must be self-explanatory every time.
 
 ## Blueprint
 
-`Settings.tsx` – section navigation, an explicit-save profile form with error summary, an
+`Settings.tsx` and `Settings.svelte` – section navigation, an explicit-save profile form with error summary, an
 immediate-effect notifications group with switches and in-place "Saved" feedback, members with
 roles, and a danger zone with a heavy-friction confirmation. Adapt: sections and settings.

@@ -65,6 +65,6 @@ possible. Every extra field and screen before that first success loses people.
 
 ## Blueprint
 
-`SignupOnboarding.tsx` – sign-up form with SSO, password rules and opt-in, then a first-run
+`SignupOnboarding.tsx` and `SignupOnboarding.svelte` – sign-up form with SSO, password rules and opt-in, then a first-run
 screen with a setup checklist and an empty state. Adapt: product name, providers, checklist
 tasks, the first action.

@@ -8,8 +8,20 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "types": ["svelte"]
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "types": [
+      "svelte"
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.svelte", "demo/**/*.svelte", "demo/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.svelte",
+    "demo/**/*.svelte",
+    "demo/**/*.ts",
+    "../../skills/everyday-ui/patterns/**/*.svelte"
+  ]
 }
