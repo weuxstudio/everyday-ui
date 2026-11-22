@@ -8,6 +8,13 @@
 - **Primary users:** <!-- who, how experienced, what device, what context -->
 - **Their main job here:**
 
+## Scope decisions
+<!-- These switch review checklist items on or off (references/review-checklist.md → Conditions).
+     Items ruled out here are reported as "n/a by decision", not as failures. -->
+- **Themes:** <!-- light only | dark only | light + dark (follows OS) -->
+- **Platforms:** <!-- e.g. phone (Capacitor), tablet read-only display | web desktop + phone -->
+- **Notifications:** <!-- none | push + in-app | email only; daily budget, e.g. max 3 non-urgent pushes -->
+
 ## Feel
 - **Three words:** <!-- e.g. calm, precise, warm -->
 - **Not:** <!-- e.g. playful, corporate, techy -->

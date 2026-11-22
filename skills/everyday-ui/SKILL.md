@@ -104,15 +104,20 @@ confident accent, typographic rhythm, purposeful density, and details with reaso
 
 ## 6. Review before you hand over
 
-Run `references/review-checklist.md` against what you built. Do it for real:
+Run `references/review-checklist.md` against what you built. Items tagged `[if …]` apply only
+when the brief's scope decisions (Themes, Platforms, Notifications, Language) or the screen
+include that case. Do it for real:
 
-- Render it at **375 px** and **1280 px**, in light and dark mode, if you can look at it at all.
+- Render it at **375 px** and, if the project has desktop, **1280 px**; in light and, if the
+  project has dark mode, dark, if you can look at it at all.
 - **Squint test:** blur the screenshot (CSS `filter: blur(6px)`). The primary action and the
   purpose of the screen must still stand out.
 - Tab through it with the keyboard; trigger each state from step 1, including validation errors.
 
 Fix what fails. Then report in a few lines: what you built, the decisions that matter, and any
-checklist item you consciously left open and why.
+checklist item you consciously left open and why. Items the brief rules out are **n/a by
+decision**: list them once in one line with the brief field ("n/a by decision (Themes: light
+only): dark-mode items"), not as failures. If the brief is silent, the item applies.
 
 ## Scope notes
 
