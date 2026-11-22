@@ -33,7 +33,7 @@ export const KNOBS = {
   "density": "compact | comfortable | spacious",
   "depth": "flat | subtle | soft | dramatic",
   "surface": "solid | layered | glass",
-  "motion": "minimal | smooth | playful",
+  "motion": "minimal (fades only) | smooth (short glide) | playful (springs, pop-in, squishy press)",
 };
 
 const ALLOWED = {
@@ -132,9 +132,10 @@ const DENSITY = {
 };
 const SCALE = { compact: 1.125, balanced: 1.2, expressive: 1.25, dramatic: 1.333 };
 const MOTION = {
-  minimal: { d: ["60ms", "100ms", "160ms", "220ms"], out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inout: [0.4, 0, 0.2, 1], bounce: 0, distance: 4 },
-  smooth: { d: ["80ms", "140ms", "220ms", "340ms"], out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inout: [0.4, 0, 0.2, 1], bounce: 0, distance: 8 },
-  playful: { d: ["100ms", "180ms", "280ms", "420ms"], out: [0.34, 1.4, 0.64, 1], in: [0.4, 0, 1, 1], inout: [0.65, 0, 0.35, 1], bounce: 0.3, distance: 12 },
+  // minimal: fades only, nothing travels. smooth: short glide. playful: springs that overshoot, pop-in scale, squishy press.
+  minimal: { d: ["50ms", "90ms", "140ms", "200ms"], out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inout: [0.4, 0, 0.2, 1], bounce: 0, distance: 0, scale: 1, press: 1 },
+  smooth: { d: ["80ms", "140ms", "240ms", "360ms"], out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inout: [0.4, 0, 0.2, 1], bounce: 0, distance: 10, scale: 1, press: 0.98 },
+  playful: { d: ["120ms", "180ms", "360ms", "520ms"], out: [0.34, 1.56, 0.64, 1], in: [0.4, 0, 1, 1], inout: [0.68, -0.4, 0.32, 1.4], bounce: 0.45, distance: 24, scale: 0.9, press: 0.94 },
 };
 const SHADOW = (ink) => {
   const s = (a) => `oklch(${ink} / ${a})`;
@@ -349,6 +350,8 @@ export function themeFromKnobs(input, defaults = JSON.parse(readFileSync(DEFAULT
   t.motion.ease["in-out"].$value = m.inout;
   t.motion.spring.bounce.$value = m.bounce;
   t.motion.distance.$value = rem(m.distance);
+  t.motion.scale.$value = m.scale;
+  t.motion.press.$value = m.press;
 
   autoFixContrast(t, notes);
   if (surface === "glass") {

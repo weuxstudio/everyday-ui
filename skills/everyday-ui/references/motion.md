@@ -22,17 +22,24 @@ anything that delays input, text people are reading, scrolling itself (no scroll
 Use the theme tokens, never ad-hoc numbers. The `motion` knob (minimal / smooth / playful) sets
 them all, and `prefers-reduced-motion` sets durations and travel to zero.
 
-| Token | smooth | Use |
-| --- | --- | --- |
-| `--eu-duration-instant` | 80 ms | Press, toggle, checkbox |
-| `--eu-duration-fast` | 140 ms | Hover, small reveals, all exits |
-| `--eu-duration-base` | 220 ms | Popovers, dialogs, list changes, inline reveals |
-| `--eu-duration-slow` | 340 ms | Large surfaces, page/view transitions |
-| `--eu-ease-out` | | Entering: fast start, gentle settle |
-| `--eu-ease-in` | | Exiting: gentle start, fast finish |
-| `--eu-ease-in-out` | | Moving between two on-screen positions |
-| `--eu-spring-bounce` | 0 | Overshoot for JS springs; > 0 only in playful themes |
-| `--eu-motion-distance` | 8 px | Travel on enter/exit: hint at direction, don't perform |
+The three levels have clearly different characters, not just different speeds:
+
+| | minimal | smooth (default) | playful |
+| --- | --- | --- | --- |
+| Character | Fades only, nothing travels | Short glide, no overshoot | Springs overshoot, pop-in, squishy press |
+| `--eu-duration-instant` / `fast` | 50 / 90 ms | 80 / 140 ms | 120 / 180 ms |
+| `--eu-duration-base` / `slow` | 140 / 200 ms | 240 / 360 ms | 360 / 520 ms |
+| `--eu-motion-distance` (travel on enter) | 0 | 10 px | 24 px |
+| `--eu-motion-scale` (enter starts at) | 1 | 1 | 0.9 |
+| `--eu-spring-bounce` | 0 | 0 | 0.45 |
+| `--eu-press-scale` (pressed control) | 1 | 0.98 | 0.94 |
+| Fits | Finance, health, admin, dense tools | Most products | Consumer, education, creative, games |
+
+Easing: `--eu-ease-out` for entering, `--eu-ease-in` for leaving, `--eu-ease-in-out` for moving
+between two positions (playful uses overshooting curves). All of it drops to zero under
+reduced motion.
+
+See them side by side: `examples/dist/patterns.html?pattern=motion-compare` (with slow motion).
 
 Rules:
 - Exits are faster than entrances; people have already decided.

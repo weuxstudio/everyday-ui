@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, type RefObject } from "react";
 import type { Transition } from "motion/react";
 
 type Bezier = [number, number, number, number];
 
 /**
  * Motion values read from the theme's CSS variables, so JS animations (Motion) follow the same
- * knob as CSS transitions: minimal / smooth / playful, and zero under reduced motion.
+ * knob as CSS transitions (minimal / smooth / playful) and stop under reduced motion.
  */
 export interface MotionTokens {
   /** seconds */
@@ -13,16 +13,22 @@ export interface MotionTokens {
   ease: { out: Bezier; in: Bezier; inOut: Bezier };
   /** 0 = no overshoot. Only playful themes bounce. */
   bounce: number;
-  /** px an element travels when it enters or leaves */
+  /** px an element travels when it enters or leaves (0 = fade only) */
   distance: number;
+  /** scale an entering element starts from (1 = none) */
+  scale: number;
+  /** scale of a pressed control */
+  press: number;
   reduced: boolean;
 }
 
 export const DEFAULT_MOTION: MotionTokens = {
-  duration: { instant: 0.08, fast: 0.14, base: 0.22, slow: 0.34 },
+  duration: { instant: 0.08, fast: 0.14, base: 0.24, slow: 0.36 },
   ease: { out: [0.2, 0, 0, 1], in: [0.4, 0, 1, 1], inOut: [0.4, 0, 0.2, 1] },
   bounce: 0,
-  distance: 8,
+  distance: 10,
+  scale: 1,
+  press: 0.98,
   reduced: false,
 };
 
@@ -36,11 +42,13 @@ const bezier = (v: string, fallback: Bezier): Bezier => {
   return n.length === 4 && n.every(Number.isFinite) ? (n as Bezier) : fallback;
 };
 const px = (v: string, fallback: number) => {
-  const m = v.trim().match(/^([\d.]+)(px|rem)$/);
+  const m = v.trim().match(/^(-?[\d.]+)(px|rem)$/);
   if (!m) return fallback;
   return m[2] === "rem" ? +m[1]! * parseFloat(getComputedStyle(document.documentElement).fontSize || "16") : +m[1]!;
 };
+const num = (v: string, fallback: number) => (v.trim() === "" || !Number.isFinite(+v) ? fallback : +v);
 
+/** Read the motion tokens that apply to an element (inherited CSS variables). */
 export function readMotionTokens(el: Element = document.documentElement): MotionTokens {
   const s = getComputedStyle(el);
   const get = (name: string) => s.getPropertyValue(`--eu-${name}`);
@@ -58,17 +66,19 @@ export function readMotionTokens(el: Element = document.documentElement): Motion
       in: bezier(get("ease-in"), d.ease.in),
       inOut: bezier(get("ease-in-out"), d.ease.inOut),
     },
-    bounce: reduced ? 0 : Number(get("spring-bounce") || d.bounce) || 0,
+    bounce: reduced ? 0 : num(get("spring-bounce"), d.bounce),
     distance: reduced ? 0 : px(get("motion-distance"), d.distance),
+    scale: reduced ? 1 : num(get("motion-scale"), d.scale),
+    press: reduced ? 1 : num(get("press-scale"), d.press),
     reduced,
   };
 }
 
-/** Live motion tokens: updates when the theme stylesheet, data-theme or reduced-motion changes. */
-export function useMotionTokens(): MotionTokens {
+/** Reads tokens from an element (or the document) and keeps them live. */
+export function useReadMotionTokens(ref?: RefObject<Element | null>, deps: unknown[] = []): MotionTokens {
   const [tokens, setTokens] = useState<MotionTokens>(DEFAULT_MOTION);
   useEffect(() => {
-    const update = () => setTokens(readMotionTokens());
+    const update = () => setTokens(readMotionTokens(ref?.current ?? document.documentElement));
     update();
     const mq = matchMedia("(prefers-reduced-motion: reduce)");
     mq.addEventListener("change", update);
@@ -79,18 +89,28 @@ export function useMotionTokens(): MotionTokens {
       mq.removeEventListener("change", update);
       mo.disconnect();
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps);
   return tokens;
+}
+
+export const MotionTokensContext = createContext<MotionTokens | null>(null);
+
+/** Tokens from the nearest MotionProvider, or from the document if there is none. */
+export function useMotionTokens(): MotionTokens {
+  const scoped = useContext(MotionTokensContext);
+  const doc = useReadMotionTokens();
+  return scoped ?? doc;
 }
 
 /** Transitions for the three jobs motion does in a UI: entering, leaving, moving. */
 export function transitionsFrom(t: MotionTokens): { enter: Transition; exit: Transition; move: Transition } {
   const enter: Transition = t.bounce > 0
-    ? { type: "spring" as const, visualDuration: t.duration.base, bounce: t.bounce }
+    ? { type: "spring", visualDuration: t.duration.base, bounce: t.bounce }
     : { duration: t.duration.base, ease: t.ease.out };
   const exit: Transition = { duration: t.duration.fast, ease: t.ease.in };
   const move: Transition = t.bounce > 0
-    ? { type: "spring" as const, visualDuration: t.duration.base, bounce: t.bounce * 0.6 }
+    ? { type: "spring", visualDuration: t.duration.base, bounce: t.bounce * 0.7 }
     : { duration: t.duration.base, ease: t.ease.inOut };
   return { enter, exit, move };
 }

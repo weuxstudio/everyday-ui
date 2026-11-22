@@ -129,6 +129,8 @@ function collect(src) {
   for (const [k, t] of entries(src.motion.ease)) add(`ease-${k}`, bezier(t.$value));
   for (const [k, t] of entries(src.motion.spring)) add(`spring-${k}`, String(t.$value));
   if (src.motion.distance) add("motion-distance", src.motion.distance.$value);
+  if (src.motion.scale) add("motion-scale", String(src.motion.scale.$value));
+  if (src.motion.press) add("press-scale", String(src.motion.press.$value));
   return { light, dark, flat };
 }
 
@@ -145,7 +147,7 @@ export function tokensCss(src, { source = "tokens.json" } = {}) {
   const mode = src.$extensions?.["everyday-ui"]?.defaultMode ?? "system";
   const darkNames = new Set(dark.map(([n]) => n));
   const lightSubset = light.filter(([n]) => darkNames.has(n));
-  const durations = [...entries(src.motion.duration).map(([k]) => [`duration-${k}`, "0ms"]), ["motion-distance", "0px"], ["spring-bounce", "0"]];
+  const durations = [...entries(src.motion.duration).map(([k]) => [`duration-${k}`, "0ms"]), ["motion-distance", "0px"], ["spring-bounce", "0"], ["motion-scale", "1"], ["press-scale", "1"]];
 
   let modeCss;
   if (mode === "dark") {

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.1 - 2026-11-22
+
+- The three motion levels now differ in character, not only speed: minimal fades without
+  travel, smooth glides 10 px, playful springs (bounce 0.45) with 24 px travel, pop-in from 90 %
+  and a squishy press. New tokens `--eu-motion-scale` and `--eu-press-scale`.
+- Buttons use the theme's press scale instead of a fixed 1 px shift.
+- `MotionProvider` reads motion tokens from its own place in the document (works with
+  `data-theme` subtrees and per-section overrides via `style`).
+- Comparison page `?pattern=motion-compare`: all three levels driven by one set of controls,
+  with slow motion ×4.
+
 ## 0.5.0 - 2026-11-22
 
 - Motion guide (`references/motion.md`): when to animate, timing tokens, reduced motion, tool

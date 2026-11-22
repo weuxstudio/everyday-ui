@@ -8,6 +8,7 @@ import Settings from "../skills/everyday-ui/patterns/settings/Settings";
 import Checkout from "../skills/everyday-ui/patterns/checkout/Checkout";
 import ListsTables from "../skills/everyday-ui/patterns/lists-tables/ListsTables";
 import MotionShowcase from "./motion-showcase";
+import MotionCompare from "./motion-compare";
 
 const PATTERNS = {
   "signup-onboarding": SignupOnboarding,
@@ -17,6 +18,7 @@ const PATTERNS = {
   checkout: Checkout,
   "lists-tables": ListsTables,
   motion: MotionShowcase,
+  "motion-compare": MotionCompare,
 } as const;
 
 const name = (new URLSearchParams(location.search).get("pattern") ?? "") as keyof typeof PATTERNS;

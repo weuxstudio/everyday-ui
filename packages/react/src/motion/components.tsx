@@ -1,18 +1,34 @@
-import { useCallback, type ReactNode } from "react";
+import { useCallback, useRef, type CSSProperties, type ReactNode } from "react";
 import { flushSync } from "react-dom";
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
-import { useTransitions } from "./tokens";
+import { MotionTokensContext, transitionsFrom, useReadMotionTokens, useTransitions } from "./tokens";
+
+export interface MotionProviderProps {
+  children: ReactNode;
+  /**
+   * Optional token overrides for this subtree, e.g. a section that should feel calmer:
+   * style={{ "--eu-spring-bounce": 0 }}. Normally omitted: the theme decides.
+   */
+  style?: CSSProperties;
+}
 
 /**
- * Put once around the app. Motion respects the OS "reduce motion" setting and uses the theme's
- * enter transition by default.
+ * Put once around the app (or around a subtree with its own data-theme). Reads the motion tokens
+ * that apply at this point in the document, respects the OS "reduce motion" setting and makes
+ * the theme's enter transition the default for every Motion animation inside.
  */
-export function MotionProvider({ children }: { children: ReactNode }) {
-  const { enter } = useTransitions();
+export function MotionProvider({ children, style }: MotionProviderProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const tokens = useReadMotionTokens(ref, [JSON.stringify(style ?? {})]);
+  const { enter } = transitionsFrom(tokens);
   return (
-    <MotionConfig reducedMotion="user" transition={enter}>
-      {children}
-    </MotionConfig>
+    <div ref={ref} style={{ display: "contents", ...style }}>
+      <MotionTokensContext.Provider value={tokens}>
+        <MotionConfig reducedMotion="user" transition={enter}>
+          {children}
+        </MotionConfig>
+      </MotionTokensContext.Provider>
+    </div>
   );
 }
 
@@ -35,9 +51,9 @@ export function Reveal({ show, children, appear = false, className }: RevealProp
       {show ? (
         <motion.div
           className={className}
-          initial={{ opacity: 0, y: tokens.distance }}
-          animate={{ opacity: 1, y: 0, transition: enter }}
-          exit={{ opacity: 0, y: -tokens.distance / 2, transition: exit }}
+          initial={{ opacity: 0, y: tokens.distance, scale: tokens.scale }}
+          animate={{ opacity: 1, y: 0, scale: 1, transition: enter }}
+          exit={{ opacity: 0, y: -tokens.distance / 2, scale: tokens.scale, transition: exit }}
         >
           {children}
         </motion.div>
@@ -101,9 +117,9 @@ export function AnimatedList<T>({ items, getKey, renderItem, as = "ul", classNam
             key={getKey(item)}
             layout
             className={itemClassName}
-            initial={{ opacity: 0, y: tokens.distance }}
-            animate={{ opacity: 1, y: 0, transition: enter }}
-            exit={{ opacity: 0, scale: 0.98, transition: exit }}
+            initial={{ opacity: 0, y: tokens.distance, scale: tokens.scale }}
+            animate={{ opacity: 1, y: 0, scale: 1, transition: enter }}
+            exit={{ opacity: 0, scale: Math.min(tokens.scale, 0.98), transition: exit }}
             transition={move}
           >
             {renderItem(item)}

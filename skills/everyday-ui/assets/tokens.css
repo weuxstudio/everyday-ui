@@ -88,13 +88,15 @@
   --eu-effect-overlay-blur: 0px;
   --eu-duration-instant: 80ms;
   --eu-duration-fast: 140ms;
-  --eu-duration-base: 220ms;
-  --eu-duration-slow: 340ms;
+  --eu-duration-base: 240ms;
+  --eu-duration-slow: 360ms;
   --eu-ease-out: cubic-bezier(0.2, 0, 0, 1);
   --eu-ease-in: cubic-bezier(0.4, 0, 1, 1);
   --eu-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --eu-spring-bounce: 0;
-  --eu-motion-distance: 0.5rem;
+  --eu-motion-distance: 0.625rem;
+  --eu-motion-scale: 1;
+  --eu-press-scale: 0.98;
 }
 
 [data-theme="light"] {
@@ -197,6 +199,8 @@
     --eu-duration-slow: 0ms;
     --eu-motion-distance: 0px;
     --eu-spring-bounce: 0;
+    --eu-motion-scale: 1;
+    --eu-press-scale: 1;
   }
 }
 

@@ -102,7 +102,7 @@ Users refine with words; map each request to one knob, rebuild, show the specime
 | "squircle corners" / "normal corners" | `set shape.corners squircle` / `round` |
 | "more compact" / "more airy" | `set density compact` / `spacious` |
 | "flatter" / "more depth" | `set depth` along flat → subtle → soft → dramatic |
-| "calmer" / "livelier animations" | `set motion minimal` / `playful` |
+| "calmer" / "livelier animations" | `set motion` along minimal (fades only) → smooth (short glide) → playful (springs, pop-in, squishy press) |
 | "warmer" / "cooler" grays | `set color.neutral warm` / `cool` (or a hue number) |
 | "more color in the grays" | `set color.tint noticeable` |
 | "bigger headings" | `set type.scale` along compact → balanced → expressive → dramatic |

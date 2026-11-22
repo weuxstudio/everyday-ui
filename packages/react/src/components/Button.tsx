@@ -25,11 +25,12 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const base =
   "relative inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-control font-semibold " +
-  "transition-[background-color,border-color,color,transform] " +
+  "transition-[background-color,border-color,color,scale] " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus " +
-  "active:translate-y-px " +
+  // Press feedback from the theme: none (minimal), subtle (smooth), squishy (playful).
+  "active:scale-(--eu-press-scale) active:duration-(--eu-duration-instant) " +
   // Disabled stays readable and focusable (aria-disabled), so people can still find out why.
-  "aria-disabled:cursor-not-allowed aria-disabled:active:translate-y-0";
+  "aria-disabled:cursor-not-allowed aria-disabled:active:scale-100";
 
 const variants: Record<ButtonVariant, string> = {
   primary: "bg-accent text-accent-ink hover:bg-accent-hover",
