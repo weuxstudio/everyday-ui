@@ -1,0 +1,5 @@
+/* margin: 13px in a comment is ignored */
+.card { padding: 24px; margin: 0 auto; gap: var(--eu-space-m); }
+.odd { padding: 12px 20px; font-weight: 500; color: #333; background: rgb(0 0 0 / 0.5); }
+.ok { padding: calc(var(--eu-space-s) + env(safe-area-inset-bottom)); font-weight: var(--eu-font-weight-semibold); }
+.unknown { margin-top: var(--my-gap); }

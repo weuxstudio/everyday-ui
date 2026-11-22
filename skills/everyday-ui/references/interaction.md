@@ -29,6 +29,11 @@ Design each one explicitly; generated UI usually only has "happy path with perfe
 - Announce dynamic results to screen readers (`aria-live="polite"`, `role="alert"` for errors).
 - Avoid feedback noise: no toast for every autosave.
 
+## Mobile
+
+Phone apps add thumb reach, system back, sheets, safe areas and the on-screen keyboard: see
+`mobile.md` and the `patterns/mobile-app` blueprint.
+
 ## Motion
 
 See `motion.md`: when to animate, timing tokens, reduced motion, and which tool (CSS,

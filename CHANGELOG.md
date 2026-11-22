@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.6.0 - 2026-11-22
+
+- **Mobile** (#1): `references/mobile.md` (platform stance, thumb reach, bottom navigation and
+  central create action, badges, system back and gestures, sheet vs. dialog vs. screen, safe
+  areas, touch and on-screen keyboard, text size, glass after iOS 26/27 Liquid Glass and
+  Material 3 Expressive, motion and haptics, agenda and detail screens, permissions, tablets).
+  Pattern `mobile-app` as plain HTML/CSS/JS. `BottomSheet` in React and Svelte: closes on
+  Escape, scrim and system/browser back.
+- **Notifications** (#2): `references/notifications.md` – budget, copy, actions, quiet hours,
+  delivery honesty, permission prompts, inbox, transactional email.
+- **everyday-lint** (#3): font weights, spacing scale, raw colours and Tailwind default palette,
+  `confirm()`/`alert()`, disabled submits, unnamed icon buttons; ignore comments, config, tests.
+  Running it on this repo fixed off-scale page spacing in the blueprints (40/64 px → 48/80 px).
+- **everyday-shots** (#4): renders, squint test, keyboard pass, reduced motion, 200 % zoom and
+  automatic findings for any URL or static folder; init script and API mocks.
+- **Conditional checklist** (#5): brief gets Themes / Platforms / Notifications; checklist items
+  tagged `[if …]`; ruled-out items reported as "n/a by decision".
+- **Svelte adapter** (#6): Button, Field, Checkbox, Switch, SegmentedControl, Dialog,
+  BottomSheet, EmptyState, ErrorSummary; svelte-check clean; demo; parity notes.
+- **German locale guide** (#7): `references/locale-de.md`; brief fields for locale, address form
+  and inclusive wording.
+
 ## 0.5.1 - 2026-11-22
 
 - The three motion levels now differ in character, not only speed: minimal fades without

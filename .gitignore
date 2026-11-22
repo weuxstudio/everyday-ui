@@ -5,3 +5,5 @@ examples/dist/
 .DS_Store
 examples/patterns/
 examples/*.mp4
+everyday-shots/
+packages/svelte/demo/dist/

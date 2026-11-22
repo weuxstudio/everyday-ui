@@ -54,14 +54,18 @@ Read `references/principles.md` once per session. Then load what the task touche
 | --- | --- |
 | Anything visual | `references/layout.md`, `references/color.md`, `references/typography.md` |
 | Any text in the UI (labels, buttons, errors, headings) | `references/copy.md` |
+| A German interface (strings, dates, numbers, du/Sie) | `references/locale-de.md` |
 | Forms, inputs, settings, checkout, sign-up | `references/forms.md` |
 | Buttons, dialogs, destructive or disabled actions | `references/buttons-and-actions.md` |
 | States, feedback, navigation, tables, i18n | `references/interaction.md` |
 | Animation, transitions, choosing a motion library | `references/motion.md` |
-| A recurring screen: sign-up, onboarding, pricing, dashboard, settings, checkout, lists/tables | `references/patterns.md`, then the pattern's README and blueprint |
+| Phone apps (PWA, Capacitor, native), phone-first sites, iOS/Android reviews | `references/mobile.md` |
+| Push notifications, in-app inbox, transactional emails, permission prompts | `references/notifications.md` |
+| A recurring screen: sign-up, onboarding, pricing, dashboard, settings, checkout, lists/tables, mobile app shell (bottom nav, sheets, agenda, detail) | `references/patterns.md`, then the pattern's README and blueprint |
 | A new project's look, a rebrand, or style changes | `references/onboarding.md` |
 | Token names and roles | `references/tokens.md` |
 | React code | `references/stack-react.md` |
+| Svelte code | `references/stack-svelte.md` |
 
 ## 3. Build on the foundation
 
@@ -77,7 +81,8 @@ Read `references/principles.md` once per session. Then load what the task touche
   adapt it to the real content; don't reinvent a checkout or a pricing page.
 - **Components:** React adapter has Button, Field, PasswordField, Checkbox, RadioGroup,
   SegmentedControl, Switch, Stepper, ProgressSteps, ErrorSummary, EmptyState, Badge, Card,
-  Dialog. Reuse before inventing; extend in the same style.
+  Dialog, BottomSheet. Svelte adapter has Button, Field, Checkbox, Switch, SegmentedControl,
+  Dialog, BottomSheet, EmptyState, ErrorSummary. Reuse before inventing; extend in the same style.
 
 ## 4. The rules you'll apply most
 
@@ -101,15 +106,27 @@ confident accent, typographic rhythm, purposeful density, and details with reaso
 
 ## 6. Review before you hand over
 
-Run `references/review-checklist.md` against what you built. Do it for real:
+Run `references/review-checklist.md` against what you built. Items tagged `[if …]` apply only
+when the brief's scope decisions (Themes, Platforms, Notifications, Language) or the screen
+include that case. Do it for real:
 
-- Render it at **375 px** and **1280 px**, in light and dark mode, if you can look at it at all.
+- Render it at **375 px** and, if the project has desktop, **1280 px**; in light and, if the
+  project has dark mode, dark, if you can look at it at all.
 - **Squint test:** blur the screenshot (CSS `filter: blur(6px)`). The primary action and the
   purpose of the screen must still stand out.
+- One command renders all of this for any running app (both widths, light/dark, squint,
+  keyboard pass, reduced motion, 200 % zoom) into a contact sheet with automatic findings:
+  `node <skill>/tools/shots/bin/everyday-shots.mjs http://localhost:5173 / /settings`
+  (`--serve dist` for a built folder, `--light-only` when the brief says so). Needs Playwright.
 - Tab through it with the keyboard; trigger each state from step 1, including validation errors.
+- Run the lint for the mechanical rules (weights, spacing scale, raw colours, `confirm()`,
+  disabled submits, unnamed icon buttons): `node <skill>/tools/lint/bin/everyday-lint.mjs src`
+  (or `npx everyday-lint src`). Fix errors; justify exceptions with an ignore comment.
 
 Fix what fails. Then report in a few lines: what you built, the decisions that matter, and any
-checklist item you consciously left open and why.
+checklist item you consciously left open and why. Items the brief rules out are **n/a by
+decision**: list them once in one line with the brief field ("n/a by decision (Themes: light
+only): dark-mode items"), not as failures. If the brief is silent, the item applies.
 
 ## Scope notes
 

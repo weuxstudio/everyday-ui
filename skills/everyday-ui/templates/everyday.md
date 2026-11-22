@@ -8,6 +8,13 @@
 - **Primary users:** <!-- who, how experienced, what device, what context -->
 - **Their main job here:**
 
+## Scope decisions
+<!-- These switch review checklist items on or off (references/review-checklist.md → Conditions).
+     Items ruled out here are reported as "n/a by decision", not as failures. -->
+- **Themes:** <!-- light only | dark only | light + dark (follows OS) -->
+- **Platforms:** <!-- e.g. phone (Capacitor), tablet read-only display | web desktop + phone -->
+- **Notifications:** <!-- none | push + in-app | email only; daily budget, e.g. max 3 non-urgent pushes -->
+
 ## Feel
 - **Three words:** <!-- e.g. calm, precise, warm -->
 - **Not:** <!-- e.g. playful, corporate, techy -->
@@ -24,8 +31,9 @@
 - **Mode:** <!-- follows OS | light | dark -->
 
 ## Content and language
-- **Language(s) and locale:** <!-- e.g. de-DE: 1.000,50 € · 24.12.2026 -->
-- **Address:** <!-- German: du or Sie, never mixed -->
+- **Language(s) and locale:** <!-- e.g. de-DE: 1.000,50 € · Mi., 18.11. · 14:00–15:30 Uhr. German UI → follow references/locale-de.md -->
+- **Address:** <!-- German: du or Sie, never mixed (UI, emails, notifications) -->
+- **Inclusive wording:** <!-- e.g. neutral forms ("Teilnehmende"); or one marker used everywhere -->
 - **Tone:** <!-- e.g. direct, friendly, no jargon -->
 - **Glossary (one word per concept):** <!-- e.g. cart (not bag) · sign in (not log in) · delete = gone, remove = from list -->
 

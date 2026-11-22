@@ -1,0 +1,8 @@
+{
+  "$description": "Everyday UI's own repo. Component packages and pattern blueprints compose rows, cells and controls, so half steps for optical alignment are allowed there.",
+  "extraComponentPaths": [
+    "/patterns/",
+    "/examples/",
+    "/packages/svelte/src/"
+  ]
+}

@@ -47,6 +47,39 @@ dialog.eu-dialog[open]::backdrop {
   }
 }
 
+/* Bottom sheet: slides up from the bottom edge, back down on close. */
+dialog.eu-sheet {
+  translate: 0 100%;
+  transition-property: translate, overlay, display;
+  transition-duration: var(--eu-duration-fast);
+  transition-timing-function: var(--eu-ease-in);
+  transition-behavior: allow-discrete;
+}
+dialog.eu-sheet[open] {
+  translate: 0 0;
+  transition-duration: var(--eu-duration-slow);
+  transition-timing-function: var(--eu-ease-out);
+}
+@starting-style {
+  dialog.eu-sheet[open] {
+    translate: 0 100%;
+  }
+}
+dialog.eu-sheet::backdrop {
+  background-color: transparent;
+  transition-property: background-color, overlay, display;
+  transition-duration: var(--eu-duration-base);
+  transition-behavior: allow-discrete;
+}
+dialog.eu-sheet[open]::backdrop {
+  background-color: var(--eu-color-scrim);
+}
+@starting-style {
+  dialog.eu-sheet[open]::backdrop {
+    background-color: transparent;
+  }
+}
+
 /* Generic enter for elements that appear (menus, toasts, inline messages) without JS:
    add class="eu-enter". */
 .eu-enter {

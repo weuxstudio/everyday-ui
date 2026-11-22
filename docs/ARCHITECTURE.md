@@ -7,7 +7,9 @@ skills/everyday-ui/          principles, workflow, review         (no framework)
 packages/tokens/             tokens.json → CSS / Tailwind / JS     (no framework)
                              + theme generator: knobs → tokens     (no framework)
 packages/react/              React components                      (adapter)
-packages/svelte/             Svelte components                     (adapter, planned)
+packages/svelte/             Svelte 5 components                   (adapter)
+packages/lint/               everyday-lint: mechanical rule checks (no framework, no deps)
+packages/shots/              everyday-shots: review renders        (no framework; Playwright)
 packages/vue/                Vue components                        (adapter, planned)
 ```
 

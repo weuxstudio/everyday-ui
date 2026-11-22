@@ -81,7 +81,7 @@ function Signup({ onDone }: { onDone: () => void }) {
         </div>
       </form>
 
-      <p className="mt-10 text-base">
+      <p className="mt-12 text-base">
         Already have an account? <a href="#signin">Sign in</a>
       </p>
     </main>
@@ -101,14 +101,14 @@ function Welcome() {
   const done = tasks.filter((t) => t.done).length;
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
+    <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
       <header>
         <h1 className="text-3xl font-heading">Welcome, Mara</h1>
         <p className="mt-2 text-lg text-ink-muted">Let's create your first project. It takes about two minutes.</p>
       </header>
 
       {!hidden ? (
-        <section aria-labelledby="setup-title" className="mt-10 rounded-card border border-border bg-surface p-card">
+        <section aria-labelledby="setup-title" className="mt-12 rounded-card border border-border bg-surface p-card">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h2 id="setup-title" className="text-lg font-heading">

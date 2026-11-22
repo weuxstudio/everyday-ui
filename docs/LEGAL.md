@@ -23,6 +23,13 @@ before publishing or selling it.
 
 - `motion` (motion.dev), MIT license, used by the optional `@everyday-ui/react/motion` entry.
   The optional paid Motion+ add-on is not used.
+- `svelte` (MIT) is a peer dependency of `@everyday-ui/svelte`; `svelte-check` (MIT) is a dev tool.
+- `playwright` (Apache-2.0) is an optional peer of `@everyday-ui/shots`, resolved from the
+  user's project; nothing of it is bundled.
+- `everyday-lint` has no dependencies.
+- The mobile, notification and German locale guides paraphrase public platform guidelines
+  (Apple HIG, Material Design) and Duden / DIN 5008 conventions; no text or images from them
+  are reproduced, and no platform assets (icons, SF Symbols, Material Symbols) are included.
 - GSAP is deliberately not a dependency: its free "Standard No Charge" license is not open
   source and prohibits visual no-code animation tools that compete with Webflow. Projects may
   add it themselves for marketing pages.

@@ -3,8 +3,9 @@
 Proven structures for recurring product screens. Each pattern folder in `patterns/` holds:
 
 - `README.md` – the job, the structure, rules with reasons, states, copy, variants, what to avoid
-- a blueprint `.tsx` – a working React reference built only from Everyday UI components and
-  tokens. It renders correctly in every theme.
+- a blueprint – a working reference built only from Everyday UI tokens (and components, where
+  the blueprint is React). It renders correctly in every theme. Most blueprints are React `.tsx`;
+  the mobile app shell is plain HTML/CSS/JS so it ports to any framework or WebView.
 
 ## How to use
 
@@ -24,6 +25,7 @@ Proven structures for recurring product screens. Each pattern folder in `pattern
 | Configure account, workspace or app | `patterns/settings` |
 | Buy: delivery, payment, review, confirmation | `patterns/checkout` |
 | Browse, search, filter, act on many records | `patterns/lists-tables` |
+| Phone app: bottom navigation, bottom sheet, system back, agenda, detail screen | `patterns/mobile-app` |
 
 ## Combining patterns
 

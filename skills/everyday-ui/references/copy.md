@@ -19,6 +19,8 @@ navigate by headings, links and buttons alone. Write for all three.
   "Apt. no."). If one is unavoidable, expand it on first use.
 - Contractions sound human in English ("you're", "can't"). In German, choose **du** or **Sie**
   per product, record it in `everyday.md`, and never mix.
+- **German UI:** also read `locale-de.md` (length budget, compounds, infinitive buttons,
+  dates, numbers, quotes).
 
 ## Structure for scanning
 
@@ -52,7 +54,7 @@ navigate by headings, links and buttons alone. Write for all three.
   (en: 1,000.50 · de: 1.000,50). Large numbers abbreviated where precision doesn't matter
   ("1.2 million", "1,2 Mio.").
 - Units and currency per locale (de: `12,90 €`; en-US: `$12.90`), with a non-breaking space
-  where the locale uses a space.
+  where the locale uses a space. German date, time and number formats: `locale-de.md`.
 - Relative dates for recent events ("2 hours ago"), absolute dates with year for older ones; the
   full timestamp on hover/focus.
 

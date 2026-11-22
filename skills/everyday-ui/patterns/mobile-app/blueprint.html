@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <!-- viewport-fit=cover: content may go under the notch and home indicator; the CSS pads with env(safe-area-inset-*).
+       No maximum-scale / user-scalable=no: zoom stays available. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <!-- theme-color can't read CSS variables: use the theme's paper colour (THEME.md lists it as hex). -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f3">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141413">
+  <title>Agenda – Everyday UI mobile blueprint</title>
+  <!-- In a project: the generated theme from everyday.theme.json instead of the skill's default assets. -->
+  <link rel="stylesheet" href="../../assets/tokens.css">
+  <link rel="stylesheet" href="../../assets/base.css">
+  <link rel="stylesheet" href="mobile-app.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===== Screen: Agenda (top level) ===== -->
+    <section id="screen-agenda" data-screen aria-labelledby="agenda-title">
+      <header class="topbar" data-topbar>
+        <p class="topbar__title" aria-hidden="true"></p>
+        <button class="icon-btn" type="button" aria-label="Search appointments">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        </button>
+      </header>
+      <h1 class="large-title" id="agenda-title">Agenda</h1>
+
+      <nav aria-label="This week">
+        <ul class="week" data-week></ul>
+      </nav>
+
+      <main>
+        <div class="agenda" data-agenda></div>
+      </main>
+    </section>
+
+    <!-- ===== Screen: Detail (pushed) ===== -->
+    <section id="screen-detail" data-screen hidden aria-labelledby="detail-title">
+      <header class="topbar" data-topbar>
+        <button class="back" type="button" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+          <span>Agenda</span>
+        </button>
+        <p class="topbar__title" aria-hidden="true"></p>
+        <button class="icon-btn" type="button" aria-label="More actions">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="19" cy="12" r="1.8"/></svg>
+        </button>
+      </header>
+      <div class="detail" data-detail></div>
+      <div class="actionbar" data-actionbar></div>
+    </section>
+
+    <!-- ===== Placeholder for the other tabs ===== -->
+    <section id="screen-other" data-screen hidden aria-labelledby="other-title">
+      <header class="topbar" data-topbar><p class="topbar__title" aria-hidden="true"></p></header>
+      <h1 class="large-title" id="other-title" data-other-title>Inbox</h1>
+      <main><p class="muted" style="padding-inline: var(--eu-space-s)">Not part of this blueprint. Each tab keeps its own history and scroll position.</p></main>
+    </section>
+
+    <!-- ===== Bottom navigation: four destinations + one creation action ===== -->
+    <nav class="tabbar" aria-label="Main" data-tabbar>
+      <ul>
+        <li><a class="tab" href="#/" data-tab="agenda"><span class="tab__ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span>Agenda</a></li>
+        <li><a class="tab" href="#/inbox" data-tab="inbox" aria-label="Inbox, 3 unread"><span class="tab__ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 13.5 6 5h12l2.5 8.5V19a1 1 0 0 1-1 1h-15a1 1 0 0 1-1-1v-5.5Z"/><path d="M3.5 13.5H9l1 2h4l1-2h5.5"/></svg></span><span class="tab__count" aria-hidden="true">3</span>Inbox</a></li>
+        <li><button class="create" type="button" data-open-sheet aria-haspopup="dialog"><span class="create__disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>New</button></li>
+        <li><a class="tab" href="#/clients" data-tab="clients"><span class="tab__ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8.5" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5M16 5.2a3.5 3.5 0 0 1 0 6.6M18.5 14.8c1.6.8 2.6 2.5 3 5.2"/></svg></span>Clients</a></li>
+        <li><a class="tab" href="#/account" data-tab="account"><span class="tab__ind"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8.5" r="4"/><path d="M4 20.5c1-4 4.2-6 8-6s7 2 8 6"/></svg></span>Account</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- ===== Bottom sheet: short contextual choice. Closes on back, Escape, close button, scrim. ===== -->
+  <dialog class="sheet" aria-labelledby="sheet-title" data-sheet>
+    <div class="sheet__handle" aria-hidden="true"></div>
+    <div class="sheet__head">
+      <h2 id="sheet-title" tabindex="-1" autofocus>What do you want to add?</h2>
+      <button class="icon-btn" type="button" aria-label="Close" data-close-sheet>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="sheet__body">
+      <ul class="list" data-choices></ul>
+    </div>
+  </dialog>
+
+  <p class="sr-only" role="status" aria-live="polite" data-status></p>
+
+  <script src="mobile-app.js"></script>
+</body>
+</html>

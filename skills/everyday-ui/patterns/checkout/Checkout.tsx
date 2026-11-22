@@ -72,7 +72,7 @@ export default function Checkout() {
           <h1 className="text-3xl font-heading">Checkout</h1>
           <ProgressSteps className="mt-6" steps={STEPS} current={step} onStepClick={setStep} />
 
-          <form noValidate onSubmit={next} className="mt-10 flex max-w-xl flex-col gap-6">
+          <form noValidate onSubmit={next} className="mt-12 flex max-w-xl flex-col gap-6">
             <ErrorSummary errors={errors} />
 
             {step === 0 ? (
@@ -221,13 +221,13 @@ function ReviewBlock({ title, children, onChange }: { title: string; children: R
 
 function Confirmation({ email, total }: { email: string; total: number }) {
   return (
-    <main className="mx-auto max-w-2xl px-4 py-16 sm:px-6">
+    <main className="mx-auto max-w-2xl px-4 py-20 sm:px-6">
       <p className="text-sm font-semibold uppercase tracking-[0.08em] text-success">Order placed</p>
       <h1 className="mt-2 text-3xl font-heading">Thank you, your order is on its way</h1>
       <p className="mt-3 text-lg text-ink-muted">
         Order <strong className="text-ink">AP-48213</strong> · {money(total)}. A receipt is on its way to {email || "your email"}.
       </p>
-      <ol className="mt-10 flex flex-col gap-4 rounded-card border border-border bg-surface p-card">
+      <ol className="mt-12 flex flex-col gap-4 rounded-card border border-border bg-surface p-card">
         <li><strong>Today:</strong> we pack your order and send you the tracking link.</li>
         <li><strong>Wed 25 – Fri 27 November:</strong> delivery to your door.</li>
         <li><strong>Within 30 days:</strong> free returns if anything isn't right.</li>

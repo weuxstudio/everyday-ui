@@ -38,6 +38,7 @@ export function ErrorSummary({ errors, title = "Check the highlighted fields" }:
         <ErrorIcon className="size-5 shrink-0" />
         {title}
       </p>
+      {/* everyday-lint-ignore-next-line spacing -- aligns the list with the title text after the 20 px icon + 8 px gap */}
       <ul className="mt-2 flex flex-col gap-1 pl-7">
         {errors.map((e) => (
           <li key={e.fieldId}>

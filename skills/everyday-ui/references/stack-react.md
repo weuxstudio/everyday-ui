@@ -38,6 +38,7 @@ project (`src/components/ui/`); they depend only on React and Tailwind.
 | `Badge` | Status pill in status tones; never the action color. |
 | `Card` | Border, no shadow by default; `title`, `description`, `actions`. |
 | `Dialog` | Native `<dialog>`; buttons left-aligned, most important first, stacked on phones. |
+| `BottomSheet` | Native `<dialog>` at the bottom edge: handle + close button, max 90 % height, safe-area padding, closes on Escape, scrim and system/browser back (history entry). See `mobile.md`. |
 
 Build new components the same way: tokens only, semantic element first, every state designed
 (hover, active, focus-visible, disabled, loading, error), labels and descriptions wired inside the
