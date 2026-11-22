@@ -6,7 +6,9 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build -w @everyday-ui/tokens && npm run typecheck -w @everyday-ui/react && tsc -p tsconfig.patterns.json",
+    "build": "npm run build -w @everyday-ui/tokens && npm run typecheck -w @everyday-ui/react && tsc -p tsconfig.patterns.json && node scripts/sync-skill-tools.mjs",
+    "test": "npm test -w @everyday-ui/lint",
+    "lint:ui": "node packages/lint/bin/everyday-lint.mjs packages/react/src skills/everyday-ui/patterns examples --max-warnings 0",
     "demo": "node examples/render-demo.mjs"
   },
   "devDependencies": {

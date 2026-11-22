@@ -58,7 +58,7 @@ export default function ListsTables() {
   };
 
   return (
-    <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:py-16">
+    <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-20">
       <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <h1 className="text-3xl font-heading">
           Invoices <span className="font-regular text-ink-muted tabular-nums">· {INVOICES.length}</span>

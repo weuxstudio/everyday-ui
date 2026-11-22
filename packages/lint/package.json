@@ -1,0 +1,13 @@
+{
+  "name": "@everyday-ui/lint",
+  "version": "0.6.0",
+  "description": "Dependency-free checks for Everyday UI rules in CSS, React, Svelte, Vue and HTML: font weights, spacing scale, raw colours, confirm()/alert(), disabled submit buttons, icon-only buttons without a name.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/lint.mjs",
+  "exports": { ".": "./lib/lint.mjs" },
+  "bin": { "everyday-lint": "./bin/everyday-lint.mjs" },
+  "files": ["bin", "lib", "README.md"],
+  "scripts": { "test": "node --test test/lint.test.mjs" },
+  "engines": { "node": ">=18" }
+}

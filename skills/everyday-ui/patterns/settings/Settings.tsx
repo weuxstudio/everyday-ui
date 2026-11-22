@@ -8,7 +8,7 @@ const WORKSPACE = "Atlas Studio";
 
 export default function Settings() {
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:grid lg:grid-cols-[13rem_1fr] lg:gap-12 lg:py-16">
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:grid lg:grid-cols-[13rem_1fr] lg:gap-12 lg:py-20">
       <nav aria-label="Settings" className="mb-8 lg:mb-0">
         <h1 className="px-3 text-2xl font-heading">Settings</h1>
         <ul className="mt-4 flex gap-1 overflow-x-auto lg:flex-col">
@@ -29,7 +29,7 @@ export default function Settings() {
         </ul>
       </nav>
 
-      <main className="flex max-w-2xl flex-col gap-16">
+      <main className="flex max-w-2xl flex-col gap-20">
         <ProfileSection />
         <NotificationsSection />
         <MembersSection />
@@ -92,7 +92,7 @@ function ProfileSection() {
 function NotificationsSection() {
   const [saved, setSaved] = useState<string | null>(null);
   const timer = useRef<number | undefined>(undefined);
-  const confirm = (what: string) => {
+  const announceSaved = (what: string) => {
     setSaved(what);
     window.clearTimeout(timer.current);
     timer.current = window.setTimeout(() => setSaved(null), 2500);
@@ -107,9 +107,9 @@ function NotificationsSection() {
         <p className="mt-1 text-ink-muted">Changes apply right away.</p>
       </header>
       <div className="divide-y divide-border rounded-card border border-border bg-surface px-card">
-        <Switch className="py-3" label="Email me when an invoice is paid" defaultChecked onCheckedChange={() => confirm("payment emails")} />
-        <Switch className="py-3" label="Email me when an invoice becomes overdue" defaultChecked onCheckedChange={() => confirm("overdue emails")} />
-        <Switch className="py-3" label="Weekly summary every Monday" hint="Revenue, open invoices and what needs attention" onCheckedChange={() => confirm("weekly summary")} />
+        <Switch className="py-3" label="Email me when an invoice is paid" defaultChecked onCheckedChange={() => announceSaved("payment emails")} />
+        <Switch className="py-3" label="Email me when an invoice becomes overdue" defaultChecked onCheckedChange={() => announceSaved("overdue emails")} />
+        <Switch className="py-3" label="Weekly summary every Monday" hint="Revenue, open invoices and what needs attention" onCheckedChange={() => announceSaved("weekly summary")} />
       </div>
       <p className="min-h-[1.5em] text-sm text-success" role="status">
         {saved ? `✓ Saved: ${saved}` : ""}
@@ -170,7 +170,7 @@ function DangerZone() {
     setError(undefined);
   };
   return (
-    <section aria-labelledby="danger" className="flex flex-col gap-4 border-t border-border pt-10">
+    <section aria-labelledby="danger" className="flex flex-col gap-4 border-t border-border pt-12">
       <h2 id="danger" className="text-xl font-heading">
         Delete workspace
       </h2>

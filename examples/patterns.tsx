@@ -26,7 +26,7 @@ const Pattern = PATTERNS[name];
 
 function Index() {
   return (
-    <main className="mx-auto max-w-2xl px-4 py-16">
+    <main className="mx-auto max-w-2xl px-4 py-20">
       <h1 className="text-3xl font-heading">Everyday UI patterns</h1>
       <ul className="mt-6 flex flex-col gap-2">
         {Object.keys(PATTERNS).map((p) => (

@@ -33,7 +33,7 @@ export default function Pricing() {
         <p className="mt-3 text-lg text-ink-muted">Every plan starts with a 30-day free trial. No card needed.</p>
       </header>
 
-      <div className="mt-10">
+      <div className="mt-12">
         <SegmentedControl
           label="Billing period"
           hideLabel

@@ -113,6 +113,9 @@ include that case. Do it for real:
 - **Squint test:** blur the screenshot (CSS `filter: blur(6px)`). The primary action and the
   purpose of the screen must still stand out.
 - Tab through it with the keyboard; trigger each state from step 1, including validation errors.
+- Run the lint for the mechanical rules (weights, spacing scale, raw colours, `confirm()`,
+  disabled submits, unnamed icon buttons): `node <skill>/tools/lint/bin/everyday-lint.mjs src`
+  (or `npx everyday-lint src`). Fix errors; justify exceptions with an ignore comment.
 
 Fix what fails. Then report in a few lines: what you built, the decisions that matter, and any
 checklist item you consciously left open and why. Items the brief rules out are **n/a by
