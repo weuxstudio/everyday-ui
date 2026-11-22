@@ -3,3 +3,4 @@
 @import "../packages/react/src/styles.css";
 @source "../packages/react/src";
 @source "./demo.tsx";
+@source "../skills/everyday-ui/patterns";

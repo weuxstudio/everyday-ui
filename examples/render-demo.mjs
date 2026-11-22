@@ -1,7 +1,7 @@
 // Builds the demo page and, if Playwright is available, screenshots it at
 // phone and desktop width in light and dark mode: the skill's own review loop.
 import { execSync } from "node:child_process";
-import { writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { createRequire } from "node:module";
@@ -13,6 +13,7 @@ const run = (cmd) => execSync(cmd, { cwd: join(here, ".."), stdio: "inherit" });
 
 run("node packages/tokens/scripts/build.mjs");
 run(`npx esbuild examples/demo.tsx --bundle --format=iife --jsx=automatic --minify --outfile=examples/dist/demo.js --log-level=warning`);
+run(`npx esbuild examples/patterns.tsx --bundle --format=iife --jsx=automatic --minify --outfile=examples/dist/patterns.js --log-level=warning`);
 run(`npx @tailwindcss/cli -i examples/demo.css -o examples/dist/demo.css --minify`);
 
 writeFileSync(
@@ -36,7 +37,11 @@ writeFileSync(
 </html>
 `,
 );
-console.log("demo → examples/dist/index.html");
+writeFileSync(
+  join(dist, "patterns.html"),
+  readFileSync(join(dist, "index.html"), "utf8").replace("Everyday UI demo", "Everyday UI patterns").replace("./demo.js", "./patterns.js"),
+);
+console.log("demo → examples/dist/index.html, patterns → examples/dist/patterns.html");
 
 let playwright;
 try {
@@ -100,6 +105,23 @@ for (const theme of ["neutral", "classic", "editorial", "friendly", "technical",
   await page.waitForSelector("h1");
   await page.screenshot({ path: join(here, `theme-${theme}.png`) });
   await page.close();
+}
+
+// 6. Patterns: each in a different theme on desktop, plus phone views.
+const purl = pathToFileURL(join(dist, "patterns.html")).href;
+mkdirSync(join(here, "patterns"), { recursive: true });
+const PATTERN_SHOTS = [
+  ["signup-onboarding", "neutral"], ["pricing", "friendly"], ["dashboard", "technical"],
+  ["settings", "editorial"], ["checkout", "classic"], ["lists-tables", "glass"],
+];
+for (const [pattern, theme] of PATTERN_SHOTS) {
+  for (const [suffix, viewport, scheme] of [["desktop", { width: 1280, height: 900 }, "light"], ["mobile-dark", { width: 375, height: 800 }, "dark"]]) {
+    const page = await browser.newPage({ viewport, colorScheme: scheme, deviceScaleFactor: 1 });
+    await page.goto(`${purl}?pattern=${pattern}&theme=${theme}`, { waitUntil: "networkidle" }).catch(() => {});
+    await page.waitForSelector("h1");
+    await page.screenshot({ path: join(here, "patterns", `${pattern}-${theme}-${suffix}.png`), fullPage: true });
+    await page.close();
+  }
 }
 
 await browser.close();

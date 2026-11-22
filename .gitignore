@@ -3,3 +3,4 @@ dist/
 examples/*.png
 examples/dist/
 .DS_Store
+examples/patterns/

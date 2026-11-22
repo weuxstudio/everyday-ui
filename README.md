@@ -17,8 +17,9 @@ principles, tokens, components, and a review loop.
 | --- | --- | --- |
 | Skill | `skills/everyday-ui/` | Instructions for the agent: workflow, principles, and topic guides for layout, color, typography, copy, forms, buttons and interaction, plus anti-patterns and a review checklist |
 | Tokens | `packages/tokens/` | Framework-agnostic design tokens (W3C DTCG format) built to CSS variables and a Tailwind v4 theme; every color pair checked against WCAG 2.2 and APCA |
-| React adapter | `packages/react/` | Accessible React + Tailwind components (Button, Field, Checkbox, RadioGroup, Switch, Stepper, ErrorSummary, Badge, Card, Dialog) that only consume tokens |
+| React adapter | `packages/react/` | Accessible React + Tailwind components (Button, Field, PasswordField, Checkbox, RadioGroup, SegmentedControl, Switch, Stepper, ProgressSteps, ErrorSummary, EmptyState, Badge, Card, Dialog) that only consume tokens |
 | Theme generator | `packages/tokens/bin/everyday-theme.mjs` (also shipped inside the skill) | Turns a few knobs (accent, neutrals, fonts, radius, squircle corners, density, depth, glass, motion) into a complete, contrast-checked theme with a specimen page. Six presets. |
+| Patterns | `skills/everyday-ui/patterns/` | Six proven screens with rules and working React blueprints: sign-up & onboarding, pricing, dashboard, settings, checkout, lists & tables |
 | Project brief | `skills/everyday-ui/templates/everyday.md` | Per-project product, tone, glossary and decisions |
 
 ```
@@ -91,7 +92,7 @@ Without Tailwind, import `@everyday-ui/tokens/tokens.css` and use the CSS variab
 ```bash
 npm install
 npm run build       # builds tokens, typechecks the React adapter
-npm run demo        # builds the demo and screenshots it: desktop, phone dark, errors, dialog, squint test
+npm run demo        # builds demo + pattern gallery and screenshots them (themes, phone, dark, errors, squint test)
 ```
 
 ## Roadmap
@@ -102,7 +103,8 @@ npm run demo        # builds the demo and screenshots it: desktop, phone dark, e
 - [x] Contrast gate: WCAG 2.2 AA + APCA for every token pair
 - [x] React adapter: Button, Field, Checkbox, RadioGroup, Switch, Stepper, ErrorSummary, Badge, Card, Dialog
 - [x] Theme generator: knobs, six presets, contrast auto-fix, accessible glass, squircle corners, specimen
-- [ ] Pattern library: proven layouts per use case (onboarding, pricing, dashboard, settings, checkout)
+- [x] Pattern library: sign-up & onboarding, pricing, dashboard, settings, checkout, lists & tables
+- [ ] More patterns: sign-in & password reset, search results, notifications/inbox, file upload, detail page
 - [ ] More React components (Combobox/autocomplete, Tabs, Toast with undo, Table, multi-step form)
 - [ ] Svelte adapter
 - [ ] Vue adapter

@@ -25,6 +25,10 @@ project (`src/components/ui/`); they depend only on React and Tailwind.
 | Component | Key behavior |
 | --- | --- |
 | `Button` | `variant`: primary / secondary / tertiary / danger. `size`: sm 36 (44 hit area) · md 44 · lg 48. `loading` keeps width and blocks repeats. `disabled` stays focusable (`aria-disabled`). `fullWidth="mobile"`. |
+| `PasswordField` | Show/hide toggle instead of a confirm field; requirements listed up front and ticked off live; correct `autocomplete`. |
+| `SegmentedControl` | 2–4 options that switch a view immediately (billing period, time range); native radios inside. |
+| `ProgressSteps` | Step indicator: named steps on wide screens, "Step 2 of 4" + bar on phones; completed steps clickable. |
+| `EmptyState` | Icon, what will appear, why it's empty, the action that fills it. |
 | `Field` | Label above; `hint` and `error` between label and input; `required` (*) / `optional`; `chars` matches width to expected input; error = icon + text + 2 px border + tint. |
 | `Checkbox` | Positive phrasing; 48 px row; error above. For choices applied on submit. |
 | `RadioGroup` | `<fieldset>` + `<legend>`; stacked options with optional hints. Use for ≤ ~10 options. |

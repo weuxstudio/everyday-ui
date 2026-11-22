@@ -57,6 +57,7 @@ Read `references/principles.md` once per session. Then load what the task touche
 | Forms, inputs, settings, checkout, sign-up | `references/forms.md` |
 | Buttons, dialogs, destructive or disabled actions | `references/buttons-and-actions.md` |
 | States, feedback, motion, navigation, tables, i18n | `references/interaction.md` |
+| A recurring screen: sign-up, onboarding, pricing, dashboard, settings, checkout, lists/tables | `references/patterns.md`, then the pattern's README and blueprint |
 | A new project's look, a rebrand, or style changes | `references/onboarding.md` |
 | Token names and roles | `references/tokens.md` |
 | React code | `references/stack-react.md` |
@@ -71,8 +72,11 @@ Read `references/principles.md` once per session. Then load what the task touche
 - **Conventional patterns** (Jakob's law). Inputs look like inputs, links like links, checkboxes
   like checkboxes. Innovate only where the product is genuinely different.
 - **Semantic HTML before ARIA.** A `<button>` is a button, a link navigates, inputs have labels.
-- **Components:** React adapter has Button, Field, Checkbox, RadioGroup, Switch, Stepper,
-  ErrorSummary, Badge, Card, Dialog. Reuse before inventing; extend in the same style.
+- **Patterns before blank pages.** If the screen matches a pattern, start from its blueprint and
+  adapt it to the real content; don't reinvent a checkout or a pricing page.
+- **Components:** React adapter has Button, Field, PasswordField, Checkbox, RadioGroup,
+  SegmentedControl, Switch, Stepper, ProgressSteps, ErrorSummary, EmptyState, Badge, Card,
+  Dialog. Reuse before inventing; extend in the same style.
 
 ## 4. The rules you'll apply most
 

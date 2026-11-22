@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 - 2026-11-22
+
+- Pattern library (`skills/everyday-ui/patterns/`): sign-up & onboarding, pricing, dashboard,
+  settings, checkout, lists & tables. Each with a README (job, structure, rules, states, copy,
+  what to avoid) and a working React blueprint that adapts to every theme.
+- Checkout blueprint follows EU/German order-button rules ("order with obligation to pay").
+- New components: PasswordField, SegmentedControl, ProgressSteps, EmptyState.
+- Pattern gallery (`examples/patterns.tsx`, `?pattern=&theme=`), screenshots per pattern on
+  desktop and phone (dark); blueprints are typechecked in the build.
+
 ## 0.3.0 - 2026-11-22
 
 - Theme generator (`everyday-theme`): knobs for accent, neutral hue and tint, mode, contrast level,
