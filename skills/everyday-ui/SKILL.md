@@ -60,6 +60,7 @@ Read `references/principles.md` once per session. Then load what the task touche
 | States, feedback, navigation, tables, i18n | `references/interaction.md` |
 | Animation, transitions, choosing a motion library | `references/motion.md` |
 | Phone apps (PWA, Capacitor, native), phone-first sites, iOS/Android reviews | `references/mobile.md` |
+| Push notifications, in-app inbox, transactional emails, permission prompts | `references/notifications.md` |
 | A recurring screen: sign-up, onboarding, pricing, dashboard, settings, checkout, lists/tables, mobile app shell (bottom nav, sheets, agenda, detail) | `references/patterns.md`, then the pattern's README and blueprint |
 | A new project's look, a rebrand, or style changes | `references/onboarding.md` |
 | Token names and roles | `references/tokens.md` |

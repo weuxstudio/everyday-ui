@@ -79,6 +79,12 @@ Report only failures you couldn't fix, and why. Section references point to the 
 - [ ] Focus rings visible inside clipped lists and cards (inset outline).
 - [ ] Usable at 200 % system text size.
 
+## Notifications (notifications.md)
+- [ ] Every type classified with channel, setting and daily budget; non-urgent ones bundled.
+- [ ] Title = what + when; body = one actionable fact; no marketing tone; lock-screen content safe.
+- [ ] ≤ 3 verb actions; tap opens the exact item; quiet hours respected, urgent items moved before them.
+- [ ] Permission asked in context after an explanation; denied state handled.
+
 ## Accessibility (WCAG 2.2 AA)
 - [ ] All functionality works with the keyboard; tab order follows the visual order.
 - [ ] Focus visible everywhere; moves into dialogs and back out; error summary takes focus.

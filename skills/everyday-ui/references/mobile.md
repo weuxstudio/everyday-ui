@@ -248,7 +248,7 @@ make translucent bars and sheets common. Apple had to add a user control for it 
   launch. If denied, the feature says what it can't do and links to the system settings.
 - Onboarding: value first, ask for sign-up as late as possible, always a way to skip. No
   carousels of feature slides; teach in context instead (empty states, a first-run hint).
-- Notifications: see `notifications.md`.
+- Notifications (budget, copy, actions, quiet hours, permission prompt): see `notifications.md`.
 - **Offline and flaky networks** are normal on phones: keep the last content visible, mark it
   as not current, queue writes where it's safe and say so ("Saved on this phone, will sync").
 
