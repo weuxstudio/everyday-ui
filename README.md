@@ -87,6 +87,20 @@ npm run demo        # builds the demo and screenshots it: desktop, phone dark, e
 - [ ] Vue adapter
 - [ ] Figma variables export from the same `tokens.json`
 
+## Credits and sources
+
+Everyday UI stands on the work of others. Their ideas are summarized and reorganized here in our
+own words; no text or images from these works are reproduced. Read the originals, they're worth it.
+
+| Source | What it shaped |
+| --- | --- |
+| Don Norman, *The Design of Everyday Things*, revised edition, 2013 | Core principles: discoverability, affordances and signifiers, mapping, feedback, constraints, conceptual models, error handling |
+| Adham Dannaway, *Practical UI*, 2022 ([practical-ui.com](https://www.practical-ui.com)) | Practical rules for layout and spacing, color palettes, typography, copywriting, forms and buttons |
+| Jakob Nielsen, *10 Usability Heuristics*, Nielsen Norman Group | Heuristics behind the review checklist |
+| Jon Yablonski, *Laws of UX* ([lawsofux.com](https://lawsofux.com)) | Fitts's, Hick's, Jakob's, Tesler's law and related effects |
+| W3C, *WCAG 2.2* | Accessibility requirements and contrast ratios |
+| Andrew Somers, *APCA* ([apcacontrast.com](https://apcacontrast.com)) | Perceptual contrast check in the token build |
+
 ## License
 
 MIT, see [LICENSE](LICENSE). Third-party notices: [docs/LEGAL.md](docs/LEGAL.md).
