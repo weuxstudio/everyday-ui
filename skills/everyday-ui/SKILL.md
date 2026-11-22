@@ -54,6 +54,7 @@ Read `references/principles.md` once per session. Then load what the task touche
 | --- | --- |
 | Anything visual | `references/layout.md`, `references/color.md`, `references/typography.md` |
 | Any text in the UI (labels, buttons, errors, headings) | `references/copy.md` |
+| A German interface (strings, dates, numbers, du/Sie) | `references/locale-de.md` |
 | Forms, inputs, settings, checkout, sign-up | `references/forms.md` |
 | Buttons, dialogs, destructive or disabled actions | `references/buttons-and-actions.md` |
 | States, feedback, navigation, tables, i18n | `references/interaction.md` |

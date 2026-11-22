@@ -40,6 +40,7 @@ Report only failures you couldn't fix, and why. Section references point to the 
 - [ ] Same word for the same thing everywhere; matches the glossary in `everyday.md`.
 - [ ] Numbers as numerals, formatted for the locale; short strings without full stops.
 - [ ] Errors say what happened and how to fix it; no blame, no "oops".
+- [ ] German UI: `locale-de.md` checklist passes (du/Sie, test strings, formats, quotes).
 
 ## Forms (forms.md)
 - [ ] One column; labels above inputs, close to them; checkboxes and radios stacked.

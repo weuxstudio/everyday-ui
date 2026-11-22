@@ -71,3 +71,11 @@ See `color.md` → Images. Text over a photo must pass contrast on the worst par
 - `text-wrap: balance` for headings, `text-wrap: pretty` for paragraphs (base styles set this).
 - Real typographic characters: – for ranges and pauses, … for truncation, “ ” or „ “ for quotes,
   × for dimensions, non-breaking space between number and unit (`12 €`, `5 min`).
+
+## Language
+
+- Set `lang` on `<html>` (and on passages in another language): hyphenation, quotes, screen
+  reader voice and `Intl` defaults depend on it.
+- German and other languages with long compounds: `hyphens: auto` for body text and headings,
+  soft hyphens for known long words in narrow places, no uppercase headings, never hyphenate
+  buttons. Details and test strings: `locale-de.md`.

@@ -24,8 +24,9 @@
 - **Mode:** <!-- follows OS | light | dark -->
 
 ## Content and language
-- **Language(s) and locale:** <!-- e.g. de-DE: 1.000,50 € · 24.12.2026 -->
-- **Address:** <!-- German: du or Sie, never mixed -->
+- **Language(s) and locale:** <!-- e.g. de-DE: 1.000,50 € · Mi., 18.11. · 14:00–15:30 Uhr. German UI → follow references/locale-de.md -->
+- **Address:** <!-- German: du or Sie, never mixed (UI, emails, notifications) -->
+- **Inclusive wording:** <!-- e.g. neutral forms ("Teilnehmende"); or one marker used everywhere -->
 - **Tone:** <!-- e.g. direct, friendly, no jargon -->
 - **Glossary (one word per concept):** <!-- e.g. cart (not bag) · sign in (not log in) · delete = gone, remove = from list -->
 
