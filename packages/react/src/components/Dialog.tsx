@@ -4,18 +4,23 @@ import { cx } from "../cx";
 export interface DialogProps {
   open: boolean;
   onClose: () => void;
+  /** A short question or statement in sentence case ("Delete Atlas Studio?"). */
   title: ReactNode;
-  /** One sentence naming what happens and what it affects. */
+  /** One sentence naming the consequence. */
   description?: ReactNode;
   children?: ReactNode;
-  /** Buttons. Put the primary (or destructive) action last; it should name its outcome. */
+  /**
+   * Buttons, most important first. They are left-aligned (consistent with forms and
+   * easy to find with a screen magnifier) and stack full-width on small screens.
+   * Label each with its outcome ("Delete workspace", "Keep workspace"), never "OK".
+   */
   footer?: ReactNode;
   className?: string;
 }
 
 /**
- * Modal dialog built on the native <dialog> element: focus trap, Escape to close,
- * inert background and focus return come from the browser, not from custom code.
+ * Modal dialog on the native <dialog> element: focus trap, Escape to close, inert
+ * background and focus return come from the browser.
  */
 export function Dialog({ open, onClose, title, description, children, footer, className }: DialogProps) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -40,7 +45,6 @@ export function Dialog({ open, onClose, title, description, children, footer, cl
         onClose();
       }}
       onClick={(e) => {
-        // Click on the backdrop (the dialog element itself, outside the panel) closes it.
         if (e.target === e.currentTarget) onClose();
       }}
       className={cx(
@@ -50,21 +54,19 @@ export function Dialog({ open, onClose, title, description, children, footer, cl
         className,
       )}
     >
-      <div className="p-6">
+      <div className="flex flex-col gap-2 p-6">
         <h2 id={titleId} className="text-xl font-semibold">
           {title}
         </h2>
         {description ? (
-          <p id={descId} className="mt-2 text-base text-ink-muted">
+          <p id={descId} className="text-base text-ink-muted">
             {description}
           </p>
         ) : null}
-        {children ? <div className="mt-4">{children}</div> : null}
+        {children ? <div className="mt-2">{children}</div> : null}
       </div>
       {footer ? (
-        <footer className="flex flex-col-reverse gap-2 border-t border-border bg-sunken px-6 py-4 sm:flex-row sm:justify-end">
-          {footer}
-        </footer>
+        <footer className="flex flex-col gap-3 px-6 pb-6 sm:flex-row [&>*]:w-full sm:[&>*]:w-auto">{footer}</footer>
       ) : null}
     </dialog>
   );

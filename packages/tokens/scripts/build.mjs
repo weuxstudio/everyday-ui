@@ -36,7 +36,7 @@ for (const [k, t] of entries(src.text)) {
   add(`text-${k}-line`, String(t.line.$value));
   add(`text-${k}-tracking`, t.tracking.$value);
 }
-add("space-unit", src.space.unit.$value);
+for (const [k, t] of entries(src.space)) add(`space-${k}`, t.$value);
 for (const [k, t] of entries(src.size)) add(`size-${k}`, t.$value);
 for (const [k, t] of entries(src.radius)) add(`radius-${k}`, t.$value);
 for (const [k, t] of entries(src.shadow)) add(`shadow-${k}`, t.$value, darkOf(t));
@@ -96,6 +96,17 @@ p, li, figcaption { text-wrap: pretty; }
   outline-offset: 2px;
 }
 ::selection { background: var(--${PREFIX}-color-accent-subtle); }
+/* Text links: accent colour AND underline, so they never rely on colour alone.
+   Navigation, tabs and cards may opt out (they signal interactivity by shape). */
+a {
+  color: var(--${PREFIX}-color-accent);
+  text-decoration-line: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.2em;
+}
+a:hover { color: var(--${PREFIX}-color-accent-hover); }
+/* Numbers that get compared line up. */
+table, [data-numeric] { font-variant-numeric: tabular-nums; }
 `;
 writeFileSync(join(out, "base.css"), baseCss);
 
@@ -137,7 +148,7 @@ ${tw.map((l) => "  " + l).join("\n")}
 }
 
 @layer base {
-${baseCss.split("\n").filter((l) => !l.startsWith("/*")).map((l) => (l ? "  " + l : l)).join("\n")}
+${baseCss.replace(/\/\*[\s\S]*?\*\//g, "").split("\n").filter((l) => l.trim()).map((l) => "  " + l).join("\n")}
 }
 `;
 writeFileSync(join(out, "tailwind.css"), tailwindCss);
@@ -150,7 +161,9 @@ writeFileSync(
   `// generated\nexport type TokenName = ${Object.keys(flat).map((k) => JSON.stringify(k)).join(" | ")};\nexport declare const tokens: Record<TokenName, string | { light: string; dark: string }>;\nexport declare function cssVar(name: TokenName): string;\n`
 );
 
-// ---- contrast check ---------------------------------------------------------
+// ---- contrast check: WCAG 2.2 (compliance) + APCA (perception) -------------
+// WCAG 2 ratios are the legal baseline; APCA (WCAG 3 draft) catches cases WCAG 2
+// gets wrong, especially in dark mode. Every pairing must pass both.
 function oklchToLinearRgb(str) {
   const m = str.match(/oklch\(\s*([\d.]+)\s+([\d.]+)\s+([\d.]+)/);
   if (!m) throw new Error(`Cannot parse color ${str}`);
@@ -166,38 +179,67 @@ function oklchToLinearRgb(str) {
     -0.0041960863 * l - 0.7034186147 * mm + 1.707614701 * s,
   ];
 }
+const clip = (rgb) => rgb.map((c) => Math.min(1, Math.max(0, c)));
 const luminance = (rgb) => {
-  const [r, g, b] = rgb.map((c) => Math.min(1, Math.max(0, c)));
+  const [r, g, b] = clip(rgb);
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 };
-const contrast = (fg, bg) => {
+const wcag = (fg, bg) => {
   const [a, b] = [luminance(oklchToLinearRgb(fg)), luminance(oklchToLinearRgb(bg))];
   return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
 };
+// APCA-W3 0.0.98G constants
+const encode = (c) => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055);
+const apcaY = (str) => {
+  const [r, g, b] = clip(oklchToLinearRgb(str)).map(encode);
+  let y = 0.2126729 * r ** 2.4 + 0.7151522 * g ** 2.4 + 0.072175 * b ** 2.4;
+  if (y < 0.022) y += (0.022 - y) ** 1.414;
+  return y;
+};
+const apca = (txt, bg) => {
+  const t = apcaY(txt), b = apcaY(bg);
+  if (Math.abs(b - t) < 0.0005) return 0;
+  let out;
+  if (b > t) { const s = (b ** 0.56 - t ** 0.57) * 1.14; out = s < 0.1 ? 0 : s - 0.027; }
+  else { const s = (b ** 0.65 - t ** 0.62) * 1.14; out = s > -0.1 ? 0 : s + 0.027; }
+  return Math.abs(out * 100);
+};
 
-const TEXT = 4.5, UI = 3;
+// role → [WCAG minimum, APCA minimum (Lc), APCA preferred]
+const ROLE = {
+  body:      [4.5, 75, 90], // primary text, any size
+  secondary: [4.5, 60, 75], // supporting text, links, button labels, status text
+  ui:        [3,   45, 60], // input borders, focus rings, control outlines
+};
 const pairs = [
-  ["ink", "paper", TEXT], ["ink", "surface", TEXT], ["ink", "sunken", TEXT],
-  ["ink-muted", "paper", TEXT], ["ink-muted", "surface", TEXT], ["ink-muted", "sunken", TEXT],
-  ["ink", "accent-subtle", TEXT], ["accent", "accent-subtle", TEXT],
-  ["accent", "paper", TEXT], ["accent", "surface", TEXT],
-  ["accent-ink", "accent", TEXT], ["accent-ink", "accent-hover", TEXT],
-  ["danger", "paper", TEXT], ["danger", "surface", TEXT], ["danger-ink", "danger", TEXT], ["danger-ink", "danger-hover", TEXT], ["danger", "danger-subtle", TEXT],
-  ["success", "paper", TEXT], ["success", "success-subtle", TEXT],
-  ["warning", "paper", TEXT], ["warning", "warning-subtle", TEXT],
-  ["border-strong", "paper", UI], ["border-strong", "surface", UI],
-  ["focus", "paper", UI], ["focus", "surface", UI],
+  ["ink", "paper", "body"], ["ink", "surface", "body"], ["ink", "sunken", "body"], ["ink", "accent-subtle", "body"],
+  ["ink-muted", "paper", "secondary"], ["ink-muted", "surface", "secondary"], ["ink-muted", "sunken", "secondary"],
+  ["accent", "paper", "secondary"], ["accent", "surface", "secondary"], ["accent", "accent-subtle", "secondary"],
+  ["accent-ink", "accent", "secondary"], ["accent-ink", "accent-hover", "secondary"],
+  ["danger", "paper", "secondary"], ["danger", "surface", "secondary"], ["danger", "danger-subtle", "secondary"], ["ink", "danger-subtle", "body"],
+  ["danger-ink", "danger", "secondary"], ["danger-ink", "danger-hover", "secondary"],
+  ["success", "paper", "secondary"], ["success", "success-subtle", "secondary"],
+  ["warning", "paper", "secondary"], ["warning", "warning-subtle", "secondary"],
+  ["border-strong", "paper", "ui"], ["border-strong", "surface", "ui"],
+  ["focus", "paper", "ui"], ["focus", "surface", "ui"],
 ];
 
 const colors = Object.fromEntries(entries(src.color).map(([k, t]) => [k, { light: t.$value, dark: darkOf(t) }]));
 let failed = 0;
 const rows = [];
+const soft = [];
 for (const mode of ["light", "dark"]) {
-  for (const [fg, bg, min] of pairs) {
-    const ratio = contrast(colors[fg][mode], colors[bg][mode]);
-    const ok = ratio >= min;
+  for (const [fg, bg, role] of pairs) {
+    const [wMin, aMin, aPref] = ROLE[role];
+    const ratio = wcag(colors[fg][mode], colors[bg][mode]);
+    const lc = apca(colors[fg][mode], colors[bg][mode]);
+    const ok = ratio >= wMin && lc >= aMin;
     if (!ok) failed++;
-    rows.push(`${ok ? "pass" : "FAIL"}  ${mode.padEnd(5)}  ${fg.padEnd(14)} on ${bg.padEnd(14)} ${ratio.toFixed(2).padStart(5)} (min ${min})`);
+    if (ok && lc < aPref) soft.push(`${fg} on ${bg} (${mode}) Lc ${lc.toFixed(0)} < preferred ${aPref}`);
+    rows.push(
+      `${ok ? "pass" : "FAIL"}  ${mode.padEnd(5)}  ${fg.padEnd(14)} on ${bg.padEnd(14)} ` +
+        `WCAG ${ratio.toFixed(2).padStart(5)} (≥${wMin})  APCA Lc ${lc.toFixed(0).padStart(3)} (≥${aMin})  ${role}`,
+    );
   }
 }
 // sRGB gamut warning
@@ -210,8 +252,9 @@ for (const [k, c] of Object.entries(colors))
 
 const verbose = process.argv.includes("--report");
 if (verbose || failed) console.log(rows.join("\n"));
+if (verbose && soft.length) console.log("\nbelow preferred (passes, could be stronger):\n  " + soft.join("\n  "));
 if (gamut.length) console.warn(`warning: outside sRGB gamut (will be clipped on sRGB screens): ${gamut.join(", ")}`);
-console.log(`tokens built → dist/ · contrast: ${rows.length - failed}/${rows.length} pairs pass`);
+console.log(`tokens built → dist/ · contrast (WCAG 2.2 + APCA): ${rows.length - failed}/${rows.length} pairs pass`);
 if (failed) process.exit(1);
 
 // ---- copy CSS into the skill, so the skill works standalone (without npm) ----

@@ -6,6 +6,36 @@ design literature (sources at the end). Each one ends with rules you can check.
 
 ---
 
+## 0. Working principles
+
+These decide how you make every other decision.
+
+- **Have a reason for every detail.** Each color, size, line and position should answer "what does
+  this do for the user?". "It looks nice" is not a reason on its own; "it separates the two
+  groups" is. Being able to state the reason also makes the design reviewable.
+- **Minimize usability risk.** You rarely know every user: assume some have low vision, low
+  digital literacy, a shaky hand, a small screen in sunlight. If a detail might confuse
+  someone (unlabeled icon, light gray text, colored non-link heading), choose the clearer option
+  before anyone has to test it.
+- **Minimize interaction cost**: the physical and mental effort to finish a task (looking,
+  reading, scrolling, clicking, typing, waiting, remembering). Count it: three clicks and a
+  scroll for a dropdown vs. one press on a stepper. Fewer, closer, larger steps win.
+- **Minimize cognitive load**: remove what isn't needed, group what belongs together, use familiar
+  patterns, keep things consistent, make the hierarchy clear.
+- **Minimal is not the same as simple.** Removing labels, hiding actions or fading contrast makes a
+  screen look calm and use badly. Simplify by removing *unneeded* things, never needed cues.
+- **Prioritize with 80/20.** Most users use a few features most of the time. Optimize those paths
+  first; don't let edge cases shape the main screen.
+- **Systemize.** Predefined options (colors, type sizes, spacing, radii, shadows), reusable
+  components built from small to large, and written usage rules. Decisions get faster and the
+  product consistent.
+- **Mind cost.** Conventional patterns and existing components are cheaper to build, test and
+  learn. Spend originality where the product is actually different.
+- **Trends fade.** Glassmorphism, neumorphism and similar styles struggle with contrast and
+  hierarchy. Prefer plain, content-first styling that ages well.
+
+---
+
 ## 1. Discoverability
 
 People should be able to work out what actions are possible and how to perform them just
@@ -131,4 +161,6 @@ Accessible design is usable design under more conditions (bright sun, one hand, 
 - Don Norman, *The Design of Everyday Things*, revised edition, 2013.
 - Jakob Nielsen, *10 Usability Heuristics for User Interface Design*, Nielsen Norman Group.
 - Jon Yablonski, *Laws of UX*, lawsofux.com.
+- Adham Dannaway, *Practical UI*, 2022 (practical-ui.com).
+- Andrew Somers, *APCA – Accessible Perceptual Contrast Algorithm* (git.apcacontrast.com).
 - W3C, *Web Content Accessibility Guidelines (WCAG) 2.2*.

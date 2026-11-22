@@ -13,6 +13,11 @@ before publishing or selling it.
   other repositories (e.g. `Leonxlnx/taste-skill`, `emilkowalski/skills`), keep their copyright
   and license notice in a `THIRD_PARTY_NOTICES.md` file. Repositories without a license may not
   be copied.
+- **Rules derived from books** (e.g. *The Design of Everyday Things*, *Practical UI*) are restated
+  in our own words, reorganized by topic, combined with other sources, and credited in
+  `references/principles.md`. Never add the books themselves (PDFs, page scans, screenshots of
+  their examples) to this repository, and never paste passages from them: a purchased copy is
+  licensed for personal reading, not redistribution.
 
 ## Fonts and assets
 

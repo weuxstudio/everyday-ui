@@ -15,9 +15,9 @@ principles, tokens, components, and a review loop.
 
 | Layer | Path | What it is |
 | --- | --- | --- |
-| Skill | `skills/everyday-ui/` | Instructions for the agent: workflow, principles, anti-patterns, review checklist |
-| Tokens | `packages/tokens/` | Framework-agnostic design tokens (W3C DTCG format) built to CSS variables and a Tailwind v4 theme |
-| React adapter | `packages/react/` | Accessible React + Tailwind components that only consume tokens |
+| Skill | `skills/everyday-ui/` | Instructions for the agent: workflow, principles, and topic guides for layout, color, typography, copy, forms, buttons and interaction, plus anti-patterns and a review checklist |
+| Tokens | `packages/tokens/` | Framework-agnostic design tokens (W3C DTCG format) built to CSS variables and a Tailwind v4 theme; every color pair checked against WCAG 2.2 and APCA |
+| React adapter | `packages/react/` | Accessible React + Tailwind components (Button, Field, Checkbox, RadioGroup, Switch, Stepper, ErrorSummary, Badge, Card, Dialog) that only consume tokens |
 | Project brief | `skills/everyday-ui/templates/everyday.md` | Per-project overrides: audience, tone, brand colors, density |
 
 ```
@@ -65,22 +65,24 @@ npm install @everyday-ui/tokens
 ```
 
 Without Tailwind, import `@everyday-ui/tokens/tokens.css` and use the CSS variables
-(`var(--eu-color-accent)`, `var(--eu-space-4)` …).
+(`var(--eu-color-accent)`, `var(--eu-space-s)` …).
 
 ## Develop
 
 ```bash
 npm install
 npm run build       # builds tokens, typechecks the React adapter
-npm run demo        # renders examples/demo.html for a visual check
+npm run demo        # builds the demo and screenshots it: desktop, phone dark, errors, dialog, squint test
 ```
 
 ## Roadmap
 
 - [x] Skill: workflow, principles, anti-patterns, review checklist
-- [x] Tokens: color (light/dark), type, space, radius, shadow, motion
-- [x] React adapter: Button, Field, Card, Dialog
-- [ ] More React components (Select, Tabs, Toast, Table)
+- [x] Topic guides: layout, color, typography, copy, forms, buttons & actions, interaction
+- [x] Tokens: color (light/dark), type, 8-pt spacing, sizes, radius, shadow, motion
+- [x] Contrast gate: WCAG 2.2 AA + APCA for every token pair
+- [x] React adapter: Button, Field, Checkbox, RadioGroup, Switch, Stepper, ErrorSummary, Badge, Card, Dialog
+- [ ] More React components (Combobox/autocomplete, Tabs, Toast with undo, Table, multi-step form)
 - [ ] Svelte adapter
 - [ ] Vue adapter
 - [ ] Figma variables export from the same `tokens.json`

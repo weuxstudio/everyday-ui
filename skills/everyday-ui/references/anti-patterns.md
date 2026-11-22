@@ -57,6 +57,27 @@ not choose. If you catch one, replace it with a decision from the project brief.
 - Toasts for errors that need action (they disappear before people can act).
 - Spinners for content whose shape is known; use a skeleton or keep previous content.
 
+## Buttons and forms
+
+- Several filled primary buttons competing on one screen ("Follow" on every row).
+- Light gray secondary buttons that look disabled; primary and secondary differing only by hue.
+- Right-aligned lone buttons far from the fields they submit.
+- Submit buttons disabled until the form is valid, with no hint why.
+- Red "Delete" buttons as the first, always-visible trigger.
+- Two-column forms, labels left of inputs, inline radio buttons in a row.
+- All inputs the same full width regardless of expected length.
+- Hints and errors below the input (hidden by autofill and keyboards).
+- Live "Invalid email" errors after the first keystroke.
+- Dropdowns for 3 options; dropdowns for quantities.
+
+## Structure
+
+- Coloured headings that look like links; icons or badges styled like buttons.
+- Icon-only toolbars and navigation without labels ("minimal" but unclear).
+- Important actions hidden in a hamburger or "…" menu when there is room to show them.
+- Truncated text that hides the part that tells items apart.
+- A container around every group, cards inside cards.
+
 ## Replace with
 
 | Instead of | Decide |

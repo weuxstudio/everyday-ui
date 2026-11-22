@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.2.0 - 2026-11-22
+
+- Skill: new topic guides `layout.md`, `color.md`, `typography.md`, `copy.md`, `forms.md`,
+  `buttons-and-actions.md`, `interaction.md`; working principles (rationale per detail, usability
+  risk, interaction cost, cognitive load, 80/20); rewritten SKILL.md with routing table and the
+  ten most-used rules; expanded anti-patterns and review checklist; squint test in the review loop.
+- Tokens: APCA contrast check alongside WCAG 2.2 (52 pairs); dark-mode colors raised to pass APCA;
+  8-pt spacing steps (2xs-2xl); control sizes 36/44/48 px, touch 48 px; medium weight removed;
+  base styles underline links and use tabular figures in tables.
+- React: Button gets primary/secondary/tertiary/danger, focusable aria-disabled, full width on
+  mobile; Field gets required/optional marks, hint and error above the input, width by
+  characters; new Checkbox, RadioGroup, Switch, Stepper, ErrorSummary, Badge; Dialog buttons
+  left-aligned, most important first.
+- Demo: validate-on-submit form, heavy-friction delete confirmation, screenshots incl. squint test.
+
 ## 0.1.0 - 2026-11-22
 
 - Skill: workflow, principles (Norman, Nielsen, laws of UX, WCAG 2.2), anti-patterns,

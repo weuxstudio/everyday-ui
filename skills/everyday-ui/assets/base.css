@@ -20,3 +20,14 @@ p, li, figcaption { text-wrap: pretty; }
   outline-offset: 2px;
 }
 ::selection { background: var(--eu-color-accent-subtle); }
+/* Text links: accent colour AND underline, so they never rely on colour alone.
+   Navigation, tabs and cards may opt out (they signal interactivity by shape). */
+a {
+  color: var(--eu-color-accent);
+  text-decoration-line: underline;
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.2em;
+}
+a:hover { color: var(--eu-color-accent-hover); }
+/* Numbers that get compared line up. */
+table, [data-numeric] { font-variant-numeric: tabular-nums; }

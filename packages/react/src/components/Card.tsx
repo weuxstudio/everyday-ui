@@ -21,7 +21,7 @@ export function Card({ as: Tag = "section", title, description, actions, elevati
       id={id}
       aria-labelledby={headingId}
       className={cx(
-        "rounded-lg border border-border bg-surface p-5 sm:p-6",
+        "rounded-lg border border-border bg-surface p-6",
         elevation === "raised" && "shadow-md",
         className,
       )}

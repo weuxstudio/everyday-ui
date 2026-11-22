@@ -1,7 +1,15 @@
 {
   "name": "everyday-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Human-centered UI for every project: principles, design tokens, components and a review loop that keeps AI-generated interfaces from looking generic.",
   "license": "MIT",
-  "keywords": ["design", "ui", "ux", "design-system", "accessibility", "react", "tailwind"]
+  "keywords": [
+    "design",
+    "ui",
+    "ux",
+    "design-system",
+    "accessibility",
+    "react",
+    "tailwind"
+  ]
 }

@@ -43,22 +43,50 @@ try {
 
 const url = pathToFileURL(join(dist, "index.html")).href;
 const browser = await playwright.chromium.launch();
-const shots = [
-  ["desktop-light", { width: 1280, height: 1100 }, "light"],
-  ["mobile-dark", { width: 375, height: 1400 }, "dark"],
-];
-for (const [name, viewport, colorScheme] of shots) {
+const open = async (viewport, colorScheme = "light") => {
   const page = await browser.newPage({ viewport, colorScheme, deviceScaleFactor: 2 });
   await page.goto(url);
   await page.waitForSelector("h1");
+  return page;
+};
+
+// 1. Default state: desktop light, phone dark.
+for (const [name, viewport, scheme] of [
+  ["desktop-light", { width: 1280, height: 900 }, "light"],
+  ["mobile-dark", { width: 375, height: 800 }, "dark"],
+]) {
+  const page = await open(viewport, scheme);
   await page.screenshot({ path: join(here, `${name}.png`), fullPage: true });
   await page.close();
 }
-// Dialog state
-const page = await browser.newPage({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 });
-await page.goto(url);
-await page.getByRole("button", { name: "Delete workspace…" }).click();
-await page.waitForTimeout(400);
-await page.screenshot({ path: join(here, "dialog-light.png") });
+
+// 2. Error state: submit the form, validation runs on submit.
+{
+  const page = await open({ width: 1280, height: 900 });
+  await page.getByRole("button", { name: "Save settings" }).click();
+  await page.waitForTimeout(300);
+  await page.screenshot({ path: join(here, "errors-light.png"), fullPage: true });
+  await page.close();
+}
+
+// 3. Destructive dialog with heavy friction, after pressing delete without confirming.
+{
+  const page = await open({ width: 1280, height: 800 });
+  await page.getByRole("button", { name: "Delete workspace…" }).click();
+  await page.waitForTimeout(300);
+  await page.getByRole("dialog").getByRole("button", { name: "Delete workspace" }).click();
+  await page.waitForTimeout(200);
+  await page.screenshot({ path: join(here, "dialog-light.png") });
+  await page.close();
+}
+
+// 4. Squint test: blur the page. The primary action and structure must still read.
+{
+  const page = await open({ width: 1280, height: 900 });
+  await page.addStyleTag({ content: "body{filter:blur(6px)}" });
+  await page.screenshot({ path: join(here, "squint-test.png"), fullPage: true });
+  await page.close();
+}
+
 await browser.close();
-console.log("screenshots → examples/*.png");
+console.log("screenshots → examples/*.png (desktop, mobile dark, errors, dialog, squint test)");

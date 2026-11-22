@@ -35,7 +35,6 @@
   --font-sans: var(--eu-font-sans);
   --font-mono: var(--eu-font-mono);
   --font-weight-regular: var(--eu-font-weight-regular);
-  --font-weight-medium: var(--eu-font-weight-medium);
   --font-weight-semibold: var(--eu-font-weight-semibold);
   --font-weight-bold: var(--eu-font-weight-bold);
   --text-xs: var(--eu-text-xs);
@@ -108,5 +107,12 @@
     outline-offset: 2px;
   }
   ::selection { background: var(--eu-color-accent-subtle); }
-
+  a {
+    color: var(--eu-color-accent);
+    text-decoration-line: underline;
+    text-decoration-thickness: from-font;
+    text-underline-offset: 0.2em;
+  }
+  a:hover { color: var(--eu-color-accent-hover); }
+  table, [data-numeric] { font-variant-numeric: tabular-nums; }
 }

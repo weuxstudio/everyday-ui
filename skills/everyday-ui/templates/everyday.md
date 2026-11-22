@@ -21,9 +21,17 @@
 - **Theme:** follows OS <!-- light only | dark only | follows OS -->
 
 ## Content and language
-- **Language(s):**
-- **Tone:** <!-- e.g. direct, friendly, no jargon; "du" or "Sie" -->
-- **Words to use / avoid:**
+- **Language(s) and locale:** <!-- e.g. de-DE: 1.000,50 € · 24.12.2026 -->
+- **Address:** <!-- German: du or Sie, never mixed -->
+- **Tone:** <!-- e.g. direct, friendly, no jargon -->
+- **Glossary (one word per concept):** <!-- e.g. cart (not bag) · sign in (not log in) · delete = gone, remove = from list -->
+
+## Layout rules
+- **Content width:** <!-- e.g. forms max-w-2xl, prose max-w-measure -->
+- **Spacing rules:** <!-- e.g. card padding m (24) · between cards l (32) · sections 2xl (80) -->
+- **Button alignment:** left, most important first <!-- change only with a reason -->
+- **Required/optional marking:** asterisk + "(optional)" <!-- or: all required, no marks -->
+- **Validation:** on submit with error summary
 
 ## Constraints
 - **Stack:** React + Tailwind v4 <!-- or Svelte, Vue, plain HTML -->

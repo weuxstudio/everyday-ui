@@ -16,35 +16,59 @@ npm install @everyday-ui/tokens @everyday-ui/react
 
 Load the font once (Hanken Grotesk, SIL OFL) or let it fall back to the system UI font.
 
-If the packages are not available, copy the components from `packages/react/src` into
-the project (`src/components/ui/`); they have no dependencies beyond React and Tailwind.
+If the packages are not available, copy the components from `packages/react/src` into the
+project (`src/components/ui/`); they depend only on React and Tailwind.
 
-## Components available
+## Components
 
-| Component | Notes |
+| Component | Key behavior |
 | --- | --- |
-| `Button` | `variant`: primary / secondary / ghost / danger. `loading` keeps width and blocks repeat clicks. One `primary` per view. |
-| `Field` | Label always visible, `hint` before errors happen, `error` with fix instructions, `optional` instead of required-asterisks. |
-| `Card` | Border, no shadow by default. `title`, `description`, `actions` top-right. |
-| `Dialog` | Native `<dialog>`: focus trap, Escape, focus return for free. Name the consequence in `description`; primary action last and labeled with its outcome. |
+| `Button` | `variant`: primary / secondary / tertiary / danger. `size`: sm 36 (44 hit area) · md 44 · lg 48. `loading` keeps width and blocks repeats. `disabled` stays focusable (`aria-disabled`). `fullWidth="mobile"`. |
+| `Field` | Label above; `hint` and `error` between label and input; `required` (*) / `optional`; `chars` matches width to expected input; error = icon + text + 2 px border + tint. |
+| `Checkbox` | Positive phrasing; 48 px row; error above. For choices applied on submit. |
+| `RadioGroup` | `<fieldset>` + `<legend>`; stacked options with optional hints. Use for ≤ ~10 options. |
+| `Switch` | `role="switch"`; immediate effect only. |
+| `Stepper` | − / + side by side, 48 px, typable value. Small numbers only. |
+| `ErrorSummary` | Shown on submit; takes focus; links move focus to the fields. |
+| `Badge` | Status pill in status tones; never the action color. |
+| `Card` | Border, no shadow by default; `title`, `description`, `actions`. |
+| `Dialog` | Native `<dialog>`; buttons left-aligned, most important first, stacked on phones. |
 
-Build new components the same way: tokens only, semantic element first, every state
-(hover, active, focus-visible, disabled, loading, error) designed. Add them to
-`packages/react/src` and export them from `index.ts` if they are reusable.
+Build new components the same way: tokens only, semantic element first, every state designed
+(hover, active, focus-visible, disabled, loading, error), labels and descriptions wired inside the
+component.
+
+## Form pattern
+
+```tsx
+<form noValidate onSubmit={validateAndSubmit}>
+  <ErrorSummary errors={errors} />                    {/* focused on submit with errors */}
+  <p className="text-sm text-ink-muted">Required fields are marked with an asterisk *</p>
+  <Field id="email" label="Email" required type="email" autoComplete="email"
+         error={errorFor("email")} />
+  <Field id="postcode" label="Postcode" required chars={5} inputMode="numeric"
+         autoComplete="postal-code" error={errorFor("postcode")} />
+  <Button type="submit" variant="primary" fullWidth="mobile">Create account</Button>
+</form>
+```
+
+`noValidate` turns off browser bubbles so validation runs on submit with your own messages.
 
 ## Conventions
 
 - Function components, TypeScript, `forwardRef` for anything wrapping a native input or button.
-- Props extend the native element's attributes, so `aria-*`, `data-*` and handlers pass through.
-- Class merging with the local `cx()` helper. Variants as plain objects, no CSS-in-JS.
-- IDs via `useId()`; label/description wiring is the component's job, not the caller's.
-- No layout shift on state changes (loading, error messages appear below, not inline).
-- Prefer the platform: `<dialog>`, `<details>`, `popover`, native form validation hooks.
-- Accessible names on icon-only buttons (`aria-label`), `aria-hidden` on decorative icons.
+- Props extend native attributes, so `aria-*`, `data-*` and handlers pass through.
+- Class merging with the local `cx()` helper; variants as plain objects; no CSS-in-JS.
+- IDs via `useId()`.
+- No layout shift on state changes.
+- Prefer the platform: `<dialog>`, `<details>`, `popover`, `inputmode`, `autocomplete`.
+- Format numbers and dates with `Intl`, never by string concatenation.
 
 ## Page structure
 
-- One `<main>`, one `h1`, landmarks for `<nav>`, `<header>`, `<footer>`.
-- Content width `max-w-3xl` for forms and settings, `max-w-measure` for prose, wider only for
-  tables and dashboards.
-- Section spacing `gap-6` to `gap-10`; inside a group `gap-2` to `gap-4`.
+- One `<main>`, one `h1`, landmarks for `<nav>`, `<header>`, `<footer>`; skip link on pages with
+  navigation.
+- Content width: `max-w-2xl` for forms and settings, `max-w-measure` for prose, wider only for
+  tables and dashboards. Side padding `px-4` on phones, growing to `px-20` or a centered container.
+- Sections `gap-12` to `gap-20`; groups inside `gap-6`; items inside groups `gap-2` to `gap-4`.
+- Main layout on a 12-column grid at `lg` (`grid grid-cols-12 gap-8`), 4 columns on phones.
