@@ -58,7 +58,8 @@ Read `references/principles.md` once per session. Then load what the task touche
 | Buttons, dialogs, destructive or disabled actions | `references/buttons-and-actions.md` |
 | States, feedback, navigation, tables, i18n | `references/interaction.md` |
 | Animation, transitions, choosing a motion library | `references/motion.md` |
-| A recurring screen: sign-up, onboarding, pricing, dashboard, settings, checkout, lists/tables | `references/patterns.md`, then the pattern's README and blueprint |
+| Phone apps (PWA, Capacitor, native), phone-first sites, iOS/Android reviews | `references/mobile.md` |
+| A recurring screen: sign-up, onboarding, pricing, dashboard, settings, checkout, lists/tables, mobile app shell (bottom nav, sheets, agenda, detail) | `references/patterns.md`, then the pattern's README and blueprint |
 | A new project's look, a rebrand, or style changes | `references/onboarding.md` |
 | Token names and roles | `references/tokens.md` |
 | React code | `references/stack-react.md` |
@@ -77,7 +78,7 @@ Read `references/principles.md` once per session. Then load what the task touche
   adapt it to the real content; don't reinvent a checkout or a pricing page.
 - **Components:** React adapter has Button, Field, PasswordField, Checkbox, RadioGroup,
   SegmentedControl, Switch, Stepper, ProgressSteps, ErrorSummary, EmptyState, Badge, Card,
-  Dialog. Reuse before inventing; extend in the same style.
+  Dialog, BottomSheet. Reuse before inventing; extend in the same style.
 
 ## 4. The rules you'll apply most
 

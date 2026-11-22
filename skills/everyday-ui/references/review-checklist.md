@@ -68,6 +68,16 @@ Report only failures you couldn't fix, and why. Section references point to the 
 - [ ] Motion explains something, uses token durations, and stops under reduced motion.
 - [ ] No dark patterns (pre-ticked boxes, confirmshaming, hidden cancel, surprise costs).
 
+## Mobile (mobile.md)
+- [ ] Primary action and navigation within thumb reach; ≤ 5 top-level destinations in a bottom bar with labels.
+- [ ] System back, browser back and Escape close sheets, dialogs and menus before leaving the screen.
+- [ ] Back returns with scroll position and input intact.
+- [ ] Safe-area insets on top bar, bottom bar, sheets and landscape sides; full height with `100dvh`.
+- [ ] Every gesture has a visible alternative; no hover-only information.
+- [ ] Keyboard doesn't cover the focused field or the primary action; inputs ≥ 16 px.
+- [ ] Focus rings visible inside clipped lists and cards (inset outline).
+- [ ] Usable at 200 % system text size.
+
 ## Accessibility (WCAG 2.2 AA)
 - [ ] All functionality works with the keyboard; tab order follows the visual order.
 - [ ] Focus visible everywhere; moves into dialogs and back out; error summary takes focus.
