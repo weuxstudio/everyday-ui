@@ -111,6 +111,12 @@ async function inspect(page) {
       if (cs.visibility === "hidden" || el.closest("[inert], [aria-hidden='true']")) continue;
       // inline text links are exempt (WCAG 2.5.8 inline exception)
       if (el.tagName === "A" && cs.display === "inline") continue;
+      // An associated label is an activation target for its control, including visually hidden radios.
+      const hasLargeLabel = [...(el.labels ?? [])].some(label => {
+        const box = label.getBoundingClientRect();
+        return box.width >= 24 && box.height >= 24 && getComputedStyle(label).pointerEvents !== "none";
+      });
+      if (hasLargeLabel) continue;
       // invisible hit-area extensions via ::after count
       const after = getComputedStyle(el, "::after");
       const extra = after.content !== "none" && after.position === "absolute" ? 8 : 0;
@@ -146,6 +152,23 @@ async function keyboardPass(page, tabs) {
   return stops;
 }
 
+async function prepareRoute(page, url, route, cfg, variant) {
+  await page.goto(url, { waitUntil: "load" });
+  const ready = route.waitFor ?? cfg.waitFor;
+  if (ready) await page.waitForSelector(ready, { timeout: 10000 });
+  for (const [index, action] of (route.actions ?? []).entries()) {
+    try {
+      if (action.click) await page.click(action.click);
+      if (action.fill) await page.fill(...action.fill);
+      if (action.press) await page.keyboard.press(action.press);
+      if (action.wait) await page.waitForTimeout(action.wait);
+    } catch (cause) {
+      throw new Error(`${route.path} (${variant}), action ${index + 1} [${Object.keys(action).join(", ")}] failed`, { cause });
+    }
+  }
+  await page.waitForTimeout(cfg.settle);
+}
+
 export async function run(cfg, log = console.log) {
   const pw = await loadPlaywright();
   const outDir = resolve(cfg.$dir, cfg.out);
@@ -169,15 +192,7 @@ export async function run(cfg, log = console.log) {
           const url = new URL(route.path, cfg.baseUrl.endsWith("/") ? cfg.baseUrl : cfg.baseUrl + "/").toString();
           const base = `${route.name}--${vpName}--${scheme}`;
 
-          await page.goto(url, { waitUntil: "load" });
-          if (route.waitFor ?? cfg.waitFor) await page.waitForSelector(route.waitFor ?? cfg.waitFor, { timeout: 10000 });
-          for (const a of route.actions ?? []) {
-            if (a.click) await page.click(a.click);
-            if (a.fill) await page.fill(a.fill[0], a.fill[1]);
-            if (a.press) await page.keyboard.press(a.press);
-            if (a.wait) await page.waitForTimeout(a.wait);
-          }
-          await page.waitForTimeout(cfg.settle);
+          await prepareRoute(page, url, route, cfg, "default");
 
           const file = (v) => `${base}${v ? `--${v}` : ""}.png`;
           await page.screenshot({ path: join(outDir, file()), fullPage: cfg.fullPage });
@@ -198,9 +213,7 @@ export async function run(cfg, log = console.log) {
           }
           if (cfg.variants.includes("reduced-motion") && scheme === cfg.schemes[0]) {
             await page.emulateMedia({ reducedMotion: "reduce" });
-            await page.reload({ waitUntil: "load" });
-            if (route.waitFor ?? cfg.waitFor) await page.waitForSelector(route.waitFor ?? cfg.waitFor);
-            await page.waitForTimeout(cfg.settle);
+            await prepareRoute(page, url, route, cfg, "reduced-motion");
             await page.screenshot({ path: join(outDir, file("reduced-motion")), fullPage: false });
             shots.push({ variant: "reduced motion", file: file("reduced-motion") });
           }
@@ -212,9 +225,7 @@ export async function run(cfg, log = console.log) {
             if (initScript) await z.addInitScript(initScript);
             await applyMocks(z, cfg);
             const zp = await z.newPage();
-            await zp.goto(url, { waitUntil: "load" });
-            if (route.waitFor ?? cfg.waitFor) await zp.waitForSelector(route.waitFor ?? cfg.waitFor);
-            await zp.waitForTimeout(cfg.settle);
+            await prepareRoute(zp, url, route, cfg, "zoom200");
             await zp.screenshot({ path: join(outDir, file("zoom200")), fullPage: cfg.fullPage });
             const zIssues = await inspect(zp);
             for (const i of zIssues) if (i.startsWith("Horizontal scroll")) issues.push(`At 200 % zoom: ${i}`);

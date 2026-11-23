@@ -3,3 +3,4 @@
 @import "../src/styles.css";
 @source "../src";
 @source "./Demo.svelte";
+@source "../../../skills/everyday-ui/patterns";

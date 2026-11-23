@@ -54,6 +54,6 @@ unexpected cost or extra field here costs a sale.
 
 ## Blueprint
 
-`Checkout.tsx` – step indicator, delivery form with autocomplete, delivery options, payment radio
+`Checkout.tsx` and `Checkout.svelte` – step indicator, delivery form with autocomplete, delivery options, payment radio
 cards, review with change links, sticky order summary, legally correct final button, and a
 confirmation screen. Adapt: products, methods, legal texts for the market.

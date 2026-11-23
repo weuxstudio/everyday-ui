@@ -11,6 +11,8 @@ and check.
 You install it once. Every project after that starts from the same foundation:
 principles, tokens, components, and a review loop.
 
+The [v1 candidate guide](docs/V1.md) includes the local installation, adapter contract, pattern matrix, migration and release checks.
+
 ## What's inside
 
 | Layer | Path | What it is |
@@ -18,11 +20,11 @@ principles, tokens, components, and a review loop.
 | Skill | `skills/everyday-ui/` | Instructions for the agent: workflow, principles, and topic guides for layout, color, typography, copy, forms, buttons, interaction, motion, mobile apps, notifications and German UI text, plus anti-patterns and a review checklist that adapts to the project's scope |
 | Tokens | `packages/tokens/` | Framework-agnostic design tokens (W3C DTCG format) built to CSS variables and a Tailwind v4 theme; every color pair checked against WCAG 2.2 and APCA |
 | React adapter | `packages/react/` | Accessible React + Tailwind components (Button, Field, PasswordField, Checkbox, RadioGroup, SegmentedControl, Switch, Stepper, ProgressSteps, ErrorSummary, EmptyState, Badge, Card, Dialog, BottomSheet) that only consume tokens |
-| Svelte adapter | `packages/svelte/` | The same rules for Svelte 5 (Button, Field, Checkbox, Switch, SegmentedControl, Dialog, BottomSheet, EmptyState, ErrorSummary) |
+| Svelte adapter | `packages/svelte/` | The same 15 core components for Svelte 5, plus the optional motion entry |
 | Lint | `packages/lint/` (also in the skill) | `everyday-lint`: checks font weights, spacing scale, raw colours, `confirm()`, disabled submits and unnamed icon buttons in CSS, React, Svelte, Vue and HTML. No dependencies |
 | Review renders | `packages/shots/` (also in the skill) | `everyday-shots`: 375/1280 px, light/dark, squint test, keyboard pass, reduced motion, 200 % zoom for any running app, in one contact sheet |
 | Theme generator | `packages/tokens/bin/everyday-theme.mjs` (also shipped inside the skill) | Turns a few knobs (accent, neutrals, fonts, radius, squircle corners, density, depth, glass, motion) into a complete, contrast-checked theme with a specimen page. Six presets. |
-| Patterns | `skills/everyday-ui/patterns/` | Seven proven screen sets with rules and working blueprints: sign-up & onboarding, pricing, dashboard, settings, checkout, lists & tables (React), and a mobile app shell with bottom navigation, bottom sheet, system back, agenda and detail screen (plain HTML/CSS/JS) |
+| Patterns | `skills/everyday-ui/patterns/` | Seven proven screen sets with rules and working blueprints: sign-up & onboarding, pricing, dashboard, settings, checkout, lists & tables (React and Svelte), and a mobile app shell with bottom navigation, bottom sheet, system back, agenda and detail screen (plain HTML/CSS/JS) |
 | Project brief | `skills/everyday-ui/templates/everyday.md` | Per-project product, tone, glossary and decisions |
 
 ```
@@ -34,19 +36,19 @@ principles, tokens, components, and a review loop.
             └──────┬───────────┬───────────┘
           ┌────────┴──┐   ┌────┴──────┐   ┌───────────┐
           │   React   │   │  Svelte   │   │    Vue    │   adapters
-          │           │   │ (v0.6)    │   │ (planned) │
+          │           │   │           │   │ (planned) │
           └───────────┘   └───────────┘   └───────────┘
 ```
 
 Adapters never define their own colors, spacing or motion. They read the tokens. That is
-what makes adding Svelte or Vue later a matter of porting components, not redesigning.
+what makes adding another adapter a matter of porting components, not redesigning.
 
 ## Use it with Claude
 
 **Claude Code (plugin):**
 
 ```bash
-/plugin marketplace add <your-github-user>/everyday-ui
+/plugin marketplace add weuxstudio/everyday-ui
 /plugin install everyday-ui@everyday-ui
 ```
 
@@ -114,9 +116,9 @@ npm run demo:svelte # builds the Svelte demo (serve packages/svelte/demo/dist)
 - [x] Mobile: guide (thumb reach, navigation, system back, sheets, safe areas, keyboard, glass) and mobile app shell pattern; BottomSheet in React and Svelte
 - [x] Notifications guide; German locale guide; review checklist conditional on the project's scope
 - [x] Tooling: `everyday-lint` (mechanical rules) and `everyday-shots` (review renders, squint test)
-- [x] Svelte adapter: Button, Field, Checkbox, Switch, SegmentedControl, Dialog, BottomSheet, EmptyState, ErrorSummary
+- [x] Svelte adapter: 15 core components, motion and all six framework patterns
 - [ ] More patterns: sign-in & password reset, search results, notification inbox, file upload
-- [ ] More components (Combobox/autocomplete, Tabs, Toast with undo, Table, multi-step form); remaining Svelte components (PasswordField, RadioGroup, Stepper, ProgressSteps, Badge, Card, motion layer)
+- [ ] More components (Combobox/autocomplete, Tabs, Toast with undo, Table, multi-step form)
 - [ ] Vue adapter
 - [ ] Figma variables export from the same `tokens.json`
 

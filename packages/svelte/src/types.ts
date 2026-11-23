@@ -13,3 +13,12 @@ export interface ErrorSummaryItem {
   fieldId: string;
   message: string;
 }
+
+export type BadgeTone = "neutral" | "success" | "warning" | "danger";
+export interface RadioOption extends SegmentOption {
+  hint?: string | Snippet;
+}
+export interface PasswordRule {
+  label: string | Snippet;
+  test: (value: string) => boolean;
+}

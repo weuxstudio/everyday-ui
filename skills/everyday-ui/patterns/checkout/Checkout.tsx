@@ -3,21 +3,12 @@
 import { useState, type FormEvent, type ReactNode } from "react";
 import { Button, Checkbox, ErrorSummary, Field, PasswordField, ProgressSteps, RadioGroup, type ErrorSummaryItem } from "@everyday-ui/react";
 
-const LOCALE = "en-IE";
-const money = (n: number) => new Intl.NumberFormat(LOCALE, { style: "currency", currency: "EUR" }).format(n);
-
-const ITEMS = [
-  { name: "Linen notebook, A5", variant: "Sand", qty: 2, price: 24.5 },
-  { name: "Brass pen", variant: "Fine nib", qty: 1, price: 29.0 },
-];
-const SHIPPING = { standard: 0, express: 9.9 };
-const STEPS = ["Delivery", "Payment", "Review"];
-
-type Data = { email: string; name: string; street: string; postcode: string; city: string; shipping: keyof typeof SHIPPING; payment: string };
+import { money, ITEMS, SHIPPING, STEPS, type Data } from "./data";
 
 export default function Checkout() {
   const [step, setStep] = useState(0);
   const [data, setData] = useState<Data>({ email: "", name: "", street: "", postcode: "", city: "", shipping: "standard", payment: "card" });
+  const [submitAttempt, setSubmitAttempt] = useState(0);
   const [errors, setErrors] = useState<ErrorSummaryItem[]>([]);
   const [placing, setPlacing] = useState(false);
   const set = (k: keyof Data) => (e: { target: { value: string } }) => setData((d) => ({ ...d, [k]: e.target.value }));
@@ -36,6 +27,7 @@ export default function Checkout() {
       if (!/^\d{5}$/.test(data.postcode.replace(/\s/g, ""))) list.push({ fieldId: "co-postcode", message: "Enter a 5-digit postcode" });
       if (!data.city.trim()) list.push({ fieldId: "co-city", message: "Enter a town or city" });
     }
+    setSubmitAttempt((attempt) => attempt + 1);
     setErrors(list);
     if (list.length) return;
     if (step < 2) setStep(step + 1);
@@ -73,7 +65,7 @@ export default function Checkout() {
           <ProgressSteps className="mt-6" steps={STEPS} current={step} onStepClick={setStep} />
 
           <form noValidate onSubmit={next} className="mt-12 flex max-w-xl flex-col gap-6">
-            <ErrorSummary errors={errors} />
+            <ErrorSummary submitAttempt={submitAttempt} errors={errors} />
 
             {step === 0 ? (
               <>

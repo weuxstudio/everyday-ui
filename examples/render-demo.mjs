@@ -43,8 +43,8 @@ writeFileSync(
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Everyday UI demo</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Fraunces:wght@400;500;600&family=Instrument+Sans:wght@400;600&family=Nunito:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&family=Source+Sans+3:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" />
+${process.argv.includes("--build-only") ? "" : `  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Fraunces:wght@400;500;600&family=Instrument+Sans:wght@400;600&family=Nunito:wght@400;600;700&family=IBM+Plex+Sans:wght@400;600&family=Source+Sans+3:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" />`}
   <link rel="stylesheet" href="./demo.css" />
   <!-- ?theme=<preset> swaps in a generated theme: components only read tokens, so nothing else changes. -->
   <script>
@@ -61,6 +61,8 @@ writeFileSync(
   readFileSync(join(dist, "index.html"), "utf8").replace("Everyday UI demo", "Everyday UI patterns").replace("./demo.js", "./patterns.js"),
 );
 console.log("demo → examples/dist/index.html, patterns → examples/dist/patterns.html");
+
+if (process.argv.includes("--build-only")) process.exit(0);
 
 let playwright;
 try {

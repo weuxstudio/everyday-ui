@@ -61,9 +61,7 @@ Same class names, tokens, behaviour and accessibility. Differences follow each f
 | `ErrorSummary` messages | `ReactNode` | `string` |
 | CSS | `@everyday-ui/react/styles.css` | `@everyday-ui/svelte/styles.css` (generated from the React file, identical rules) |
 
-Not yet in Svelte: `PasswordField`, `RadioGroup`, `Stepper`, `ProgressSteps`, `Badge`, `Card`
-and the motion layer (`@everyday-ui/react/motion`). Until then, build them from the React
-source: the class lists port one to one.
+PasswordField, RadioGroup, Stepper, ProgressSteps, Badge and Card are also available. See the [complete contract](../../docs/V1.md#adapter-contract) for all 15 components, motion and patterns.
 
 ## Checks
 

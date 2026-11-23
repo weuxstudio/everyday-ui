@@ -59,6 +59,7 @@
   margin: 0; padding: 0 var(--eu-space-s) var(--eu-space-s); list-style: none;
 }
 .day {
+  width: 100%;
   display: flex; flex-direction: column; align-items: center; gap: var(--eu-space-2xs);
   min-height: calc(var(--eu-size-touch) + var(--eu-space-m));
   padding: var(--eu-space-xs) 0; border: 1px solid transparent; border-radius: var(--eu-radius-control);

@@ -3,8 +3,7 @@
 import { useRef, useState, type FormEvent } from "react";
 import { Badge, Button, Dialog, ErrorSummary, Field, Switch, cx, type ErrorSummaryItem } from "@everyday-ui/react";
 
-const SECTIONS = ["Profile", "Notifications", "Members", "Billing", "Security"];
-const WORKSPACE = "Atlas Studio";
+import { SECTIONS, WORKSPACE } from "./data";
 
 export default function Settings() {
   return (
@@ -42,12 +41,14 @@ export default function Settings() {
 /** Explicit save: several fields that belong together. */
 function ProfileSection() {
   const [email, setEmail] = useState("mara@atlas");
+  const [submitAttempt, setSubmitAttempt] = useState(0);
   const [errors, setErrors] = useState<ErrorSummaryItem[]>([]);
   const [state, setState] = useState<"idle" | "saving" | "saved">("idle");
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
     const next = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ? [] : [{ fieldId: "profile-email", message: "Enter a full email address, like mara@atlas-studio.com" }];
+    setSubmitAttempt((attempt) => attempt + 1);
     setErrors(next);
     if (next.length) return;
     setState("saving");
@@ -63,7 +64,7 @@ function ProfileSection() {
         <p className="mt-1 text-ink-muted">Shown to your team and on invoices you send.</p>
       </header>
       <form noValidate onSubmit={submit} onChange={() => state === "saved" && setState("idle")} className="flex flex-col gap-6">
-        <ErrorSummary errors={errors} />
+        <ErrorSummary submitAttempt={submitAttempt} errors={errors} />
         <Field id="profile-name" label="Name" defaultValue="Mara Lindqvist" autoComplete="name" />
         <Field
           id="profile-email"

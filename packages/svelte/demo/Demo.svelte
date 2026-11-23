@@ -7,6 +7,7 @@
   let name = $state("");
   let email = $state("");
   let terms = $state(false);
+  let submitAttempt = $state(0);
   let errors: ErrorSummaryItem[] = $state([]);
   let saving = $state(false);
   let reminders = $state(true);
@@ -21,6 +22,7 @@
     if (!name.trim()) next.push({ fieldId: "name", message: "Enter your full name" });
     if (!/^\S+@\S+\.\S+$/.test(email)) next.push({ fieldId: "email", message: "Enter an email address like name@example.com" });
     if (!terms) next.push({ fieldId: "terms", message: "Agree to the terms to create an account" });
+    submitAttempt++;
     errors = next;
     if (next.length === 0) {
       saving = true;
@@ -41,7 +43,7 @@
   </header>
 
   <form class="flex flex-col gap-6" novalidate onsubmit={submit}>
-    <ErrorSummary {errors} />
+    <ErrorSummary {submitAttempt} {errors} />
     <Field id="name" label="Full name" required autocomplete="name" bind:value={name} error={errorFor("name")} />
     <Field id="email" label="Email" type="email" inputmode="email" required autocomplete="email" hint="We'll send a confirmation link" bind:value={email} error={errorFor("email")} />
     <Field id="postcode" label="Postcode" optional chars={5} inputmode="numeric" autocomplete="postal-code" />
