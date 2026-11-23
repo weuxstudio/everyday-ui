@@ -23,6 +23,11 @@ for (const adapter of ["react", "svelte"]) {
       await summary.getByRole("link").press("Enter");
       await expect(password).toBeFocused();
       await password.fill("correct horse battery");
+      await page.waitForFunction(() => new Promise(resolve => {
+        let last = scrollY, still = 0;
+        const tick = () => { still = scrollY === last ? still + 1 : 0; last = scrollY; still >= 5 ? resolve(true) : requestAnimationFrame(tick); };
+        tick();
+      }));
       await page.getByRole("button", { name: "Show password" }).click();
       await expect(password).toHaveAttribute("type", "text");
       await page.getByRole("checkbox").check();

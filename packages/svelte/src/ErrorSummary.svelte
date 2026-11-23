@@ -21,7 +21,7 @@
     const el = document.getElementById(fieldId);
     if (!el) return;
     e.preventDefault();
-    el.focus();
+    el.focus({ preventScroll: true });
     el.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
   }
 </script>

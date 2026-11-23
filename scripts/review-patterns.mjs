@@ -14,7 +14,7 @@ routes.push({ name: "mobile", path: "/skills/everyday-ui/patterns/mobile-app/blu
 try {
   const cfg = loadConfig(process.cwd(), null, { routes, baseUrl: url, out: "everyday-shots/patterns" });
   const { results } = await run(cfg);
-  const failures = results.flatMap(r => [...r.consoleErrors, ...r.issues.filter(i => /horizontal scroll/i.test(i))].map(i => r.route + " " + i));
+  const failures = results.flatMap(r => [...r.consoleErrors, ...r.issues].map(i => r.route + " " + i));
   if (failures.length) throw new Error(failures.join("\n"));
 } finally {
   await new Promise(resolve => server.close(resolve));

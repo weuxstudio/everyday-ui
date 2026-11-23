@@ -52,7 +52,7 @@ export function ErrorSummary({ errors, submitAttempt, title = "Check the highlig
                 const el = document.getElementById(e.fieldId);
                 if (!el) return;
                 ev.preventDefault();
-                el.focus();
+                el.focus({ preventScroll: true });
                 el.scrollIntoView({ block: "center", behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
               }}
             >
